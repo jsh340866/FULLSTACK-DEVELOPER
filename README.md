@@ -10,16 +10,23 @@
 ```
 
 ## draw io
-
+```
+- 요구사항확인
+- flowchart
+```
 ## Figma
-
+```
+- 요구사항정리
+- 프로토타입
+- 스타일가이드
+```
 ## Git
 
 
-
+```
 ### WD working directory  -> SA stage area
 
-###WORKING DIRECTORY 생성
+### WORKING DIRECTORY 생성
 git init
 
 
@@ -126,6 +133,8 @@ git merge dev --no-ff -m "V0.5 merge"
 
 git switch dev
 git merge master
+
+```
 
 
 SourceTree 다운로드
