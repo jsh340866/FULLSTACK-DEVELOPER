@@ -1,0 +1,78 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2" pages="2">
+  <diagram name="페이지-1" id="9Q3llmXu4Q3-1x8yhkww">
+    <mxGraphModel dx="983" dy="1755" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-BCpKzexdyqbfgB04diP-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="도서 관리 프로그램" vertex="1">
+          <mxGeometry height="30" width="130" x="120" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="회원" vertex="1">
+          <mxGeometry height="30" width="60" x="155" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="비회원" vertex="1">
+          <mxGeometry height="30" width="60" x="360" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="사서" vertex="1">
+          <mxGeometry height="30" width="60" x="570" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="관리자" vertex="1">
+          <mxGeometry height="30" width="60" x="795" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="도서서비스&amp;nbsp;" vertex="1">
+          <mxGeometry height="30" width="80" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="회원은 도서를 조회할 수 있다(R)" vertex="1">
+          <mxGeometry height="30" width="180" x="95" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="회원은 도서를 조회할 수 있다(R)" vertex="1">
+          <mxGeometry height="30" width="180" x="300" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="사서는 도서등록 할 수 있다(C)&lt;br&gt;사서는 도서 조회 할 수 있다(R)&lt;div&gt;사서는 도서 수정 할 수 있다.(U)&lt;/div&gt;&lt;div&gt;사서는 도서 삭제 할 수 있다(D)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="180" x="510" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="사서는 도서등록 할 수 있다(C)&lt;br&gt;사서는 도서 조회 할 수 있다(R)&lt;div&gt;사서는 도서 수정 할 수 있다.(U)&lt;/div&gt;&lt;div&gt;사서는 도서 삭제 할 수 있다(D)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="180" x="740" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="인증서비스" vertex="1">
+          <mxGeometry height="30" width="60" x="10" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="나의 정보 조회할 수 있다(R)&lt;div&gt;&amp;nbsp;나의 정보 수정 할 수 있다(U)&lt;/div&gt;&lt;div&gt;나의 정보 탈퇴 할 수 있다(D)&lt;/div&gt;&lt;div&gt;로그인 할 수 있다(P)&lt;/div&gt;&lt;div&gt;로그아웃 할 수 있다(P)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="190" x="90" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="비회원은 회원가입 할 수 있다(C)" vertex="1">
+          <mxGeometry height="30" width="190" x="295" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Create&lt;div&gt;Read&lt;div&gt;Update&lt;/div&gt;&lt;div&gt;Delete&lt;/div&gt;&lt;div&gt;Process&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="70" x="260" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-21" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="사서는 나의 정보 조회 할 수 있다(R)&lt;div&gt;사서는 회원 정보 조회 할 수 있다(R)&lt;br&gt;&lt;div&gt;사서는 나의 정보 수정할 수 있다(U)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;사서는 회원 탈퇴 할 수 있다(D)&lt;/div&gt;&lt;div&gt;로그인 할 수 있다(P)&lt;/div&gt;&lt;div&gt;로그아웃 할 수 있다(P)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="200" x="500" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="관리자는 회원 정보 조회 할 수 있다(R)&lt;div&gt;관리자는 사서 정보 조회 할 수 있다(R)&lt;/div&gt;&lt;div&gt;관리자는 회원/사서 수정할 수 있다.(U)&lt;/div&gt;&lt;div&gt;관리자는 회원/사서 삭제 할 수 있다(D)&lt;/div&gt;&lt;div&gt;로그인 할 수 있다(P)&lt;/div&gt;&lt;div&gt;로그아웃 할 수 있다(P)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="210" x="725" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="대여서비스" vertex="1">
+          <mxGeometry height="30" width="60" x="10" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="사서는 회원의 도서대여 처리 할 수 있다(C)&lt;div&gt;사서는 회원의 도서대여 정보를 조회할 수 있다(R)&lt;/div&gt;&lt;div&gt;사서는 회원의 도서대여 연장 처리를 할 수 있다(U)&lt;/div&gt;&lt;div&gt;사서는 회원의 도서대여 반납처리 할 수 있다(D)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="255" x="470" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="사서는 도서 대여를 할 수 있다(C)&lt;div&gt;사서는 도서 대여조회를 할 수 있다(R)&lt;/div&gt;&lt;div&gt;사서는 도서 대여기간을 수정 할 수 있다(U)&lt;/div&gt;&lt;div&gt;사서는 대여반납처리를 할 수 있다(D)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="250" x="705" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="-BCpKzexdyqbfgB04diP-27" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="나의 대여정보 조회를 할 수 있다(R)&lt;div&gt;대여 도서 기간연장 1회 할 수 있다(R)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="230" x="70" y="330" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="1a2XvQU5SDaYuTE85sMu" name="페이지-2">
+    <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
