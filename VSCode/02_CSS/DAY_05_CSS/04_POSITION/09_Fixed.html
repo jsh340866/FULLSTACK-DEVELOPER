@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* common */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        /* layout */
+        .wrapper {}
+
+        /* layout-header */
+        .wrapper>header {}
+
+        .wrapper>header>.top-header {}
+
+        .wrapper>header>nav {
+            height: 50px;
+        }
+
+        /* layout-nav-gnb */
+        .wrapper>header>nav>.main-menu {
+            display: flex;
+            justify-content: space-around;
+            height: 50px;
+            /* border: 1px solid; */
+
+            transition: .3s;
+            background-color: green;
+
+            position: relative;
+            z-index: 1;
+        }
+
+        .wrapper>header>nav>.main-menu>li {
+            /* border: 1px solid; */
+            /* height: 50px; */
+            background-color: royalblue;
+            padding: 0 20px;
+
+            position:relative;
+            height:50px;
+
+        }
+
+        .wrapper>header>nav>.main-menu>li>a {
+            display: block;
+            height: 100%;
+            line-height: 50px;
+            color: white;
+        }
+
+        .wrapper>header>nav>.main-menu>li>.sub-menu {
+            /* border: 1px solid red; */
+            /* width: 100%; */
+            /* height:100%; */
+            
+            position:absolute;
+            top:50px;
+            left : 0;right:0;
+            margin:auto;
+            
+            display:block;
+            overflow:hidden;
+            z-index:-1;
+            
+            /* border : 1px solid; */
+           
+            transition:.4s;
+            background-color: orange;
+            height:0;
+        }
+
+        .wrapper>header>nav>.main-menu>li>.sub-menu>li {
+            height: 50px;
+            width:100%;
+            padding: 0 20px;
+            
+            
+
+        }
+
+        .wrapper>header>nav>.main-menu>li>.sub-menu>li>a {
+            display: block;
+            height: 100%;
+            line-height: 50px;
+            color: white;
+            
+
+        }
+        .wrapper>header>nav>.main-menu:hover{
+            height:350px;
+            /* height:100%; */
+        }
+   
+        .wrapper>header>nav>.main-menu:hover .sub-menu{
+            display:block;
+            height:300px;
+            z-index:1;
+            
+        }
+
+        /* layout-main */
+        .wrapper>main {}
+
+        .wrapper>main>section {height: 500px;}
+        .wrapper>main>section:nth-child(1) {background-color: red;}
+        .wrapper>main>section:nth-child(2) {background-color: orange;}
+        .wrapper>main>section:nth-child(3) {background-color: yellow;}
+        .wrapper>main>section:nth-child(4) {background-color: green;}
+        .wrapper>main>section:nth-child(5) {background-color: blue;}
+        
+        /* layout-footer */
+        .wrapper>footer {}
+
+        /* bedge */
+        .bedge-item{
+            position: fixed;
+            z-index: 5;
+            right: 15px;
+            bottom: 0;
+            width: 150px;
+            height: 300px;
+            border-radius: 10px;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        .wrapper>header>.top-header+nav^main>section^footer
+    -->
+    <div class="wrapper">
+        <header>
+            <div class="top-header"></div>
+            <nav>
+                <!-- 
+                    ul.main-menu>li*4>a{$_MAINMENU}+ul.sub-menu>li*5>a{$_SUBMENU}
+                -->
+                <ul class="main-menu">
+                    <li>
+                        <a href="">1_MAINMENU</a>
+                        <ul class="sub-menu">
+                            <li><a href="">1_SUBMENU</a></li>
+                            <li><a href="">2_SUBMENU</a></li>
+                            <li><a href="">3_SUBMENU</a></li>
+                            <li><a href="">4_SUBMENU</a></li>
+                            <li><a href="">5_SUBMENU</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">2_MAINMENU</a>
+                        <ul class="sub-menu">
+                            <li><a href="">1_SUBMENU</a></li>
+                            <li><a href="">2_SUBMENU</a></li>
+                            <li><a href="">3_SUBMENU</a></li>
+                            <li><a href="">4_SUBMENU</a></li>
+                            <li><a href="">5_SUBMENU</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">3_MAINMENU</a>
+                        <ul class="sub-menu">
+                            <li><a href="">1_SUBMENU</a></li>
+                            <li><a href="">2_SUBMENU</a></li>
+                            <li><a href="">3_SUBMENU</a></li>
+                            <li><a href="">4_SUBMENU</a></li>
+                            <li><a href="">5_SUBMENU</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">4_MAINMENU</a>
+                        <ul class="sub-menu">
+                            <li><a href="">1_SUBMENU</a></li>
+                            <li><a href="">2_SUBMENU</a></li>
+                            <li><a href="">3_SUBMENU</a></li>
+                            <li><a href="">4_SUBMENU</a></li>
+                            <li><a href="">5_SUBMENU</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section></section>
+            <section></section>
+            <section></section>
+            <section></section>
+            <section></section>
+        </main>
+        <footer></footer>
+    </div>
+
+    <!-- bedge -->
+    <div class="bedge-item"></div>
+
+
+</body>
+
+</html>

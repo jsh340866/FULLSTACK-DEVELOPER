@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            absolute : static위치(기본위치)가 기준
+            absolute : 상위태그를 기준(상위태그x -> ViewPort기준)
+            left,right,top,bottom : 좌표x, 해당 방향의 벽에서 얼마나 떨어질 것인가
+
+        */
+        *{box-sizing: border-box;}
+        body{margin: 0; padding: 20px;}
+        .ancestor {
+            width: 750px;
+            height: 750px;
+            background-color: aquamarine;
+            border: 1px solid;
+            padding: 20px;
+            position: relative;
+        }
+
+        .parent {
+            width: 500px;
+            height: 500px;
+            background-color: orange;
+            border: 1px solid;
+            padding: 20px;
+            position: relative;
+        }
+
+        .son {
+            width: 50px;
+            height: 50px;
+            background-color: royalblue;
+            border: 1px solid;
+        }
+        .son:nth-child(1) {
+            position: relative;
+            left: 10px;
+            top: 10px;
+        }
+        .son:nth-child(2) {
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+        .son:nth-child(3) {
+            position: absolute;
+            bottom: -1px;
+            right: 0px;
+        }
+        .son:nth-child(4) {
+            position: absolute;
+            left: -20px;
+            top: inherit;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ancestor">
+        <div class="parent">
+            <div class="son">1</div>
+            <div class="son">2</div>
+            <div class="son">3</div>
+            <div class="son">4</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

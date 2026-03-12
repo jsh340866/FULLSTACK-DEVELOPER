@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- GOOGLE ICON -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 220,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    /* layout */
+    .layout-1280 {
+      width: 1280px;
+      margin: 0 auto;
+    }
+
+    .wrapper {}
+
+    /* layout-header */
+    .wrapper>header {
+      border-bottom: 1px solid lightgrey;
+      margin-bottom: 10px;
+    }
+
+    .wrapper>header>.top-header {}
+
+    .wrapper>header>.top-header>ul {
+      /* border: 1px solid; */
+      display: flex;
+      justify-content: right;
+    }
+
+    .wrapper>header>.top-header>ul>li {
+      /* border: 1px solid; */
+      padding: 5px 10px;
+    }
+
+    .wrapper>header>.top-header>ul>li:last-child {
+      padding-right: 0;
+    }
+
+    .wrapper>header>.top-header>ul>li>a {
+      display: block;
+      font-size: 0.8rem;
+      color: gray;
+    }
+
+    .wrapper>header>nav {}
+
+    .wrapper>header>nav>.nav-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .wrapper>header>nav>.nav-top>.left {}
+
+    .wrapper>header>nav>.nav-top>.left>img {
+      width: 120px;
+    }
+
+    .wrapper>header>nav>.nav-top>.right {
+      display: flex;
+      /* border: 1px solid; */
+      justify-content: space-between;
+      /* width: 380px; */
+      height: 40px;
+      gap: 10px;
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-menu {
+      width: 100%;
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-menu>ul {
+      display: flex;
+      /* border: 1px solid; */
+      align-items: center;
+      height: 100%;
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-menu>ul>li {
+      padding: 5px 10px;
+      position: relative;
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-menu>ul>li:nth-child(2)::after {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: tomato;
+      position: absolute;
+      top: 6px;
+      right: 5px;
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-menu>ul>li>a {}
+
+    .wrapper>header>nav>.nav-top>.right>.nav-icon {
+      width: 100%;
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-icon>ul {
+      display: flex;
+      /* border: 1px solid; */
+      align-items: center;
+      justify-content: right;
+      height: 100%;
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-icon>ul>li {
+      padding: 10px;
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-icon>ul>li:last-child {
+      padding-right: 0;
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-icon>ul>li>a {
+      display: block;
+      /* border: 1px solid; */
+    }
+
+    .wrapper>header>nav>.nav-top>.right>.nav-icon>ul>li>a>span {
+      font-size: 1.7rem;
+    }
+
+
+
+    .wrapper>header>nav>.nav-bottom {
+      /* border: 1px solid; */
+      height: 40px;
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul {
+      /* border: 1px solid; */
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      height: 100%;
+
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul>li {
+      /* border: 1px solid; */
+      padding: 5px 15px;
+      padding-bottom: 0;
+      height: 100%;
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul>li:first-child {
+      padding-left: 0;
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul>li>a {
+      display: block;
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul>li>a:hover {
+      border-bottom: 2px solid;
+      height: 100%;
+    }
+
+    /* layout-main */
+    .wrapper>main {}
+
+    .wrapper>main>section {
+      min-height: 250px;
+      /* border: 1px solid; */
+      padding: 40px 0;
+    }
+
+    .wrapper>main>section.banner {
+      margin-top: 30px;
+      height: 480px;
+      border-radius: 20px;
+      background-color: lightgray;
+    }
+
+    .wrapper>main>section.items.good {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .wrapper>main>section.items.good>.item {
+      border: 1px solid;
+      min-height: 120px;
+    }
+
+    /* layout-footer */
+    .wrapper>footer {}
+  </style>
+</head>
+
+<body>
+
+  <!-- .wrapper>header>.top-header+nav^main>section^footer -->
+
+  <div class="wrapper">
+    <header>
+      <div class="top-header layout-1280">
+        <ul>
+          <li><a href="javascript:void(0)">고객센터</a></li>
+          <li><a href="javascript:void(0)">마이페이지</a></li>
+          <li><a href="javascript:void(0)">관심</a></li>
+          <li><a href="javascript:void(0)">알림</a></li>
+          <li><a href="javascript:void(0)">로그인</a></li>
+        </ul>
+      </div>
+      <nav class="layout-1280">
+        <div class="nav-top">
+          <div class="left logo">
+            <img src="./logo.svg" alt="">
+          </div>
+          <div class="right gnb">
+            <div class="nav-menu">
+              <ul>
+                <li><a href="javascript:void(0)">HOME</a></li>
+                <li><a href="javascript:void(0)">STYLE</a></li>
+                <li><a href="javascript:void(0)">SHOP</a></li>
+              </ul>
+            </div>
+            <div class="nav-icon">
+              <ul>
+                <li>
+                  <a href="javascript:void(0)">
+                    <span class="material-symbols-outlined">
+                      search
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">
+                    <span class="material-symbols-outlined">
+                      shopping_bag
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">
+                    <span class="material-symbols-outlined">
+                      menu
+                    </span>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="nav-bottom">
+          <ul>
+            <li><a href="javascript:void(0)">산산기어26s</a></li>
+            <li><a href="javascript:void(0)">추천</a></li>
+            <li><a href="javascript:void(0)">봄맞이</a></li>
+            <li><a href="javascript:void(0)">신상</a></li>
+            <li><a href="javascript:void(0)">뷰티</a></li>
+            <li><a href="javascript:void(0)">럭셔리</a></li>
+            <li><a href="javascript:void(0)">랭킹</a></li>
+            <li><a href="javascript:void(0)">중고</a></li>
+            <li><a href="javascript:void(0)">이벤트</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="layout-1280">
+      <section class="banner">
+
+      </section>
+      <section class="items good">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+        <div class="item">11</div>
+        <div class="item">12</div>
+        <div class="item">13</div>
+        <div class="item">14</div>
+        <div class="item">15</div>
+        <div class="item">16</div>
+      </section>
+    </main>
+    <footer></footer>
+  </div>
+
+</body>
+
+</html>

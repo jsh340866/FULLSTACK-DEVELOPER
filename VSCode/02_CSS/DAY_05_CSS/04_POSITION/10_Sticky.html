@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+
+        .parent {
+            width: 500px;
+            height: 500px;
+            border: 1px solid;
+            margin-top: 250px;
+            padding: 0px;
+            background-color: orange;
+
+            position: relative;
+        }
+
+        .parent>.son {
+            width: 100px;
+            height: 100px;
+            font-size: 0.8rem;
+            background-color: royalblue;
+            border: 1px solid black;
+            color: white;
+        }
+
+        .parent>.son:nth-child(1) {
+            position: relative;
+        }
+
+        .parent>.son:nth-child(2) {
+            position: absolute;
+            left: 100px;
+            top: 0px;
+        }
+
+        .parent>.son:nth-child(3) {
+            position: fixed;
+            left: 210px;
+            top: 251px;
+        }
+
+        .parent>.son:nth-child(4) {
+            position: sticky;
+            /* 가로스크롤이 있을때 적용 */
+            left: 0px;
+
+            /* 세로스크롤이 잇을때 적용 */
+            /* 상단에서 100px 띄우고 고정 */
+            top: 150px;
+
+            margin-left: 399px;
+            margin-top: -102px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <header></header>
+        <main>
+            <section>
+                <div class="parent">
+                    <div class="son">relative</div>
+                    <div class="son">absolute</div>
+                    <div class="son">fixed</div>
+                    <div class="son">sticky</div>
+                </div>
+
+
+            </section>
+        </main>
+        <footer></footer>
+    </div>
+
+</body>
+
+</html>

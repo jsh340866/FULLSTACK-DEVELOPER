@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .c1 {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        input[type="checkbox"]+label {
+            display: inline-block;
+            width: 65px;
+            height: 65px;
+            /* border: 1px solid gray; */
+            cursor: pointer;
+            line-height: 65px;
+        }
+
+        input[type="checkbox"] {
+            width: 300px;
+            height: 300px;
+            display: inline-block;
+            border: 1px solid;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="c1">
+        <input type="checkbox" id="ch">
+        <label for="ch">체크박스</label>
+        <!-- <span>check</span> -->
+    </div>
+
+</body>
+
+</html>

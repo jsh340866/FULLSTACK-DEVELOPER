@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{box-sizing: border-box;}        
+        body{margin: 0; padding: 0;}
+        .wrapper{height: 5000px;}
+        .bg{
+            position: absolute;
+            top: 800px;
+            width: 100%;
+            height: 400px;
+            /* background-color: orange; */
+            background-image: url('./images/bg.jpg');
+            background-repeat: no-repeat ;
+            /* cover : 전체 채우기 , contain : 이미지 비율에 맞게 표시 */
+            background-size: contain;
+            background-attachment: fixed;           
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div class="bg"></div>
+    </div>
+
+</body>
+</html>

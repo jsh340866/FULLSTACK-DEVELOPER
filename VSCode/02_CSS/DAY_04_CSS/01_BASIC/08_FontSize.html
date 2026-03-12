@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            font-size: 32px;
+        }
+    </style>
+    
+</head>
+
+
+<body>
+
+    <!-- px : 고정 크기 기본값 : 16px -->
+    <div style="font-size: 48px;">
+        <div style="font-size: 32px;">HELLOWORLD</div>
+        <div style="">HELLOWORLD</div>
+        <div style="font-size: 8px;">HELLOWORLD</div>
+        <div style="font-size: 16px;">HELLOWORLD</div>
+    </div>
+    <hr />
+    <!-- em : 상대크기(부모태그의 font-size를 기준으로 한 배수) -->
+    <div style="font-size: 24px;">
+        <div style="font-size: 1em;">HELLOWORLD</div>
+        <div style="font-size: 2em;">HELLOWORLD</div>
+        <div style="font-size: 3em;">HELLOWORLD</div>
+        <div style="font-size: 0.5em;">HELLOWORLD</div>
+    </div>
+    <hr />
+    <!-- rem : 상대크기(기본글자크기 : root 16px기준) -->
+    <div style="font-size: 24px;">
+        <div style="font-size: 1rem;">HELLOWORLD</div>
+        <div style="font-size: 2rem;">HELLOWORLD</div>
+        <div style="font-size: 3rem;">HELLOWORLD</div>
+        <div style="font-size: 0.5rem;">HELLOWORLD</div>
+    </div>
+    <hr />
+    <!-- % : 상대크기(상위태그기준) -->
+    <div style="font-size: 24px;">
+        <div style="font-size: 100%;">HELLOWORLD</div>
+        <div style="font-size: 50%;">HELLOWORLD</div>
+        <div style="font-size: 200%;">HELLOWORLD</div>
+        <div style="font-size: 75%;">HELLOWORLD</div>
+    </div>
+    <hr />
+    <!-- vw : 상대크기(뷰포트 기준) -->
+    <div style="font-size: 24px;">
+        <div style="font-size: 1vw;">HELLOWORLD</div>
+        <div style="font-size: 1.5vw;">HELLOWORLD</div>
+        <div style="font-size: 2vw;">HELLOWORLD</div>
+        <div style="font-size: clamp(16px,2vw,80px)">HELLOWORLD</div>
+    </div>
+    <hr />
+    <!-- clamp(최솟값,비율,최댓값) -->
+    <div style="width:clamp(200px,50vw,1280px);height: 200px;border: 1px solid;margin: 0 auto;">
+        <div style="font-size: clamp(0.8rem,5vw,4rem); text-align: center; line-height: 200px;">
+            HELLOWORLD
+        </div>
+    </div>
+</body>
+
+</html>

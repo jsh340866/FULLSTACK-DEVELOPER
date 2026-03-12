@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+
+        }
+
+        /* common */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* layout */
+        .layout-padding {
+            padding: 0 20px;
+        }
+
+        .wrapper {}
+
+        /* header */
+        .wrapper>header {}
+
+        .wrapper>header>.top-header {}
+
+        .wrapper>header>nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            height: 80px;
+
+        }
+
+        .wrapper>header>nav>.nav-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .wrapper>header>nav>.nav-menu {
+            display: flex;
+            align-items: center;
+            /* border:1px solid; */
+        }
+
+        .wrapper>header>nav>.nav-menu>li {
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .wrapper>header>nav>.nav-menu>li:last-child {
+            padding-right: 0;
+        }
+
+        /* main  */
+        .wrapper>main {}
+
+        .wrapper>main>section {}
+
+        .wrapper>main>section:nth-child(1) {}
+
+        .wrapper>main>section:nth-child(1)>.card-container {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            gap: 30px;
+
+            flex-wrap: wrap;
+        }
+
+        .wrapper>main>section:nth-child(1)>.card-container>.card {
+            border: 1px solid;
+            border-radius: 20px;
+            padding: 20px;
+
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 480px;
+        }
+
+        .wrapper>main>section:nth-child(2) {}
+
+        .wrapper>main>section:nth-child(2)>.container {
+            padding: 20px;
+            border: 1px solid;
+            border-radius: 20px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+
+        }
+
+        .wrapper>main>section:nth-child(2)>.container>.media-item {
+            display: flex;
+            justify-content: left;
+            align-items: start;
+            gap: 20px;
+            border: 1px solid;
+
+            flex-wrap: wrap;
+
+        }
+
+        .wrapper>main>section:nth-child(2)>.container>.media-item>.media-img {
+            max-width: 400px;
+            height: 200px;
+            background-color: lightgray;
+
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 200px;
+        }
+
+        .wrapper>main>section:nth-child(2)>.container>.media-item>.media-content {}
+
+        /* footer */
+        .wrapper>footer {}
+
+        .wrapper>footer>.footer {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            gap: 20px;
+            background-color: black;
+            padding: 20px;
+
+            flex-wrap: wrap;
+        }
+
+        .wrapper>footer>.footer>.footer-section {
+            width: 100%;
+
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 480px;
+        }
+
+        .wrapper>footer>.footer>.footer-section>h3 {
+            color: white;
+            font-size: 1.7rem;
+            margin: 0;
+        }
+
+        .wrapper>footer>.footer>.footer-section>p {
+            color: white;
+        }
+
+
+        @media(max-width:1080px) {
+            .wrapper>header>nav {
+                flex-direction: column;
+                height: 100%;
+
+            }
+
+            .wrapper>header>nav>.nav-logo {
+                font-size: 2rem;
+                font-weight: 800;
+                color: white;
+            }
+
+            .wrapper>header>nav>.nav-menu {
+                flex-direction: column;
+                /* border:1px solid; */
+            }
+
+            .wrapper>header>nav>.nav-menu>li {
+                padding: 10px 20px;
+                color: white;
+            }
+
+            .wrapper>header>nav>.nav-menu>li:last-child {
+                padding-right: 0;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper ">
+        <header>
+            <div class="top-header layout-padding">
+                <h2>1. 네비게이션 바 레이아웃</h2>
+            </div>
+            <nav class="layout-padding">
+                <div class="nav-logo">Logo</div>
+                <ul class="nav-menu">
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Services</li>
+                    <li>Contact</li>
+                </ul>
+            </nav>
+        </header>
+        <main class="layout-padding">
+            <section>
+                <h2>2. 카드 레이아웃</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <h3>Product 1</h3>
+                        <p>상품 설명이 들어갑니다. 실무에서 자주 사용되는 카드 형태의 레이아웃입니다.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Product 2</h3>
+                        <p>반응형으로 구현되어 화면 크기에 따라 자동으로 배치가 조절됩니다.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Product 3</h3>
+                        <p>flex-wrap과 flex-basis를 활용하여 유동적인 레이아웃을 구현했습니다.</p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>3. 미디어 컨텐츠 레이아웃</h2>
+                <div class="container">
+                    <div class="media-item">
+                        <div class="media-img"></div>
+                        <div class="media-content">
+                            <h3>뉴스 제목</h3>
+                            <p>뉴스 내용이 들어갑니다. 이미지와 텍스트가 나란히 배치되는 레이아웃입니다.</p>
+                        </div>
+                    </div>
+                    <div class="media-item">
+                        <div class="media-img"></div>
+                        <div class="media-content">
+                            <h3>블로그 포스트</h3>
+                            <p>블로그 내용이 들어갑니다. 모바일에서는 세로로 배치됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+        <footer>
+            <h2 class="layout-padding">4. 반응형 푸터</h2>
+            <footer class="footer layout-padding">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>회사 소개 내용이 들어갑니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>연락처 정보가 들어갑니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>소셜 미디어 링크가 들어갑니다.</p>
+                </div>
+            </footer>
+        </footer>
+    </div>
+</body>
+
+</html>

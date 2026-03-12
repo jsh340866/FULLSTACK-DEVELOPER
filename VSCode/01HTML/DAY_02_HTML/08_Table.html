@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            /* border: 1px solid; */
+        }
+
+        td,
+        th {
+            text-align: center;
+            width: 55px;
+            height: 55px;
+            border: 1px solid;
+        }
+
+        thead {
+            background-color: black;
+            color: white;
+        }
+
+        tbody {
+            background-color: orange;
+            color: white;
+        }
+
+        tfoot {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <caption>SEMENTIC</caption>
+        <!--어디에 위치하든 head는위 foot은 아래  -->
+        <tfoot>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>1열</th>
+                <th>2열</th>
+                <th>3열</th>
+            </tr>
+        </thead>
+    </table>
+
+
+
+
+</body>
+
+</html>

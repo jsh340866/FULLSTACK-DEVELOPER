@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            :: 의사요소 선택자 or 가상요소 선택자
+
+            ::after  :
+            ::before :
+        */
+        div{
+            width: 400px;
+            height: 200px;
+            border: 1px solid;
+            background-color: orange;
+            text-align: center;
+            line-height: 200px;
+        }
+        div::before{
+           content: '😊😂'; 
+        }
+
+        div::after{
+            content: '👍👍';
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="d1">
+        HELLO WORLD
+    </div>
+    
+</body>
+</html>
