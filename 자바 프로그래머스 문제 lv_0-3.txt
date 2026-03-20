@@ -122,3 +122,14 @@ class Solution {
         return answer;
     }
 }
+
+문제48. 더 크게 합치기
+class Solution {
+    public int solution(int a, int b) {
+        String A = String.valueOf(a);
+        String B = String.valueOf(b);
+        int ab = Integer.valueOf(A+B);
+        int ba = Integer.valueOf(B+A);
+        return (ab>=ba)?ab:ba;
+    }
+}
