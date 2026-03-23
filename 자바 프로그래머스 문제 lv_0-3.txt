@@ -320,8 +320,35 @@ class Solution {
 }
 
 문제59. 이어 붙인 수
+class Solution {
+    public int solution(int[] num_list) {
+        int answer = 0;
+        String n1 = "";
+        String n2 = "";
+        for (int i = 0; i<num_list.length;i++) {
+            if(num_list[i]%2 != 0) {
+                n1 += (""+num_list[i]);
+            }
+            else {
+                n2 += (""+num_list[i]);
+            }
+        }
+        answer = Integer.parseInt(n1) + Integer.parseInt(n2);
+        return answer;
+    }
+}
+
+문제60. n개 간격의 원소들
+class Solution {
+    public int[] solution(int[] num_list, int n) {
+        int[] answer = new int[(num_list.length%n ==0)?num_list.length/n :num_list.length/n +1 ];
+        int j = 0;
+        for (int i =0; i<num_list.length; i += n){
+            answer[j++] = num_list[i];  
+        }
+        return answer;
+    }
+}
 
 
 
-
->>>>>>> c04a8aa5c1981a38040046d951b0e80df886a9fc
