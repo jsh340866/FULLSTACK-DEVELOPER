@@ -248,4 +248,36 @@ class Solution {
     }
 }
 
+문제 72. 옹알이(1) 어려움; ( replaceFirst() )
+1. class Solution {
+    public int solution(String[] babbling) {
+        int answer = 0;
+        String[] baby = {"aya","ye","woo","ma"};
+        for(String b : babbling){
+            for(String can : baby){
+                b = b.replaceFirst(can, " ");
+            }
+            if(b.trim().isEmpty()){
+                answer++;
+            }
+        }
+        return answer;
+    }
+}
 
+2. class Solution {
+    public int solution(String[] babbling) {
+        int answer = 0;
+        for(int i =0; i < babbling.length; i++) {
+            babbling[i] = babbling[i].replace("aya", "1");
+            babbling[i] = babbling[i].replace("woo", "1");
+            babbling[i] = babbling[i].replace("ye", "1");
+            babbling[i] = babbling[i].replace("ma", "1");
+            babbling[i] = babbling[i].replace("1", "");
+            if(babbling[i].isEmpty()) {
+                answer = answer + 1;
+            }
+        }
+        return answer;
+    }
+}
