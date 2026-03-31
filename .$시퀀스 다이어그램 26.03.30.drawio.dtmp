@@ -1196,7 +1196,7 @@
         <mxCell id="s9di_Rv5cG7_Nm005sRE-5" parent="SoM3rbIAfoT4GvvLR9pb-3" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
           <mxGeometry height="35" width="10" x="45" y="616" as="geometry" />
         </mxCell>
-        <mxCell id="SoM3rbIAfoT4GvvLR9pb-8" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;dashed=1;" value="[비동기]조건에 맞는 상품을 요청">
+        <mxCell id="SoM3rbIAfoT4GvvLR9pb-8" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="[비동기]조건에 맞는 상품을 요청">
           <mxGeometry relative="1" width="80" as="geometry">
             <mxPoint x="1565" y="174.4999999999999" as="sourcePoint" />
             <mxPoint x="1755" y="174.4999999999999" as="targetPoint" />
