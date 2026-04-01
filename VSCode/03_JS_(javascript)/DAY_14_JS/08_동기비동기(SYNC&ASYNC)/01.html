@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    //메인스레드에서의 반복문
+    for (let i = 0; i < 10; i++) {
+      console.log("main thread...for i :", i)
+    }
+    console.log("첫번째 for문 종료..");
+    console.log("---------------------------------")
+    //비동기 함수(스레드 분할 처리 - 실제로 JS에서는 싱글 쓰레드만 지원/ 구조적으로 스레드 분할불가)
+    setTimeout(() => {
+      for (let i = 0; i < 10; i++) {
+        console.log("Async thread...for i :", i)
+      }
+      console.log("두번째 for문 종료..");
+    }, 5);
+    //메인스레드에서의 반복문
+    for (let i = 0; i < 10; i++) {
+      console.log("main thread...for i :", i)
+    }
+    console.log("세번째 for문 종료..");
+    console.log("---------------------------------")
+
+  </script>
+
+</body>
+
+</html>

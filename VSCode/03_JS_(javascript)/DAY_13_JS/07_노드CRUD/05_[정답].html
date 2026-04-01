@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- GOOGLE ICON -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    * {
+      font-size: 1rem;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 300,
+        'GRAD' 0,
+        'opsz' 24;
+      font-size: 1.5rem;
+    }
+
+    input {
+      height: 35px;
+    }
+
+    .btn {
+      width: 75px;
+      height: 35px;
+      border-radius: 5px;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    th,
+    td {
+      width: 50px;
+      height: 35px;
+      border: 1px solid;
+      margin: 2px;
+    }
+
+    td input {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      /* padding-left: 5px; */
+      outline: noen;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 150px;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 700px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <form action="" name="joinForm" onsubmit="return false">
+    <input name="username" placeholder="이름을 입력하세요">
+    <input name="age" placeholder="나이를 입력하세요">
+    <input name="address" placeholder="주소를 입력하세요">
+    <button class="btn">입력</button>
+  </form>
+  <hr>
+  <table>
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>주소</th>
+        <th>삭제</th>
+        <th>수정</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 탬플릿 -->
+      <!-- <tr>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td>
+          <a href="javascript:void(0)">삭제</a>
+        </td>
+        <td>
+          <a href="javascript:void(0)">수정</a>
+        </td>
+      </tr> -->
+
+    </tbody>
+
+  </table>
+
+  </div>
+  <script>
+    // form의 기본기능은 비활성화합니다
+    //입력버튼을 눌렀을때 table의 tbody에 입력된 (이름/나이/주소/삭제버튼)이 생성될수 있도록합니다
+    //입력된 노드의 이름/나이/주소를 수정할수 있도록합니다.
+    //특정행의 삭제버튼을 클릭했을때 해당 행이 삭제 될수 있도록 합니다.
+
+    //특정행의 위치를 위로이동/아래로 이동이 가능하도록 합니 다(나중에)
+
+    const btnEl = document.querySelector('.btn');
+    const formEl = document.joinForm;
+    const usernameEl = formEl.username;
+    const ageEl = formEl.age;
+    const addressEl = formEl.address;
+    const tableBodyEl = document.querySelector('table tbody');
+    let idx = 0;
+
+    btnEl.addEventListener('click', (e) => {
+
+      // 1. 유효성검증
+      if (!isValid(formEl)) {
+        return;
+      }
+      // 2. form's input value 가져오기 - form 그대로 가져오면됨
+      // 3. 새노드생성 -> tableBodyEl append/prepend
+      createNode(formEl);
+      // 4. form's input 초기화
+      init(formEl);
+
+    })
+
+    function isValid(formEl) {
+
+      if (formEl.username.value.trim() === "") {
+        alert("이름이 공백입니다.");
+        return false;
+      }
+      if (formEl.address.value.trim() === "") {
+        alert("주소가 공백입니다.");
+        return false;
+      }
+      if (formEl.age.value.trim() === "") {
+        alert("나이가 공백입니다.");
+        return false;
+      }
+      return true
+    };
+    function createNode(formEl) {
+      // 생성
+      const trEl = document.createElement('tr');
+      const td1El = document.createElement('td');
+      const td2El = document.createElement('td');
+      const td3El = document.createElement('td');
+      const td4El = document.createElement('td');
+      const td5El = document.createElement('td');
+      const td1InputEl = document.createElement('input');
+      const td2InputEl = document.createElement('input');
+      const td3InputEl = document.createElement('input');
+      const td4AEl = document.createElement('a');
+      const td5AEl = document.createElement('a');
+
+      //속성 설정
+      td1InputEl.setAttribute("readonly", true);
+      td2InputEl.setAttribute("readonly", true);
+      td3InputEl.setAttribute("readonly", true);
+      td4AEl.setAttribute("href", "javascript:void(0)");
+      td4AEl.setAttribute("data-idx", idx);
+      td5AEl.setAttribute("href", "javascript:void(0)");
+      td5AEl.setAttribute("data-idx", idx);
+      trEl.setAttribute("data-idx", idx);
+      idx++;
+
+      //값 삽입
+      td1InputEl.value = formEl.username.value;
+      td2InputEl.value = formEl.age.value;
+      td3InputEl.value = formEl.address.value;
+      td4AEl.innerHTML = "삭제";
+      td5AEl.innerHTML = "수정";
+
+      //이벤트
+      td4AEl.addEventListener('click', (e) => {
+        const n = td4AEl.dataset.idx;
+        console.log("idx", n);
+        tableBodyEl.querySelector(`tr[data-idx='${n}']`).remove();
+      })
+      td5AEl.addEventListener('click', (e) => {
+        const n = td5AEl.dataset.idx;
+        const status = td5AEl.dataset.update; //현재상태를 확인 하기 위한 update
+        if (status == undefined) {
+          console.log("idx", n);
+          const updateTrEl = tableBodyEl.querySelector(`tr[data-idx='${n}']`);
+          const inputEls = updateTrEl.querySelectorAll("input");
+          // console.log('a',inputEls)
+          inputEls.forEach((inputEl) => {
+            inputEl.removeAttribute("readonly");
+            inputEl.style.backgroundColor = "lightgray";
+          })
+          td5AEl.dataset.update = "update";
+          td5AEl.innerHTML = "저장";
+        }
+        else {
+          console.log("idx", n);
+          const updateTrEl = tableBodyEl.querySelector(`tr[data-idx='${n}']`);
+          const inputEls = updateTrEl.querySelectorAll("input");
+          // console.log('a',inputEls)
+          inputEls.forEach((inputEl) => {
+            inputEl.setAttribute("readonly", true);
+            inputEl.style.backgroundColor = "white";
+          })
+          td5AEl.removeAttribute("data-update");
+          td5AEl.innerHTML = "수정";
+        }
+      })
+
+
+      // 연결
+      td1El.appendChild(td1InputEl);
+      td2El.appendChild(td2InputEl);
+      td3El.appendChild(td3InputEl);
+      td4El.appendChild(td4AEl);
+      td5El.appendChild(td5AEl);
+
+      trEl.appendChild(td1El);
+      trEl.appendChild(td2El);
+      trEl.appendChild(td3El);
+      trEl.appendChild(td4El);
+      trEl.appendChild(td5El);
+
+      tableBodyEl.appendChild(trEl);
+    };
+    function init(formEl) {
+      formEl.username.value = '';
+      formEl.age.value = '';
+      formEl.address.value = '';
+    };
+
+
+
+  </script>
+</body>
+
+</html>

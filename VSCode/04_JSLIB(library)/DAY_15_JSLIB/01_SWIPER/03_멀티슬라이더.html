@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- GOOGLE ICON -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48;
+
+      font-size: 2.5rem;
+      border: 3px solid;
+      border-radius: 50%;
+    }
+  </style>
+
+  <!-- SWIPER CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .wrapper {}
+
+    /*  */
+    .wrapper>header {}
+
+    .wrapper>header>.top-header {
+      height: 50px;
+      padding: 10px 0;
+    }
+
+    .wrapper>header>.top-header>.swiper {
+      height: 100%;
+      background-color: orange;
+    }
+
+    .wrapper>header>.top-header>.swiper>.swiper-wrapper {}
+
+    .wrapper>header>.top-header>.swiper>.swiper-wrapper>.swiper-slide {}
+
+    .wrapper>header>nav {}
+
+    /*  */
+    .wrapper>main {}
+
+    .wrapper>main>section {
+      margin-bottom: 25px;
+    }
+
+    .wrapper>main>section.main-banner {}
+
+    .wrapper>main>section.main-banner>.swiper {
+      width: 100%;
+      height: 720px;
+      position: relative;
+      /* border : 5px solid red; */
+
+
+
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper {
+      height: 100%;
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide {
+      height: 100%;
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a>img {
+      /* object-fit: cover; */
+
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-prev,
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-next {
+      width: 35px;
+      height: 35px;
+      /* border: 1px solid white; */
+      position: absolute;
+      border-radius: 50%;
+      color: white;
+      top: 600px;
+
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-prev>svg,
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-next>svg {
+      display: none;
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-prev::after {
+      content: '<';
+      font-size: 1.5rem;
+      /* border: 1px solid; */
+      transform: scaleY(1.5);
+
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-next::after {
+      content: '>';
+      font-size: 1.5rem;
+      /* border: 1px solid; */
+      transform: scaleY(1.5);
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-prev {
+      left: 25%;
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-next {
+      left: calc(25% + 120px);
+    }
+
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-pagination {
+      color: white;
+      font-size: 1.3rem;
+      position: absolute;
+      top: 580px;
+      left: calc(25% + 25px);
+      width: 100px;
+      height: auto;
+    }
+
+    .start-stop-toggle {
+      position: absolute;
+
+      top: 575px;
+      left: calc(25% - 55px);
+      cursor: pointer;
+      color: white;
+      z-index: 1;
+      transition: .4s;
+
+
+    }
+
+    .swiper-pagination-current {
+      color: orange;
+    }
+
+    /* multi-slider section */
+    main>.multi-slider {
+      height: 500px;
+      border: 1px solid;
+    }
+
+    main>.multi-slider>.swiper {
+      height: 100%;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide {
+      height: 250px;
+      width: 250px;
+      border: 1px solid;
+      transition: .3s;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide>a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5rem;
+
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide-active {
+      background-color: orange;
+      transform: scale(1.5);
+      z-index: 2;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide-prev {
+      background-color: orange;
+      /* opacity: .5; */
+      transform: scale(1.2);
+      z-index: 1;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide-next {
+      background-color: orange;
+      transform: scale(1.2);
+      /* opacity: .5; */
+      z-index: 1;
+    }
+
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide>a {}
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide>a>img {}
+
+    main>.multi-slider>.swiper>.swiper-button-prev {}
+
+    main>.multi-slider>.swiper>.swiper-button-next {}
+
+    /*  */
+    .wrapper>footer {
+      height: 350px;
+      background-color: black;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <div class="wrapper">
+    <header>
+      <div class="top-header">
+        <!-- 수직SWIPER -->
+        <!-- Slider main container -->
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">[공지] 오늘 휴강 공지</div>
+            <div class="swiper-slide">[공지] 공지사항 1</div>
+            <div class="swiper-slide">[공지] 공지사항 2</div>
+            <div class="swiper-slide">[공지] 공지사항 3</div>
+          </div>
+
+        </div>
+      </div>
+      <nav></nav>
+    </header>
+
+    <main>
+      <!-- BANNER SECTION -->
+      <section class="main-banner">
+        <!-- Slider main container -->
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <a href="javascript:void(0)">
+                <img src="./images/1.jpg" alt="">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="javascript:void(0)">
+                <img src="./images/2.jpg" alt="">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="javascript:void(0)">
+                <img src="./images/3.jpg" alt="">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="javascript:void(0)">
+                <img src="./images/4.jpg" alt="">
+              </a>
+            </div>
+
+          </div>
+          <!-- If we need pagination -->
+          <div class="swiper-pagination"></div>
+
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+          <!-- stop/start button  -->
+          <div class="start-stop-toggle">
+            <span class="material-symbols-outlined">
+              <!-- pause -->
+              play_arrow
+            </span>
+          </div>
+
+
+          <!-- If we need scrollbar -->
+          <!-- <div class="swiper-scrollbar"></div> -->
+        </div>
+      </section>
+
+      <!-- MULTISLIDER -->
+      <section class="multi-slider">
+
+        <!-- Slider main container -->
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <!-- .swiper-slide*20>a[href="javascript:void(0)"]{$} -->
+            <div class="swiper-slide"><a href="javascript:void(0)">1</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">2</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">3</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">4</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">5</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">6</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">7</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">8</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">9</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">10</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">11</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">12</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">13</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">14</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">15</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">16</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">17</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">18</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">19</a></div>
+            <div class="swiper-slide"><a href="javascript:void(0)">20</a></div>
+
+
+          </div>
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+        </div>
+
+
+      </section>
+
+      <section></section>
+      <section></section>
+    </main>
+    <footer></footer>
+  </div>
+
+
+  <script>
+    const mainBannerSwiper = new Swiper('.main-banner>.swiper', {
+      // Optional parameters
+      direction: 'horizontal',  //vertical:수직 , horizontal(수평)
+      autoplay: {
+        delay: 2000,
+        // pauseOnMouseEnter:true,
+      },
+      loop: true,
+      effect: "slide", // slide(기본), fade , scroll, cube , coverflow , flip
+      mousewheel: true,
+
+      // If we need pagination
+      pagination: {
+        el: '.main-banner>.swiper>.swiper-pagination',
+        clickable: true,
+        type: 'fraction', //bullets(기본), fraction , progressbar
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: '.main-banner>.swiper>.swiper-button-next',
+        prevEl: '.main-banner>.swiper>.swiper-button-prev',
+      },
+
+      // And if we need scrollbar
+      // scrollbar: {
+      //     el: '.swiper-scrollbar',
+      // },
+    });
+
+    console.log(mainBannerSwiper);
+
+    const playToggleBtn = document.querySelector('.start-stop-toggle span');
+    let isPlay = true;
+    playToggleBtn.addEventListener('click', () => {
+
+      if (isPlay) {
+        playToggleBtn.innerHTML = 'pause';
+        isPlay = false;
+        mainBannerSwiper.autoplay.stop();
+      }
+      else {
+        playToggleBtn.innerHTML = 'play_arrow';
+        isPlay = true;
+        mainBannerSwiper.autoplay.start();
+      }
+
+    });
+
+
+    //Top-header Vertical Swiper
+    const topHeaderSwiper = new Swiper('.top-header>.swiper', {
+      // Optional parameters
+      direction: 'vertical',
+      autoplay: {
+        delay: 2000,
+      },
+      loop: true,
+    });
+
+    //Multi-Silder Swiper
+    const multiSliderSwiper = new Swiper('main>.multi-slider>.swiper', {
+      // Optional parameters
+      direction: 'horizontal',
+      loop: true,
+      autoplay: {
+        delay: 2000
+      },
+      // multislider option
+      slidesPerView: 4,      // 한 화면에 보여줄 슬라이더 갯수
+      centeredSlides: true,  // 가운데 슬라이더 기준을 만듬
+      // spaceBetween: 20,      // 슬라이드 사이 여백
+      
+      // Navigation arrows
+      navigation: {
+        nextEl: 'main>.multi-slider>.swiper>.swiper-button-next',
+        prevEl: 'main>.multi-slider>.swiper>.swiper-button-prev',
+      },
+
+    });
+
+    // MultiSlider Mouse Event
+    const multiSliderEl = document.querySelector('main>.multi-slider>.swiper');
+    multiSliderEl.addEventListener('mouseover', () => { multiSliderSwiper.autoplay.stop(); });
+    multiSliderEl.addEventListener('mouseleave', () => { multiSliderSwiper.autoplay.start(); });
+
+    //클릭한 위치를 중심으로 이동(수정)
+    multiSliderEl.addEventListener('click', (e) => {
+      const slide = e.target.closest('main>.multi-slider>.swiper .swiper-slide');
+      if (!slide) return;
+      if (slide.classList.contains('main>.multi-slider>.swiper swiper-slide-active')) return;
+
+      // data-swiper-slide-index : Swiper가 각 슬라이드에 부여하는 실제 인덱스
+      const realIndex = parseInt(slide.getAttribute('data-swiper-slide-index'));
+      if (!isNaN(realIndex)) {
+        multiSliderSwiper.slideToLoop(realIndex); // loop 모드에서는 slideToLoop 사용
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- LODASH CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.23/lodash.min.js"></script>
+
+  <style>
+    body {
+      height: 8000px;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <script>
+    console.log("_",_);
+
+    // window.addEventListener("scroll",()=>{console.log(window.scrollY);});
+    // 이벤트 확인 지연으로 성능향상
+    window.addEventListener("scroll", _.throttle(()=>{console.log(window.scrollY);},100));
+  </script>
+</body>
+
+</html>

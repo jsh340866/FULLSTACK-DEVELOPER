@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/중구맛집.js"></script>
+</head>
+
+<body style="display: flex;justify-content: center;align-items: center;height: 100vh;">
+  <div style="width: 800px;height: 500px;">
+    <canvas id="myChart"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    //
+    // console.log("중구맛집", 중구맛집)
+    //
+    const 중구맛집_data = 중구맛집.data;
+    // console.log("dataArray",dataArray);
+
+    const catList =
+      중구맛집_data.reduce((catList, item) => {
+        // console.log('reduce', item.FD_CS);
+        catList[item.FD_CS] = (catList[item.FD_CS] == undefined) ? 1 : catList[item.FD_CS] + 1;
+        // console.log('reduce', catList);
+        return catList;
+      }, {})
+    console.log(Object.keys(catList));
+
+
+    //차트 구현
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(catList),
+        datasets: [{
+          label: '# of Votes',
+          data: Object.values(catList),
+          borderWidth: 1,
+          backgroundColor:['red','orange','Yellow','greenyellow','blue','navy','Purple','black']
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>

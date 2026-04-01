@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <ul>
+    <li>LIST_1</li>
+    <li id="li2">LIST_2</li>
+    <li class="item">LIST_3</li>
+    <li>LIST_4</li>
+    <li id="li5">LIST_5</li>
+    <li>LIST_6</li>
+    <li>LIST_7</li>
+    <li class="item">LIST_8</li>
+    <li class="item">LIST_9</li>
+    <li class="item">LIST_10</li>
+  </ul>
+
+  <script>
+    //노드탐색
+    //id // get을 사용할때 #사용x
+    const li2El = document.getElementById('li2');
+    li2El.style.fontSize="2rem";
+    //font-size = fontSize // '-'표시는 뒷글자를 대문자로 바꾸어 표기
+    li2El.style.listStyle="none";
+    li2El.setAttribute("style","color:red;background-color:black;list-style:none;")
+
+    const li5El = document.getElementById('li5');
+
+    //selector
+    //셀랙터 : 선택자! 어떤걸 찾는지 표기해줘야함 ('.','#' 등)
+    const li2El_2 = document.querySelector('#li2');    
+    li2El_2.style.width="200px";
+    li2El_2.style.border="1px solid";
+
+    const itemEl = document.querySelector('.item');
+    itemEl.style.color="green";
+    itemEl.style.fontWeight="800";
+
+    const itemsEl = document.querySelectorAll('.item');
+    console.log(itemsEl)
+    itemsEl.forEach((item)=>{
+      item.style.backgroundColor="orange";
+    })
+
+    //tagname
+    let liEls = document.getElementsByTagName('li');
+    console.log(liEls);
+    // 유사배열 -> 배열화
+    // Object.entries() // 길이 2의 배열로 만들어버린다.
+    // Array.from() // (중요) 유사배열의 배열화, 배열함수 사용가능
+    console.log(Object.entries(liEls))
+    console.log(Array.from(liEls))
+
+    liEls = Array.from(liEls)
+    liEls.forEach((item)=>{
+      item.style.fontSize="2rem";
+    })
+
+
+  </script>
+
+</body>
+
+</html>

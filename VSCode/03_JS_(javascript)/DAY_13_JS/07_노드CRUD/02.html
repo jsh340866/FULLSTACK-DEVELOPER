@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <form action="">
+    <input type="text">
+    <input type="text">
+    <input type="checkbox">
+  </form>
+  <hr/>
+  <form action="" name="joinForm"> 
+    <!-- form에 이름을 잡아 빠르게 찾을수있음. -->
+    <input type="text" name="username">
+    <input type="text" name="nickname">
+    <input type="checkbox">
+  </form>
+  <hr/>
+  <form action="">
+    <input type="text">
+    <input type="text">
+    <input type="checkbox">
+  </form>
+
+  <script>
+    // 전체 form 찾기
+    const forms = document.forms;
+    console.log("forms",forms);
+
+    // 개별 form 접근
+    console.log("forms[0]",forms[0]);
+    console.log("forms[1]",forms[1]);
+    console.log("forms[2]",forms[2]);
+
+    // 개별 form 내의 input 접근
+    console.log('forms[0][0]',forms[0][0]);
+    console.log('forms[0][1]',forms[0][1]);
+    console.log('forms[0][2]',forms[0][2]);
+
+    // 개별 form 내의 input 접근(name 부여)
+    const joinForm = document.joinForm;
+    joinForm.username.value = '홍길동';
+    joinForm.nickname.value = '티모';
+
+
+  </script>
+
+</body>
+</html>

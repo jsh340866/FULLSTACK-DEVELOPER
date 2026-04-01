@@ -1,0 +1,40 @@
+CREATE TABLE `test1db`.`tbl_user` (
+  `userId` VARCHAR(45) NOT NULL,
+  `userName` VARCHAR(45) NULL,
+  `password` VARCHAR(255) NULL,
+  PRIMARY KEY (`userId`));
+
+
+같음.
+
+
+CREATE TABLE `test1db`.`tbl_user` (
+  `userId` VARCHAR(45) PRIMARY KEY,
+  `userName` VARCHAR(45) NULL,
+  `password` VARCHAR(255) NULL,
+
+
+
+use test2db;
+show databases;
+show tables;
+create table tbl_user(
+    -> userId varchar(45) primary key,
+    -> userName varchar(45) null,
+    -> password varchar(255) );
+desc tbl_user; 테이블 문서
+
+alter table tbl_user
+    -> add column tel varchar(45) null after userid; 컬럼 추가
+
+prod_id int primary key,
+prod_name varchar(100) not null,
+prod_category varchar(10) null,
+prod_details varchar(1024) null,
+reg_date datetime not null,
+prod_price int not null
+
+
+
+ALTER TABLE `test1db`.`tbl_user` 
+ADD COLUMN `phone` VARCHAR(45) NULL AFTER `userName`;
