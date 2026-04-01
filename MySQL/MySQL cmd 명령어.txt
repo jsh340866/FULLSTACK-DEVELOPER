@@ -54,4 +54,4 @@ UPDATE `test1db`.`tbl_user` SET `userName` = '티모ㅇ', `password` = '12341252
 DELETE FROM `test1db`.`tbl_user` WHERE (`userId` = 'user1');
 delete from tbl_product where prod_id=1112;
 
-
+mysql -u user1 -p1234 -h 192.168.5.50 // 원격 커맨드 코드
