@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2" pages="7">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2" pages="6">
   <diagram name="요구사항" id="si9WiEyHauwOeKY3Vzi-">
     <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -2423,108 +2423,6 @@
         <mxCell id="MDOMUy_5oBPmqLkgTQDd-23" parent="MDOMUy_5oBPmqLkgTQDd-13" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;" value="상품 검색 기능" vertex="1">
           <mxGeometry height="82" width="170" x="1202" as="geometry">
             <mxRectangle height="82" width="170" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram id="Ms8fGrHGfxYNOEb2QYU8" name="페이지-7">
-    <mxGraphModel dx="1410" dy="833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="LoginUC-2" parent="1" style="shape=table;startSize=40;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" value="&lt;div&gt;&amp;lt;&amp;lt;유스케이스 명세서&amp;gt;&amp;gt;&lt;/div&gt;유스케이스명 : 로그인" vertex="1">
-          <mxGeometry height="690" width="510" x="100" y="110" as="geometry" />
-        </mxCell>
-        <mxCell id="LoginUC-3" parent="LoginUC-2" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;strokeColor=default;verticalAlign=middle;fontStyle=0" value="" vertex="1">
-          <mxGeometry height="30" width="510" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="LoginUC-4" parent="LoginUC-3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" value="목표" vertex="1">
-          <mxGeometry height="30" width="60" as="geometry">
-            <mxRectangle height="30" width="60" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-5" parent="LoginUC-3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-weight: 400; text-wrap: nowrap;&quot;&gt;회원이 아이디와 비밀번호로 본인 확인을 마치고 시스템 서비스(인증 세션)를 이용할 수 있게 한다&lt;/span&gt;" vertex="1">
-          <mxGeometry height="30" width="450" x="60" as="geometry">
-            <mxRectangle height="30" width="450" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-6" parent="LoginUC-2" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" value="" vertex="1">
-          <mxGeometry height="30" width="510" y="70" as="geometry" />
-        </mxCell>
-        <mxCell id="LoginUC-7" parent="LoginUC-6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" value="엑터" vertex="1">
-          <mxGeometry height="30" width="60" as="geometry">
-            <mxRectangle height="30" width="60" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-8" parent="LoginUC-6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;overflow=hidden;whiteSpace=wrap;html=1;" value="회원" vertex="1">
-          <mxGeometry height="30" width="450" x="60" as="geometry">
-            <mxRectangle height="30" width="450" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-9" parent="LoginUC-2" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" value="" vertex="1">
-          <mxGeometry height="30" width="510" y="100" as="geometry" />
-        </mxCell>
-        <mxCell id="LoginUC-10" parent="LoginUC-9" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" value="사전 조건" vertex="1">
-          <mxGeometry height="30" width="60" as="geometry">
-            <mxRectangle height="30" width="60" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-11" parent="LoginUC-9" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;overflow=hidden;whiteSpace=wrap;html=1;" value="메인 페이지에서 로그인 버튼을 클릭하여 로그인 페이지로 이동한 상태이다" vertex="1">
-          <mxGeometry height="30" width="450" x="60" as="geometry">
-            <mxRectangle height="30" width="450" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-12" parent="LoginUC-2" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" value="" vertex="1">
-          <mxGeometry height="30" width="510" y="130" as="geometry" />
-        </mxCell>
-        <mxCell id="LoginUC-13" parent="LoginUC-12" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" value="사후 처리" vertex="1">
-          <mxGeometry height="30" width="60" as="geometry">
-            <mxRectangle height="30" width="60" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-14" parent="LoginUC-12" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;overflow=hidden;whiteSpace=wrap;html=1;" value="로그인에 성공하면 회원은 메인(또는 요청한) 화면으로 이동한다" vertex="1">
-          <mxGeometry height="30" width="450" x="60" as="geometry">
-            <mxRectangle height="30" width="450" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-15" parent="LoginUC-2" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" value="" vertex="1">
-          <mxGeometry height="170" width="510" y="160" as="geometry" />
-        </mxCell>
-        <mxCell id="LoginUC-16" parent="LoginUC-15" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" value="기본흐름" vertex="1">
-          <mxGeometry height="170" width="60" as="geometry">
-            <mxRectangle height="170" width="60" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-17" parent="LoginUC-15" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;overflow=hidden;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;&lt;div&gt;1 회원이 아이디(또는 이메일) 입력란에 계정을 입력한다&lt;/div&gt;&lt;div&gt;2 회원이 비밀번호 입력란에 비밀번호를 입력한다&lt;/div&gt;&lt;div&gt;3 회원이 로그인 버튼을 클릭한다&lt;/div&gt;&lt;div&gt;4 시스템은 계정 존재 및 비밀번호 일치 여부를 확인한다&lt;/div&gt;&lt;div&gt;5 시스템은 로그인 성공 처리(세션 발급 등)를 수행한다&lt;/div&gt;&lt;div&gt;6 시스템은 로그인 완료 안내를 표시하거나 다음 화면으로 전환한다&lt;/div&gt;&lt;div&gt;7 시스템은 회원을 메인 페이지로 이동시킨다&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="170" width="450" x="60" as="geometry">
-            <mxRectangle height="170" width="450" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-18" parent="LoginUC-2" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" value="" vertex="1">
-          <mxGeometry height="130" width="510" y="330" as="geometry" />
-        </mxCell>
-        <mxCell id="LoginUC-19" parent="LoginUC-18" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" value="대안흐름" vertex="1">
-          <mxGeometry height="130" width="60" as="geometry">
-            <mxRectangle height="130" width="60" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-20" parent="LoginUC-18" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;overflow=hidden;whiteSpace=wrap;html=1;" value="&lt;div&gt;취소 버튼을 누르면 메인 화면으로 이동한다&lt;/div&gt;&lt;div&gt;비밀번호 찾기 링크를 선택하면 비밀번호 찾기 화면으로 이동한다&lt;/div&gt;" vertex="1">
-          <mxGeometry height="130" width="450" x="60" as="geometry">
-            <mxRectangle height="130" width="450" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-21" parent="LoginUC-2" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" value="" vertex="1">
-          <mxGeometry height="230" width="510" y="460" as="geometry" />
-        </mxCell>
-        <mxCell id="LoginUC-22" parent="LoginUC-21" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" value="예외흐름" vertex="1">
-          <mxGeometry height="230" width="60" as="geometry">
-            <mxRectangle height="230" width="60" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="LoginUC-23" parent="LoginUC-21" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;overflow=hidden;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;1a 아이디 또는 비밀번호 미입력&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&#x9;&lt;/span&gt;시스템은 &#39;필수 항목을 입력하세요&#39; 메시지를 회원에게 전달&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;1b 비밀번호가 일치하지 않는 경우&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&#x9;&lt;/span&gt;시스템은 &#39;아이디 또는 비밀번호가 올바르지 않습니다&#39; 메시지를 회원에게 전달&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;1c 존재하지 않는 아이디로 시도하는 경우&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&#x9;&lt;/span&gt;시스템은 &#39;아이디 또는 비밀번호가 올바르지 않습니다&#39; 메시지를 회원에게 전달&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;1d 이메일 형식에 맞지 않는 주소 입력(이메일 로그인 시)&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-wrap: nowrap;&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&#x9;&lt;/span&gt;&#39;올바른 이메일 형식을 입력하세요&#39; 메시지를 회원에게 전달&lt;/div&gt;" vertex="1">
-          <mxGeometry height="230" width="450" x="60" as="geometry">
-            <mxRectangle height="230" width="450" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
       </root>
