@@ -1,0 +1,59 @@
+
+
+INSERT INTO tbl_user VALUES('aaa','홍길동','1234'); -- AUTO commit
+INSERT INTO tbl_user VALUES('bbb','홍길동','1234'); -- AUTO commit
+INSERT INTO tbl_user VALUES('aaa','홍길동','1234'); -- PK 오류!
+
+SELECT @@autocommit;
+SET autocommit = 0;
+
+
+
+
+use test1db;
+
+SET autocommit = 0;
+
+START TRANSACTION;
+	INSERT INTO tbl_user VALUES('aaa','홍길동','1234'); -- 
+	INSERT INTO tbl_user VALUES('bbb','홍길동','1234'); -- 
+	INSERT INTO tbl_user VALUES('ccc','홍길동','1234'); -- 
+    SAVEPOINT sp1;
+	INSERT INTO tbl_user VALUES('ddd','홍길동','1234'); -- 
+	INSERT INTO tbl_user VALUES('eee','홍길동','1234'); -- 
+	INSERT INTO tbl_user VALUES('fff','홍길동','1234'); -- 
+    SAVEPOINT sp2;
+    INSERT INTO tbl_user VALUES('ggg','홍길동','1234'); -- 
+	INSERT INTO tbl_user VALUES('hhh','홍길동','1234'); -- 
+	INSERT INTO tbl_user VALUES('iii','홍길동','1234'); -- 
+    SAVEPOINT sp3;   
+	ROLLBACK TO sp2;
+COMMIT;
+
+SELECT * FROM tbl_user;
+
+
+
+
+START TRANSACTION;
+INSERT INTO tbl_test VALUES(5, 'ab', 20, 'M');
+SAVEPOINT s1;
+INSERT INTO tbl_test VALUES(6, 'ac', 30, 'W');
+SAVEPOINT s2;
+INSERT INTO tbl_test VALUES(7, 'cd', 35, 'M');
+ROLLBACK TO s2;
+COMMIT;
+
+
+
+
+
+
+mysqldump -u root -p1234 world > world_backup.sql
+
+mysqldump -u root -p1234 world city > city_backup.sql
+
+mysqldump -u root -p1234 --all-databases > all_backup.sql
+
+
+
