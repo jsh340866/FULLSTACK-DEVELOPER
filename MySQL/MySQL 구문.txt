@@ -1,5 +1,7 @@
 
 
+use test1db;
+
 INSERT INTO tbl_user VALUES('aaa','홍길동','1234'); -- AUTO commit
 INSERT INTO tbl_user VALUES('bbb','홍길동','1234'); -- AUTO commit
 INSERT INTO tbl_user VALUES('aaa','홍길동','1234'); -- PK 오류!
@@ -8,6 +10,19 @@ SELECT @@autocommit;
 SET autocommit = 0;
 
 
+--------------------------------------------
+
+
+
+INSERT INTO tbl_user VALUES('aaa','홍길동','1234'); -- AUTO commit
+INSERT INTO tbl_user VALUES('bbb','홍길동','1234'); -- AUTO commit
+INSERT INTO tbl_user VALUES('aaa','홍길동','1234'); -- PK 오류!
+
+SELECT @@autocommit;
+SET autocommit = 0;
+
+
+--------------------------------------------
 
 
 use test1db;
@@ -33,6 +48,7 @@ COMMIT;
 SELECT * FROM tbl_user;
 
 
+--------------------------------------------
 
 
 START TRANSACTION;
