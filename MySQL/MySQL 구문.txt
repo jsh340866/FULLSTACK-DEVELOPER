@@ -65,11 +65,4 @@ COMMIT;
 
 
 
-mysqldump -u root -p1234 world > world_backup.sql
-
-mysqldump -u root -p1234 world city > city_backup.sql
-
-mysqldump -u root -p1234 --all-databases > all_backup.sql
-
-
 
