@@ -1,0 +1,102 @@
+CREATE TABLE `test1db`.`tbl_user` (
+  `userId` VARCHAR(45) NOT NULL,
+  `userName` VARCHAR(45) NULL,
+  `password` VARCHAR(255) NULL,
+  PRIMARY KEY (`userId`));
+
+
+같음.
+
+
+CREATE TABLE `test1db`.`tbl_user` (
+  `userId` VARCHAR(45) PRIMARY KEY,
+  `userName` VARCHAR(45) NULL,
+  `password` VARCHAR(255) NULL,
+
+use test2db;
+show databases;
+show tables;
+create table tbl_user(
+    -> userId varchar(45) primary key,
+    -> userName varchar(45) null,
+    -> password varchar(255) );
+desc tbl_user; 테이블 문서
+
+alter table tbl_user
+    -> add column tel varchar(45) null after userid; 컬럼 추가
+
+prod_id int primary key,
+prod_name varchar(100) not null,
+prod_category varchar(10) null,
+prod_details varchar(1024) null,
+reg_date datetime not null,
+prod_price int not null
+
+ALTER TABLE `test1db`.`tbl_user` 
+ADD COLUMN `phone` VARCHAR(45) NULL AFTER `userName`;
+
+
+ALTER TABLE `test1db`.`tbl_user` 
+CHANGE COLUMN `phone` `tel` INT NOT NULL ,
+ADD UNIQUE INDEX `tel_UNIQUE` (`tel` ASC) VISIBLE;
+
+
+ALTER TABLE `test2db`.`tbl_user` 
+DROP COLUMN `tel`;
+
+
+INSERT INTO `test1db`.`tbl_user` (`userId`, `userName`, `password`) VALUES ('user1', '홍길동', '1234');
+select * from tbl_user;
+
+UPDATE `test1db`.`tbl_user` SET `userName` = '티모ㅇ', `password` = '12341252' WHERE (`userId` = 'user1');
+ update tbl_user set userid='1js',tel='0104445',password='8888' where(userid='bbb');
+
+DELETE FROM `test1db`.`tbl_user` WHERE (`userId` = 'user1');
+delete from tbl_product where prod_id=1112;
+
+mysql -u user1 -p1234 -h 192.168.5.50 // 원격 커맨드 코드
+
+
+
+GRANT ... ON ... TO... ;	// all privileges : 모든 권한 명령어
+grant all privileges on test2db.* to user1@localhost;
+
+REVOKE ... ON ... FROM...;
+revoke insert on test2db.* from user30@localhost;
+
+flush privileges;	// 권한 즉시반영
+
+DROP USER ... ;
+drop user dev_user@'%';
+
+
+use test1db;
+
+INSERT INTO tbl_user VALUES('aaa','홍길동','1234'); -- AUTO commit
+INSERT INTO tbl_user VALUES('bbb','홍길동','1234'); -- AUTO commit
+INSERT INTO tbl_user VALUES('aaa','홍길동','1234'); -- PK 오류!
+
+SELECT @@autocommit;
+SET autocommit = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
