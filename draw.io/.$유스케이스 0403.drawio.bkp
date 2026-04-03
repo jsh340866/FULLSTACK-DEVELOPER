@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2" pages="2">
   <diagram id="VSv3uD9X9WMTaPWUI3Ca" name="페이지-8">
-    <mxGraphModel dx="2253" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2237" dy="833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -22,8 +22,8 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="ui4Bsqx0SnTJgoxe8axf" name="유스케이스">
-    <mxGraphModel dx="3996" dy="1887" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram id="ui4Bsqx0SnTJgoxe8axf" name="페이지-9">
+    <mxGraphModel dx="2486" dy="980" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -46,7 +46,7 @@
           <mxGeometry height="60" width="110" x="130" y="240" as="geometry" />
         </mxCell>
         <mxCell id="bCkGbQicSoO4k6K8p0XQ-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="결제" vertex="1">
-          <mxGeometry height="60" width="110" x="390" y="190" as="geometry" />
+          <mxGeometry height="60" width="110" x="390" y="200" as="geometry" />
         </mxCell>
         <mxCell id="bCkGbQicSoO4k6K8p0XQ-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="로그인" vertex="1">
           <mxGeometry height="60" width="110" x="380" y="360" as="geometry" />
@@ -214,10 +214,10 @@
             <mxPoint x="194" y="301" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="pefQmIBlXImfqT8pgN63-2" edge="1" parent="1" style="endArrow=open;endSize=12;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="bCkGbQicSoO4k6K8p0XQ-1" value="Use">
+        <mxCell id="pefQmIBlXImfqT8pgN63-2" edge="1" parent="1" style="endArrow=open;endSize=12;html=1;rounded=0;entryX=0;entryY=0.333;entryDx=0;entryDy=0;entryPerimeter=0;" target="bCkGbQicSoO4k6K8p0XQ-1" value="Use">
           <mxGeometry relative="1" width="160" as="geometry">
             <mxPoint x="-70" y="220" as="sourcePoint" />
-            <mxPoint x="310" y="220" as="targetPoint" />
+            <mxPoint x="332" y="269" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="pefQmIBlXImfqT8pgN63-3" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="상품 환불" vertex="1">
@@ -251,36 +251,6 @@
         <mxCell id="rxvtWt8KcOA8ng0gjCBc-2" connectable="0" parent="rxvtWt8KcOA8ng0gjCBc-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;lt;&amp;lt;Include&amp;gt;&amp;gt;" vertex="1">
           <mxGeometry relative="1" x="-0.0841" y="-1" as="geometry">
             <mxPoint y="3" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="i5qdyCtQb1QDnB7WjgBU-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="포인트&amp;nbsp;" vertex="1">
-          <mxGeometry height="30" width="70" x="330" y="280" as="geometry" />
-        </mxCell>
-        <mxCell id="i5qdyCtQb1QDnB7WjgBU-3" edge="1" parent="1" source="i5qdyCtQb1QDnB7WjgBU-2" style="endArrow=open;endSize=12;html=1;rounded=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="bCkGbQicSoO4k6K8p0XQ-1" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;">
-          <mxGeometry relative="1" width="160" as="geometry">
-            <mxPoint x="530" y="285" as="sourcePoint" />
-            <mxPoint x="532" y="240" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="V3sqsCttO3uPZttxhJjX-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="결제대행사&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="30" x="630" y="70" as="geometry" />
-        </mxCell>
-        <mxCell id="V3sqsCttO3uPZttxhJjX-2" edge="1" parent="1" style="endArrow=open;endSize=12;html=1;rounded=0;" value="Use">
-          <mxGeometry relative="1" width="160" as="geometry">
-            <Array as="points">
-              <mxPoint x="550" y="90" />
-            </Array>
-            <mxPoint x="612" y="90" as="sourcePoint" />
-            <mxPoint x="550" y="278" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="V3sqsCttO3uPZttxhJjX-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="카드 결제" vertex="1">
-          <mxGeometry height="30" width="70" x="512.75" y="280" as="geometry" />
-        </mxCell>
-        <mxCell id="V3sqsCttO3uPZttxhJjX-6" edge="1" parent="1" source="V3sqsCttO3uPZttxhJjX-5" style="endArrow=open;endSize=12;html=1;rounded=0;dashed=1;exitX=0.392;exitY=0.033;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.745;entryY=0.997;entryDx=0;entryDy=0;entryPerimeter=0;" target="bCkGbQicSoO4k6K8p0XQ-1" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;">
-          <mxGeometry relative="1" width="160" as="geometry">
-            <mxPoint x="647" y="302" as="sourcePoint" />
-            <mxPoint x="590" y="230" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
