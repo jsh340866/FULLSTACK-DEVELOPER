@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2" pages="5">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2" pages="4">
   <diagram name="요구사항" id="si9WiEyHauwOeKY3Vzi-">
     <mxGraphModel dx="2194" dy="1306" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1281,41 +1281,6 @@
           <mxGeometry height="98" width="393" x="2639" as="geometry">
             <mxRectangle height="98" width="393" as="alternateBounds" />
           </mxGeometry>
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram id="vpp4Vwz14h3b9wFsdsan" name="ERD 기본">
-    <mxGraphModel dx="972" dy="574" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="XWccphT-X7l6jINditoi-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="CHAN 모델링" vertex="1">
-          <mxGeometry height="40" width="120" x="40" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="XWccphT-X7l6jINditoi-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="테이블 간 관계 x" vertex="1">
-          <mxGeometry height="40" width="120" x="40" y="160" as="geometry" />
-        </mxCell>
-        <mxCell id="XWccphT-X7l6jINditoi-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="테이블 간 관계 o" vertex="1">
-          <mxGeometry height="40" width="120" x="400" y="160" as="geometry" />
-        </mxCell>
-        <mxCell id="XWccphT-X7l6jINditoi-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="과일" vertex="1">
-          <mxGeometry height="40" width="100" x="40" y="240" as="geometry" />
-        </mxCell>
-        <mxCell id="XWccphT-X7l6jINditoi-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="가전" vertex="1">
-          <mxGeometry height="40" width="100" x="250" y="240" as="geometry" />
-        </mxCell>
-        <mxCell id="XWccphT-X7l6jINditoi-21" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="관계 x" vertex="1">
-          <mxGeometry height="30" width="60" x="167" y="245" as="geometry" />
-        </mxCell>
-        <mxCell id="XWccphT-X7l6jINditoi-22" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="고객" vertex="1">
-          <mxGeometry height="40" width="100" x="40" y="325" as="geometry" />
-        </mxCell>
-        <mxCell id="XWccphT-X7l6jINditoi-23" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="FAQ" vertex="1">
-          <mxGeometry height="40" width="100" x="250" y="325" as="geometry" />
-        </mxCell>
-        <mxCell id="XWccphT-X7l6jINditoi-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="관계 x" vertex="1">
-          <mxGeometry height="30" width="60" x="167" y="330" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
