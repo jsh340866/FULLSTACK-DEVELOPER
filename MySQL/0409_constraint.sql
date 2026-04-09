@@ -170,6 +170,8 @@ create table tbl_test05
     name varchar(25),
     email varchar(50) unique
 );
+desc tbl_test05;
+show index from tbl_test05;
 
 create table tbl_test06
 (
