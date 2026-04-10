@@ -39,11 +39,30 @@ select continent,truncate(avg(lifeexpectancy),2) as '평균기대수명' from co
 
 -- 7 select group by + having
 use shopdb;
+select * from buytbl;
+
+select userid,sum(amount) as '구매총량'
+from buytbl 
+group by userid -- 조건절 where은 group by 에서 쓸수없다
+having sum(amount) >= 5; -- having을 사용해야함
+
+select userid,sum(amount) as '구매총량'
+from buytbl 
+group by userid -- 조건절 where은 group by 에서 쓸수없다
+having 구매총량 >= 5; -- 위에서 sum(amount)를 구매총량으로 정의해서 having 구문에 구매총량이라 정의 가능
 
 
+-- + GROUP BY(지역별 구매총량)
+select U.userid,addr,sum(b.amount) as '구매총량'
+from (usertbl U
+inner join buytbl B
+on U.userid = B.userid)
+group by addr, userid
+having 구매총량 >= 5
+order by 구매총량 desc;
 
-
-
+select * from usertbl;
+select * from buytbl;
 
 
 
