@@ -1,4 +1,5 @@
--- 예외발생
+-- 예외발생 
+-- 예외처리 : 실행 중단 방지
 use shopdb;
 select * from usertbl; 
 select * from notable;
@@ -116,7 +117,7 @@ drop procedure tbl_std_proc_tx;
 delimiter $$
 create procedure tbl_std_proc_tx()
 begin
-	declare exit handler for SQLEXCEPTION
+	declare exit handler for SQLEXCEPTION  
     begin
 		show errors;
 		rollback;
