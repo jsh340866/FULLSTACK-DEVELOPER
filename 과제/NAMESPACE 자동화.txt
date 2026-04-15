@@ -1,0 +1,21 @@
+https://api.github.com/repos/OPENDATA-2026-02-24/07_JIRA_SYNC/dispatches
+
+METHOD  : POST
+
+웹 요청 본문 : 사용자정의
+
+{
+  "event_type": "jira-issue-created",
+  "client_payload": {
+    "issue_type": "{{issue.issueType.name}}",
+    "issue_key": "{{issue.key}}",
+    "summary": "{{issue.summary.jsonEncode}}",
+    "description": "{{issue.description.jsonEncode}}",
+    "jira_url": "{{issue.url}}"
+  }
+}
+
+Authorization   token ghp_D5rFsigLozZ15WTgH4ZQotdNcX
+Content-Type   application/json
+Accept      application/vnd.github.v3+json
+
