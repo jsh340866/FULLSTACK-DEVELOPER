@@ -1,5 +1,6 @@
-# [2월 요약] 프로젝트 설계 및 Git 실무
-
+# [2월] 프로젝트 설계 및 Git 실무
+<details>
+  <summary></summary>
 ## 1. UI/UX 및 화면 설계
 • **요구사항 정의**: 회원/비회원/관리자 기능 및 예외 처리(인증 실패 등) 설계
 • **FlowChart**: draw.io를 활용한 로그인/회원가입 비즈니스 로직 시각화
@@ -15,9 +16,11 @@
 ## 3. 주요 프로젝트
 • **도서 관리**: CRUD 기반 대여/조회/수정/반납 프로세스 설계
 • **요기요 벤치마킹**: PC/Chrome 최적화 및 사용자 편의성 중심의 UI 구성
+</details>
 
-# [3월 요약] 자바스크립트 심화 및 외부 라이브러리 활용
-
+# [3월] 자바스크립트 심화 및 외부 라이브러리 활용
+<details>
+  <summary></summary>
 ## 1. 노드(DOM) 조작 및 CRUD
 • **요소 선택**: `getElementById`, `querySelector`, `querySelectorAll`을 활용한 정밀한 요소 접근.
 • **유사 배열 처리**: `Array.from()`을 사용해 `NodeList`를 진짜 배열로 변환하여 배열 함수(`forEach` 등) 사용 가능.
@@ -43,3 +46,4 @@
 • **Bootstrap 5**:
   - `Card`, `Nav & Tabs`, `Modal` 등 이미 만들어진 UI 컴포넌트를 활용한 빠른 레이아웃 구축.
   - 클래스 기반의 편리한 스타일링 적용.
+</details>
