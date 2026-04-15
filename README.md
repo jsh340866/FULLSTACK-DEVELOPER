@@ -1,6 +1,7 @@
 # [2월] 프로젝트 설계 및 Git 실무
 <details>
   <summary></summary>
+  
 ## 1. UI/UX 및 화면 설계
 • **요구사항 정의**: 회원/비회원/관리자 기능 및 예외 처리(인증 실패 등) 설계
 • **FlowChart**: draw.io를 활용한 로그인/회원가입 비즈니스 로직 시각화
@@ -21,6 +22,7 @@
 # [3월] 자바스크립트 심화 및 외부 라이브러리 활용
 <details>
   <summary></summary>
+  
 ## 1. 노드(DOM) 조작 및 CRUD
 • **요소 선택**: `getElementById`, `querySelector`, `querySelectorAll`을 활용한 정밀한 요소 접근.
 • **유사 배열 처리**: `Array.from()`을 사용해 `NodeList`를 진짜 배열로 변환하여 배열 함수(`forEach` 등) 사용 가능.
