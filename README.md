@@ -15,6 +15,7 @@
 
 <details>
   <summary></summary>
+  
 ### 일차별 요약
 - **3~4일차** : Git, GitHub 기본 개념 및 협업 흐름 학습
 - **5일차** : 화면구현 실습 및 UI 구조 이해
