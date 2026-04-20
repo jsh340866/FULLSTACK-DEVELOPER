@@ -1,8 +1,7 @@
 # 📚 학습 기록 요약
 
 ## 🌸 3월 학습 내용 (프론트엔드 기초 / 개발환경 적응)
-<details>
-  <summary></summary>
+
   
 ### 주요 학습 주제
 - Git / GitHub 기본 사용법 및 버전관리 이해
@@ -14,6 +13,8 @@
 - 반응형 단위(px, em, rem, %, vw, clamp) 학습
 - 개인 자습 및 개발 습관 형성
 
+<details>
+  <summary></summary>
 ### 일차별 요약
 - **3~4일차** : Git, GitHub 기본 개념 및 협업 흐름 학습
 - **5일차** : 화면구현 실습 및 UI 구조 이해
@@ -33,8 +34,6 @@
 ---
 
 ## 🌱 4월 학습 내용 (데이터베이스 / Java 입문)
-<details>
-  <summary></summary>
 
 ### 주요 학습 주제
 - MySQL 설치 및 명령어 사용
@@ -49,6 +48,9 @@
 - Java 개발환경 구축 (Eclipse + Git 연동)
 - Java 기초 문법 / 자료형 / 변수 / 형변환
 - JIRA 협업툴 사용법 및 Git 연동
+
+<details>
+  <summary></summary>
 
 ### 일차별 요약
 - **1일차** : MySQL 설치 및 기본 명령어
