@@ -1,0 +1,14 @@
+
+# 개발 환경 운영 지원 작업 지침
+
+## 1. 조장님 브런치 생성
+
+## 2. GITHUN PUSH
+
+## 3. 조원들 ISSUE 확인 및 CLONE 
+
+## 4. 작업완료 후 PUSH
+
+## 5. GITHUB PULL REQUEST
+
+## 6. 병합 이후 완료 결과물 확인
