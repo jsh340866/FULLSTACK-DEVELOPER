@@ -14,7 +14,7 @@
 - 개인 자습 및 개발 습관 형성
 
 <details>
-  <summary></summary>
+  <summary>일차별요약</summary>
   
 ### 일차별 요약
 - **3~4일차** : Git, GitHub 기본 개념 및 협업 흐름 학습
@@ -51,7 +51,7 @@
 - JIRA 협업툴 사용법 및 Git 연동
 
 <details>
-  <summary></summary>
+  <summary>일차별요약</summary>
 
 ### 일차별 요약
 - **1일차** : MySQL 설치 및 기본 명령어
