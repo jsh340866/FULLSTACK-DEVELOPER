@@ -22,7 +22,7 @@ git remote add origin https://github.com/jsh340866/TESTREPO-2026-03-SHARE.git
 git remote -v //연결 확인
 git push --set-upstream origin master
 git push origin //깃허브에 파일 넣기
-esc  -> :wq
+esc  -> :wq //깃허브에 올릴 커밋달기
 git pull origin //깃허브 파일 가져오기
 git push --force 브랜치이름
 git fetch origin //깃허브 브랜치 가져오기
