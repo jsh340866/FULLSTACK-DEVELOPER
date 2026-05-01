@@ -1,0 +1,4 @@
+Principle - 원칙
+Substituion - 치환
+Segregation - 분리
+Inversion - 역전
