@@ -4,3 +4,6 @@ Segregation - 분리
 Inversion - 역전
 Binary - 이진 = 2개로 나눈다
 Optimal - 최적
+Embeded - 내장형, 포함시키다
+Detach - 분리하다
+semi-detach - 반쯤 떨어진
