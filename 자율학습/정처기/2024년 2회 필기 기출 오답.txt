@@ -156,9 +156,22 @@ AB+C*DE++
  - 스크립트 언어 : Python, PHP, Basic, JS
 
 
-
-
 `  78.4--
+정답: ④ SCF
+낚시용 보기, SCR과 햇갈리게 할려고
+
+페이제 교체 알고리즘
+- FIFO ( First-In First-Out ) : 선입선출
+- LRU ( Least Recently Used ) : 가장 오랫동안 사용안한 페이지 교체
+- LFU ( Least Frequently Used ) : 참조 횟수가 가장 적은 페이지 교체
+- OPT ( Optimal Replacement ) : 앞으로 가장 오랫동안 사용되지 않을 페이지 교체
+- NUR ( Not Used Recently ) : 최근에 사용되지 않은 페이지 교체
+- SCR ( Second Chance Replacement ) : FIFO 단점 보완, 참조 비트가 1이면 기회를 한 번 더 주는
+- MFU ( Most Frequently Used ) : 참조 횟수가 가장 많은 페이지 교체
+- PFF (Page Fault Frequency ) : 페이지 부재율에 따라 유동적 교체
+
+
+
 `
 80.2 // 4
 `
@@ -171,10 +184,33 @@ AB+C*DE++
 `
 `
 `  90.1--
+정답: ① 스니핑(Sniffing)
+패킷을 몰래 엿보거나 도청하는 행위를 말합니다.
+
+오답 해설
+② 스미싱(Smishing): 문자 메시지(SMS)와 피싱(Phishing)의 합성어입니다. 가짜 링크가 포함된 문자를 보내 악성 앱을 설치하게 만드는 공격이죠.
+③ 피싱(Phishing): 개인정보(Private Data)와 낚시(Fishing)의 합성어입니다. 가짜 웹사이트로 유도하여 사용자가 스스로 정보를 입력하게 만드는 낚시 기법입니다.
+④ 백도어(Back Door): '뒷문'이라는 뜻입니다. 시스템 관리자가 편의를 위해 만들어 놓았거나, 해커가 침입 후 다시 들어오기 위해 몰래 만들어 놓은 인증되지 않은 통로를 말합니다.
+
+
+
 91.1-- // 4
 `
 `
 `  94.2--
+정답: ② 완료 의존성(Committed Dependency)
+	- 비완료 의존성(Dirty Read)
+
+암기 팁: "갱.비.모.연"
+병행 수행의 문제점 4가지는 앞 글자를 따서 외우면 절대 안 잊어버려요!
+
+ - 갱신 분실
+ - 비완료 의존성 
+ - 모순성
+ - 연쇄 복귀
+
+
+
 95.1-- // 3
 96.3-- // 4
 97.3 //4

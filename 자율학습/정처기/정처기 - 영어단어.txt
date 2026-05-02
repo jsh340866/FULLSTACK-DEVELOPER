@@ -3,3 +3,4 @@ Substituion - 치환
 Segregation - 분리
 Inversion - 역전
 Binary - 이진 = 2개로 나눈다
+Optimal - 최적
