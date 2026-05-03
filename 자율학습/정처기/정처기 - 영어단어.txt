@@ -7,3 +7,4 @@ Optimal - 최적
 Embeded - 내장형, 포함시키다
 Detach - 분리하다
 semi-detach - 반쯤 떨어진
+Inspection - 점검
