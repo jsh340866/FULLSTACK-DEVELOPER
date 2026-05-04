@@ -1,0 +1,21 @@
+1.피라미드 별찍기, 다이아 별찍기
+2.사과장수 코드 구현
+3. js - 클로저
+
+<script>
+    function createCounter() {
+    let count = 0;
+    
+	function increment() {
+		//코드입력 (호출될때마다 count 1씩 증가)
+        ++count;
+		return count;
+	}
+    return increment;	// 코드입력 (increment함수를 반환)
+}
+    const counter = createCounter();
+  
+    console.log(counter()); // 출력 :1
+    console.log(counter()); // 출력 :2
+    console.log(counter()); // 출력 :3
+</script>

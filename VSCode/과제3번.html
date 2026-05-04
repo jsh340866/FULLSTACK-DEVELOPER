@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script>
+    function createCounter() {
+    let count = 0;
+    
+	function increment() {
+		//코드입력 (호출될때마다 count 1씩 증가)
+        ++count;
+		return count;
+	}
+    return increment;	// 코드입력 (increment함수를 반환)
+}
+    const counter = createCounter();
+  
+    console.log(counter()); // 출력 :1
+    console.log(counter()); // 출력 :2
+    console.log(counter()); // 출력 :3
+</script>
+
+</body>
+
+</html>
