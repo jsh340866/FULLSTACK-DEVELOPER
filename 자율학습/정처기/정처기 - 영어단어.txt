@@ -11,3 +11,5 @@ Inspection - 점검
 Batch - 일괄
 Buffer - 임시 저장 공간
 Failure Transparency - 장애 투명성
+Reliable - 신뢰할 수 있는
+Relative - 상대적인
