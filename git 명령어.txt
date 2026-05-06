@@ -25,6 +25,7 @@ git push origin //깃허브에 파일 넣기
 esc  -> :wq //깃허브에 올릴 커밋달기
 git pull origin //깃허브 파일 가져오기
 git push --force 브랜치이름
+git merge --abort 병합 완전 취소
 git fetch origin //깃허브 브랜치 가져오기
 git clone ""
 cd "" //주소 변경
