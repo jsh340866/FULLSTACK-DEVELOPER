@@ -13,3 +13,7 @@ Buffer - 임시 저장 공간
 Failure Transparency - 장애 투명성
 Reliable - 신뢰할 수 있는
 Relative - 상대적인
+Piggyback - 업어주기
+Dicing - 깍둑썰기
+Drill-down - 파고들기
+Translate - 번역,변환
