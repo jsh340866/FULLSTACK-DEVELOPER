@@ -430,11 +430,11 @@ Command (커맨드): 요청 자체를 객체로 만들어서 저장하거나 로
 - 캡슐화, 상속, 다형성, 추상화
 
 1) 5대 핵심 원칙 ( SOLID ) 매우중요!
-- SRP (단일책임 원칙) : 하나의 클래스는 하나의 책임만 가진다.
-- OCP (개방-폐쇄 원칙) : 확장에는 열려 있고, 수정에는 닫혀 있어야 한다.
-- LSP (리스코프 치환 원칙) : 자식 클래스는 언제나 부모 클래스를 대체할 수 있어야 한다.
-- ISP (인터페이스 분리 원칙) : 사용하지 않는 메서드에 의존하도록 걍요해서는 안 된다.
-- DIP (의존 역전 원칙) : 구체적인 것보다 추상적인 것에 의존해야 해요.
+- SRP (Single Responsibility Principle) - 단일 책임 원칙 : 하나의 클래스는 하나의 책임만 가진다.
+- OCP (Open-Closed Principle) - 개방-폐쇄 원칙 : 확장에는 열려 있고, 수정에는 닫혀 있어야 한다.
+- LSP (Liskov Substitution Principle) - 리스코프 치환 원칙 : 자식 클래스는 언제나 부모 클래스를 대체할 수 있어야 한다.
+- ISP (Interface Segregation Principle) - 인터페이스 분리 원칙 : 사용하지 않는 메서드에 의존하도록 강요해서는 안 된다.
+- DIP (Dependency Inversion Principle) - 의존 역전 원칙 : 구체적인 것보다 추상적인 것에 의존해야 해요.
 
 2) 객체지향 분석(OOA)의 주요 방법론
 - 럼바오(Rumbaugh) 방법론 : 객체 모델링, 동적 모델링, 기능 모델링 3개 지침 사용
@@ -549,14 +549,15 @@ CBD		"컴포넌트 조립, 재사용성 극대화, 인터페이스 중심, 독�
 6. 논리적 응집도(Logical Cohesion) : 유사한 성격의 기능들을 한 모듈에 담았지만, 실제로는 선택해서 실행되는 경우
 7. 우연적 응집도(Coincidental Cohesion) : 우연히 한 모듈에 있는 가장 좋지 않는 상태
 
+coincidental-logical-temporal-procedural-communicational-sequential-functional
 
 55. OSI 7계층 프로토콜
 
-응용 계층(7층): HTTP, FTP, DNS, SMTP, SSH
+응용 계층(7층): HTTP, FTP, DNS, SMTP, SSH(메세지)
 
-전송 계층(4층): TCP, UDP
+전송 계층(4층): TCP(세그먼트), UDP(데이터그램)
 
-네트워크 계층(3층): IP, ICMP, ARP
+네트워크 계층(3층): IP, ICMP, ARP(패킷)
 
 56. 응용 계층(7층): HTTP, FTP, DNS, SMTP, SSH
 1. 웹과 데이터 전송
@@ -632,7 +633,7 @@ ARIA: 이것도 우리나라에서 개발했고, 공공기관 등에서 표준�
 IDEA / RC4: 유럽에서 개발하거나 스트림 암호 방식
 
 
-2. 비대칭키 암호화 (Asymmetric Key / Public Key)
+2. 비대칭키(공개키) 암호화 (Asymmetric Key / Public Key)
 공개키와 개인키, 두 개의 키를 사용하는 방식이에요.
 
 (중요) RSA (Rivest-Shamir-Adleman): 공개키 암호화의 대명사예요! 소인수 분해의 어려움을 이용한 아주 유명한 친구죠.
@@ -669,12 +670,15 @@ HAS-160: 이것도 우리나라에서 만든 해시 알고리즘이에요.
 60. 정보 보안을 위한 접근통제 정책 종류
  1. DAC (Discretionary Access Control, 임의적 접근통제)
      - 데이터의 소유자가 자기 마음대로 다른 사람에게 권한을 줄 수 있는 방식
+     - 키워드: 신분 기반, 소유자 중심
 
  2. MAC (Mandatory Access Control, 강제적 접근통제)
      - 시스템(관리자)이 정한 엄격한 규칙에 따라 접근을 통제
+     - 키워드: 규칙 기반, 등급 중심, BLP(Bell-LaPadula), Biba 모델
 
  3. RBAC (Role-Based Access Control, 역할 기반 접근통제)
      - **그 사람이 맡은 '역할(Role)'**에 따라 권한을 주는 방식
+     - 키워드: 직무 기반, 관리 효율성
 
 
 61. CASE의 원천 기술
