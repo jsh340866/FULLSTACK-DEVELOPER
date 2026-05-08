@@ -794,49 +794,48 @@ ipv4 32비트 기준
 
 69. 🐧 정보처리기사 대비 리눅스, UNIX핵심 명령어 정리
 
-- 1. 파일 및 디렉토리 관리
-	• ls: 현재 디렉토리 파일 목록 보기 (ls -l은 상세 정보)
-	• cd: 디렉토리 이동
-	• pwd: 현재 위치한 경로 출력 (절대 경로)
-	• mkdir: 디렉토리 생성
-	• rmdir: 비어있는 디렉토리 삭제
-	• cp: 파일/디렉토리 복사
-	• mv: 파일/디렉토리 이동 및 이름 변경
-	• rm: 파일/디렉토리 삭제 (rm -r은 디렉토리 강제 삭제)
-	• cat: 파일들을 하나로 연결 / 기본값은 출력
-	• type: 윈도우(내용 출력) / 리눅스(명령어 유형 확인)
+1. 파일 및 디렉토리 관리
+	• ls: 현재 디렉토리 파일 목록 보기 (List)
+	• cd: 디렉토리 이동 (Change Directory)
+	• pwd: 현재 위치한 경로 출력 (Print Working Directory)
+	• mkdir: 디렉토리 생성 (Make Directory)
+	• rmdir: 비어있는 디렉토리 삭제 (Remove Directory)
+	• cp: 파일/디렉토리 복사 (Copy)
+	• mv: 파일/디렉토리 이동 및 이름 변경 (Move)
+	• rm: 파일/디렉토리 삭제 (Remove)
+	• cat: 파일들을 하나로 연결 / 기본값은 출력 (Concatenate)
+	• type: 명령어 유형 확인 (Type of command)
 
-- 2. 권한 및 소유권 (★실기 빈출)
-	• chmod: 파일 보호 권한 설정 (예: chmod 755 파일명)
-	• chown: 소유자 및 그룹 변경 (예: chown 사용자:그룹 파일명)
+2. 권한 및 소유권 (★실기 빈출)
+	• chmod: 파일 보호 권한 설정 (Change Mode)
+	• chown: 소유자 및 그룹 변경 (Change Owner)
 
-- 3. 시스템 및 프로세스 관리
-	• ps: 현재 실행 중인 프로세스 목록 출력
-	• top: 실시간 시스템 리소스 사용량 확인
-	• kill: 프로세스 강제 종료 (PID 사용)
-	• uname: 시스템 정보 및 커널 버전 확인
-	• df: 디스크 남은 공간 확인
-	• du: 디렉토리별 사용 용량 확인
-	• fork: 새로운 프로세스 생성
+3. 시스템 및 프로세스 관리
+	• ps: 현재 실행 중인 프로세스 목록 출력 (Process Status)
+	• top: 실시간 시스템 리소스 사용량 확인 (Table Of Processes)
+	• kill: 프로세스 강제 종료 (Kill)
+	• uname: 시스템 정보 및 커널 버전 확인 (Unix Name)
+	• df: 디스크 남은 공간 확인 (Disk Free)
+	• du: 디렉토리별 사용 용량 확인 (Disk Usage)
+	• fork: 새로운 프로세스 생성 (Fork - 분기/갈래)
 
-- 4. 환경 변수 및 출력
-	• echo: 문자열이나 변수값 출력 (echo $변수명)
-	• export: 환경 변수 설정 및 하위 프로세스 전달
-	• env: 모든 환경 변수 목록 보기
+4. 환경 변수 및 출력
+	• echo: 문자열이나 변수값 출력 (Echo - 메아리)
+	• export: 환경 변수 설정 및 하위 프로세스 전달 (Export - 내보내기)
+	• env: 모든 환경 변수 목록 보기 (Environment)
 
-- 5. 네트워크 및 보안 (★고득점 포인트)
-	• nmap: 네트워크 포트 스캐닝 및 보안 취약점 진단
-	• ftp: 원격 서버 간 파일 전송 프로토콜 및 명령어
-	• ping: 네트워크 연결 상태 확인 (ICMP 사용)
-	• netstat: 네트워크 연결 상태 및 라우팅 테이블 확인
+5. 네트워크 및 보안 (★고득점 포인트)
+	• nmap: 네트워크 포트 스캐닝 및 보안 취약점 진단 (Network Mapper)
+	• ftp: 원격 서버 간 파일 전송 프로토콜 및 명령어 (File Transfer Protocol)
+	• ping: 네트워크 연결 상태 확인 (Packet InterNet Groper)
+	• netstat: 네트워크 연결 상태 및 라우팅 테이블 확인 (Network Statistics)
 
-- 6. 기타 유틸리티
-	• grep: 파일 내 특정 패턴/문자열 검색
-	• find: 파일 위치 찾기
-	• man: 명령어 도움말(매뉴얼) 확인
-	• tar: 파일 묶기 및 압축 해제
-	• clear: 터미널 화면 지우기
-
+6. 기타 유틸리티
+	• grep: 파일 내 특정 패턴/문자열 검색 (Global Regular Expression Print)
+	• find: 파일 위치 찾기 (Find)
+	• man: 명령어 도움말(매뉴얼) 확인 (Manual)
+	• tar: 파일 묶기 및 압축 해제 (Tape Archive)
+	• clear: 터미널 화면 지우기 (Clear)
 
 70. 페이징 기법
 페이징 기법 : 컴퓨터가 메인 메모리에서 사용하기 위해 데이터를 저장하고 검색하는 메모리 관리 기법
