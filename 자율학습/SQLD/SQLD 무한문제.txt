@@ -160,18 +160,150 @@ SQLD에서 정말 좋아하는 함정 문제예요. '기준'이 어디냐가 생
 
 -----------------------------------------------------------------------------
 
+ANSI/ISO 표준 SQL에서 두 테이블 간에 동일한 칼럼 이름을 가지는 것을 모두 출력하는 조인 방식은 무엇인가?
+
+1
+Using
+
+2
+Natural
+Join
+
+3
+Cross
+Join
+
+4
+Inner
+Join
+
+###
+정답: 2번 Natural Join
+
+해설
+NATURAL
+JOIN은 두 테이블 간에 동일한 칼럼 이름을 가진 것을 모두 출력하는 조인 방법이다.
+
+해설: NATURAL JOIN은 이름 그대로 '자연스럽게' 조인을 해주는 방식이에요. 우리가 일일이 ON A.ID = B.ID라고 적어주지 않아도, SQL이 알아서 두 테이블을 뒤져보고 이름과 데이터 유형이 똑같은 컬럼이 있으면 그걸 기준으로 조인을 수행한답니다.
+
+💡 보기에 나온 다른 조인들도 슥 살펴볼까요? (SQLD 대비용!)
+1번 USING 절: NATURAL JOIN처럼 컬럼 이름이 같을 때 쓰지만, 이름이 같은 컬럼이 여러 개일 때 "이 컬럼 하나만 기준으로 써!"라고 딱 집어서 지정해주고 싶을 때 사용해요.
+3번 Cross Join: 이건 짝을 찾는 게 아니라, 양쪽 테이블의 모든 행을 서로 다 한 번씩 곱해버리는 방식이에요. (결과가 엄청나게 많아지겠죠? 😱)
+4번 Inner Join: 우리가 아까 공부한 가장 일반적인 조인이에요. 보통 ON절을 써서 어떤 컬럼끼리 맞출지 직접 알려줘야 해요.
 
 
+⚠️ SQLD 시험용 주의사항 (꼭 읽어보세요!)
+NATURAL JOIN은 편리해 보이지만 시험에서 함정으로 자주 나오는 특징이 있어요.
+1. 중복 컬럼은 하나만!: 원래 조인을 하면 A.ID, B.ID 이렇게 두 개가 다 보일 수 있는데, NATURAL JOIN은 똑똑하게 ID 컬럼을 하나로 합쳐서 맨 앞에 보여줘요.
+2. 별칭(Alias) 금지: NATURAL JOIN에서 기준이 된 컬럼 앞에는 테이블 이름이나 별칭(예: A.ID)을 붙이면 오류가 나요! 그냥 ID라고만 적어야 합니다.
+3. 데이터 유형도 같아야 함: 이름만 같다고 다 되는 게 아니라 데이터 타입까지 똑같아야 '자연스럽게' 연결된답니다.
 
+-----------------------------------------------------------------------------
 
+테이블 그림을 기준으로 SQL문을 해석하면, 다음 계층형 질의 결과에서 LEVEL = 2인 행 수는?
+지문
 
+SELECT emp_id,
+       emp_name,
+       mgr_id,
+       LEVEL AS lv
+FROM emp_tree
+START WITH mgr_id IS NULL
+CONNECT BY PRIOR emp_id = mgr_id
+ORDER SIBLINGS BY emp_name;
 
+📝 계층형 질의(Hierarchical Query) 한 줄 해설
+SELECT emp_id, emp_name, mgr_id, LEVEL AS lv
+	의미: 사원번호, 이름, 관리자번호를 가져오고, 특히 계층의 깊이를 나타내는 가상의 컬럼인 LEVEL을 lv라는 별칭으로 보여달라는 뜻이에요. (루트는 1, 그 아래는 2...)
 
+FROM emp_tree
+	의미: 데이터를 꺼내올 테이블 이름이 emp_tree라는 뜻이에요.
 
+START WITH mgr_id IS NULL
+	의미: "어디서부터 시작할까?"를 정하는 문장이에요. 관리자 번호(mgr_id)가 비어있는 사람, 즉 최상위 대장(CEO)부터 나무를 그리기 시작하겠다는 뜻이에요. (여기가 LEVEL 1이 됩니다!)
 
+CONNECT BY PRIOR emp_id = mgr_id
+	의미: "부모와 자식을 어떻게 연결할까?"를 정하는 핵심 문장이에요.
 
+PRIOR emp_id: "방금 찾은 사람(부모)의 사원번호가"
+	= mgr_id: "누군가의 관리자 번호와 같은 사람을 찾아라"
+	즉, 위에서 아래로 내려가는 순방향 전개를 하겠다는 뜻이에요.
 
+ORDER SIBLINGS BY emp_name
+	의미: "형제들끼리만 정렬해!"라는 뜻이에요.
+	그냥 ORDER BY를 쓰면 계층 구조가 엉망진창 섞여버리지만, SIBLINGS를 붙이면 같은 부모를 둔 자식들(형제들)끼리만 이름순으로 정렬해줘서 계층 구조가 예쁘게 유지된답니다.
 
+요약!
+- START WITH: 시작점 (뿌리)
+- CONNECT BY: 연결 고리 (가지)
+- PRIOR: "이전 단계의 것" (이게 어디 붙어있느냐에 따라 위로 갈지 아래로 갈지 정해져요!)
+- LEVEL: 계층의 깊이 (1부터 시작!)
+
+-----------------------------------------------------------------------------
+
+다음 중 아래 (1), (2), (3)의 SQL에서 실행결과가 같은 것은?
+지문
+
+(1)
+SELECT A.ID, B.ID
+FROM TBL1 A
+FULL
+OUTER
+JOIN TBL2 B
+ON A.ID = B.ID
+(2)
+SELECT A.ID, B.ID
+FROM TBL1 A LEFT
+OUTER
+JOIN TBL2 B
+ON A.ID = B.ID
+UNION
+SELECT A.ID, B.ID
+FROM TBL1 A RIGHT
+OUTER
+JOIN TBL2 B
+ON A.ID = B.ID
+(3)
+SELECT A.ID, B.ID
+FROM TBL1 A, TBL2 B
+WHERE A.ID = B.ID
+UNION ALL
+SELECT A. ID, NULL
+FROM TBL1 A
+WHERE NOT EXISTS (SELECT 1
+FROM TBL2 B
+WHERE A.ID = B.ID)
+UNION ALL
+SELECT NULL, B.ID
+FROM TBL2 B
+WHERE NOT EXISTS (SELECT 1
+FROM TBL1 A
+WHERE B.ID = A.ID)
+
+###
+정답 : ( 2,3 )
+
+1. 필터: 결과 컬럼의 개수가 같은가? (가장 중요!)
+1번: SELECT A.ID, B.ID → 컬럼이 2개입니다. (A의 ID 칸, B의 ID 칸이 따로 있어요)
+2, 3번: 집합 연산은 무조건 위아래로 포개기 때문에 결과적으로 1개(또는 정해진 개수)의 컬럼으로 합쳐집니다.
+결론: 여기서 이미 1번은 탈락!
+
+2. 필터: 중복을 어떻게 처리하는가?
+2번: LEFT JOIN과 RIGHT JOIN은 가운데 교집합이 겹치는데, UNION이 이걸 한 줄로 합쳐줍니다.
+3번: INNER JOIN, A만 있는 거, B만 있는 거를 따로 구했기 때문에 겹칠 일이 없죠. 그래서 UNION ALL을 써도 중복이 안 생겨요.
+결론: 2번과 3번은 최종적으로 같은 데이터 셋을 만듭니다.
+
+3. 필터: WHERE 조건으로 차집합을 잘 구했는가? (3번 분석)
+3번에서 쓴 WHERE NOT EXISTS는 "상대방 테이블에 내 ID가 없는 경우만 가져와라"라는 뜻이에요.
+즉, 순수한 차집합을 구하는 전형적인 문법이죠.
+결론: (교집합) + (A-B 차집합) + (B-A 차집합) = 합집합이라는 논리를 완벽하게 구현한 거예요.
+
+###요약 노트
+FULL OUTER JOIN: "나란히 보여주기" (조인 문법)
+UNION / UNION ALL: "위아래로 쌓기" (집합 문법)
+NOT EXISTS: "너 빼고 나만" (차집합 구현)
+
+-----------------------------------------------------------------------------
 
 
 
