@@ -676,8 +676,32 @@ CEIL(숫자): 천장(Ceiling)이라는 뜻처럼, 주어진 숫자보다 **크�
 3번 (중복 여부): 외래키는 얼마든지 중복될 수 있어요. 예를 들어 '컴퓨터공학과'라는 부모 키를 여러 명의 학생(자식)이 가질 수 있는 것과 같죠. (중복 가능! 👍)
 4번 (보장 주체): 참조 무결성은 집계 함수(SUM, AVG 등)가 아니라, 데이터베이스의 제약 조건(Constraint)이 보장합니다.
 
-
 -----------------------------------------------------------------------------
+
+다음 그림과 SQL을 함께 보고 판단할 때, 다음 SQL 결과에서 gr = 1 이고 gp = 1 인 행 수는?
+지문
+
+SELECT region,
+       product,
+       SUM(amount) AS amt,
+GROUPING(region) AS gr,
+       GROUPING(product) AS gp
+FROM order_amt
+GROUP BY ROLLUP(region, product);
+
+REGION		PRODUCT	AMOUNT
+SEOUL		A		100
+SEOUL		B		200
+BUSAN		A		150
+BUSAN		B		50
+
+
+###
+정답 : 1개
+
+
+
+
 
 
 -----------------------------------------------------------------------------
