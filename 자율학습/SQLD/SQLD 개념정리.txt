@@ -15,7 +15,26 @@
 - 정규화와의 관계: 이력 데이터는 데이터가 계속 쌓이기 때문에 성능을 위해 반정규화를 고민해야 할 때가 많아요.
 - PK(기본키) 설정: 보통 원래의 PK + 시작일자를 묶어서 새로운 PK로 설정하는 경우가 많습니다.
 -----------------------------------------------------------------------------
+## NULL의 특성 (★ 출제 단골)
+항목	결과
+NULL = NULL	UNKNOWN (FALSE 취급)
+NULL <> NULL	UNKNOWN
+NULL + 100	NULL
+COUNT(*)	NULL 포함
+COUNT(컬럼)	NULL 제외
+SUM/AVG/MAX/MIN	NULL 제외
+ORDER BY	Oracle: 기본 NULL 마지막
+GROUP BY	NULL은 하나의 그룹
 
+
+## NULL 처리 함수
+함수		동작
+NVL(a, b)		a가 NULL이면 b
+NVL2(a, b, c)	a NOT NULL이면 b, NULL이면 c
+COALESCE(a,b,c,...)	첫 번째 NOT NULL 값
+NULLIF(a, b)	a=b면 NULL, 아니면 a
+
+CASE WHEN a IS NULL THEN ... ELSE ... END	표준
 -----------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------

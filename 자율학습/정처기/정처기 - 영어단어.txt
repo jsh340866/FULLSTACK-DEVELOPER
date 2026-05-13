@@ -19,3 +19,4 @@ Piggyback - 업어주기
 Dicing - 깍둑썰기
 Drill-down - 파고들기
 Translate - 번역,변환
+Coalesce - 합쳐지다
