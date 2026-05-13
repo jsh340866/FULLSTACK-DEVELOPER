@@ -1080,6 +1080,55 @@ Length('LIMBEST') = 8
 
 -----------------------------------------------------------------------------
 
+다음 주어진 두 개의 테이블에 대해서 아래와 같은 결괏값이 반환되도록 아래의 SQL문의 빈칸에 들어갈 값을 적으시오.
+지문
+
+SELECT b.grade, a.StudentNo, SUM(b.grade)
+FROM TEST44_1 a, TEST44_2 b
+GROUP by
+(                       );
+
+[결과]
+GRADE	STUDENTNO	SUM(B.GRADE)
+50	10		50
+50	20		50
+50	30		50
+50			150
+...
+
+
+1
+GROUPING SETS(a.studentno, (b.grade, a.studentno));
+
+2
+GROUPING SETS(b.grade, (b.grade, a.studentno));
+
+3
+GROUPING SETS(b.grade, (a.studentno, b.grade));
+
+4
+GROUPING SETS(b.grade, (a.studentno));
+
+### 
+정답 : 2번
+
+1. 그룹화 기준의 '계층적' 일관성
+가장 왼쪽에 GRADE가 있고 그 다음에 STUDENTNO가 나오죠?
+- 2번: GROUPING SETS(b.grade, (b.grade, a.studentno))
+- 3번: GROUPING SETS(b.grade, (a.studentno, b.grade))
+2번은 첫 번째 그룹 기준(b.grade)이 두 번째 복합 그룹 안에서도 가장 앞에 위치해요. 데이터가 GRADE를 중심으로 먼저 분류되고 그 안에서 STUDENTNO로 나뉘는 계층적인 구조를 문법적으로도 그대로 보여주는 거죠.
+
+2. 정렬 순서의 암시 (Ordering)
+SQL 문장에서 GROUP BY 절에 적어준 컬럼의 순서는 보통 결과의 기본 정렬 순서에 영향을 주는 경우가 많아요.
+- 3번처럼 (a.studentno, b.grade)라고 쓰면, DBMS에 따라 학번을 기준으로 먼저 정렬하려고 시도할 수 있어요.
+- 하지만 결과 표는 명확하게 GRADE 별로 모여서 나오고 있죠? 따라서 기준이 되는 b.grade가 앞에 오는 2번이 결과 화면과 더 완벽하게 일치하는 표현이 되는 거예요.
+
+3. 출제 의도: ROLLUP과의 연관성
+이 문제는 사실 ROLLUP(b.grade, a.studentno)과 GROUPING SETS의 변환 관계를 이해하고 있는지 묻는 문제이기도 해요.
+- ROLLUP(A, B)를 GROUPING SETS로 풀면 GROUPING SETS(A, (A, B), ())가 되는데 (전체 합계 제외 시), 여기서 보듯이 기준이 되는 A가 항상 앞에 오는 것이 정석적인 표기법이랍니다.
+
+요약하자면!
+3번이 "절대 틀린 데이터가 나온다"라기보다는, 결과 표의 컬럼 순서와 정렬 상태를 보았을 때 가장 자연스럽고 정석적인 문법은 2번이기 때문에 정답이 되는 거예요.
 
 -----------------------------------------------------------------------------
 
