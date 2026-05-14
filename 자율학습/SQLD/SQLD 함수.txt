@@ -19,8 +19,11 @@
 - WHERE V1 NOT EXISTS (SELECT V1 FROM TAB2);
 	- NOT EXISTS 는 같은 값이 잇는지 확인
 	- NULL값이 있어도 빈값으로 데이터를 출력
-
-
+- SELECT COL1, COL2, COL3, NTILE(3)
+  OVER(ORDER BY COL3) AS NTILE2
+  FROM Mytest
+	- Mytest의 정보를 가져와 NTILE2라는 이름으로 col3을 기준으로 co1,co2,co3에 나온 데이터 행 수를 3으로 나눠 분배해라
+	
 
 
 
