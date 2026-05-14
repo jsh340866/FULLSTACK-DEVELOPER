@@ -12,9 +12,13 @@
 	- RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW : 
 		- 기본값 (RANGE)
 		- 동작 자체는 ROWS랑 비슷하지만 정렬 기준 값이 같은 행들은 누적 합계 수치가 똑같이 나와버림
+- WHERE V1 NOT IN (SELECT V1 FROM TAB2);
+	- NOT IN 은 같은 값이 있는지 확인
+	- 단, NULL값이 하나라도 있으면 데이터를 읽을수없다.
 
-
-
+- WHERE V1 NOT EXISTS (SELECT V1 FROM TAB2);
+	- NOT EXISTS 는 같은 값이 잇는지 확인
+	- NULL값이 있어도 빈값으로 데이터를 출력
 
 
 
