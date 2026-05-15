@@ -1,0 +1,103 @@
+package Ch15.C03행위패턴_;
+
+/* ----------------------------------------------------------
+   1. 옵저버 패턴 (Observer)
+   ----------------------------------------------------------
+   설명 : 한 객체(Subject)의 상태 변화를 여러 객체(Observer)에 자동 알림
+   비유 : 유튜브 구독 (영상 올리면 구독자 모두에게 알림)
+   용도 : - 이벤트 처리 / 리스너
+          - GUI 버튼 클릭 처리
+          - 데이터 바인딩 (모델 변경 → 뷰 자동 갱신)
+   ---------------------------------------------------------- */
+
+import java.util.ArrayList;
+import java.util.List;
+
+interface Observer {
+    void update();
+}
+
+ class Subject {
+    private List<Observer> observers = new ArrayList<>();
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    //상태변화시 옵저버에 알리는 작업이 포함
+    public void setState(int state) {
+        this.state = state;
+        notifyObservers();
+    }
+
+    public void attach(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void detach(Observer observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+}
+
+class BinaryObserver implements Observer {
+    private Subject subject;
+
+    public BinaryObserver(Subject subject) {
+        this.subject = subject;
+        this.subject.attach(this);
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Binary String: " + Integer.toBinaryString(subject.getState()));
+    }
+}
+
+class OctalObserver implements Observer {
+    private Subject subject;
+
+    public OctalObserver(Subject subject) {
+        this.subject = subject;
+        this.subject.attach(this);
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Octal String: " + Integer.toOctalString(subject.getState()));
+    }
+}
+
+class HexaObserver implements Observer {
+    private Subject subject;
+
+    public HexaObserver(Subject subject) {
+        this.subject = subject;
+        this.subject.attach(this);
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Hex String: " + Integer.toHexString(subject.getState()));
+    }
+}
+
+public class C01옵저버패턴 {
+    public static void main(String[] args) {
+        Subject subject = new Subject();
+
+        new BinaryObserver(subject);
+        new OctalObserver(subject);
+        new HexaObserver(subject);
+
+        subject.setState(10);
+        System.out.println();
+        subject.setState(20);
+    }
+}

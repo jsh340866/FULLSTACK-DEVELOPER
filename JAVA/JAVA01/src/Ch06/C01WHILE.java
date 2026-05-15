@@ -61,8 +61,8 @@ public class C01WHILE {
 //		Scanner sc = new Scanner(System.in);
 //		System.out.printf("정수를 입력하세요 >>>");
 //		
-//		int i = 1;
 //		int N = sc.nextInt();
+//		int i = 1;
 //		int sum = 0;
 //		while(i<=N) {
 //			sum += i;
@@ -76,6 +76,14 @@ public class C01WHILE {
 //		System.out.printf("두 정수를 입력하세요 >>>");
 //		int N = sc.nextInt();
 //		int M = sc.nextInt();
+//
+//		// SWAP
+//		if (N > M) {
+//			int tmp = N;
+//			N = M;
+//			M = tmp;
+//		}
+//
 //		int i = N;
 //		int sum = 0;
 //		while (i <= M) {
@@ -91,19 +99,19 @@ public class C01WHILE {
 //		int N = sc.nextInt();
 //		int M = sc.nextInt();
 //		int i = N;
-//		int sum1 = 0;
-//		int sum2 = 0;
+//		int even = 0;
+//		int odd = 0;
 //		while (i <= M) {
 //			if(i%2==0) {
-//				sum1 += i;
+//				even += i;
 //			}
 //			else {
-//				sum2 += i;
+//				odd += i;
 //			}
 //			i++;
 //		}
-//		System.out.println(N + "부터 " + M + "까지의 짝수 합 : " + sum1);
-//		System.out.println(N + "부터 " + M + "까지의 홀수 합 : " + sum2);
+//		System.out.println(N + "부터 " + M + "까지의 짝수 합 : " + even);
+//		System.out.println(N + "부터 " + M + "까지의 홀수 합 : " + odd);
 //		sc.close();
 
 		// 문제4.
@@ -113,7 +121,7 @@ public class C01WHILE {
 //			System.out.printf("2 x %d\n",i);
 //			i++;
 //		}
-		
+
 		// 문제5.
 //		Scanner sc = new Scanner(System.in);
 //		System.out.printf("단을 입력해주세요. >>> ");
@@ -123,6 +131,24 @@ public class C01WHILE {
 //			System.out.printf("%d x %d\n",dan,i);
 //			i++;
 //		}
+
+		// 문제5. 구구단 N단 받아서 찍어보기 (n>=2 && n<=9) vs (n<2 || n>9)
+		Scanner sc = new Scanner(System.in);
+		System.out.printf("단을 입력해주세요. >>> ");
+		int n = sc.nextInt();
+		
+		while(n<2 || n>9) {
+			System.out.printf("2이상 9이하의 값 입력해야 합니다. >>> ");
+			n = sc.nextInt();
+		}
+		
+		int dan = n;
+		int i = 9;
+		while (i > 0) {
+			System.out.printf("%d x %d = %d\n", dan, i, dan*i);
+			i--;
+		}
+
 		
 	}
 
