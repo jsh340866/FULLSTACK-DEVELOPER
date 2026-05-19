@@ -39,7 +39,13 @@
 	
 - PIVOT : 행과 열을 뒤집는 것
 
+📍 위치 찾기: INSTR
 
+✂️ 잘라내기: SUBSTR (패턴 탐지는 REGEXP_SUBSTR)
+
+🪄 채우기/지우기: LPAD / RPAD / TRIM
+
+🔄 바꾸기/세기: REPLACE / LENGTH
 
 
 
