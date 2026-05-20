@@ -976,6 +976,48 @@ TRUNC
 
 =============================================================================
 
+문제
+
+다음에서 설명하는 DDL문으로 올바른 것은?
+지문
+
+Mytest 테이블 칼럼을 데이터 타입 조건으로 not null을 기본으로 수정하시오.
+
+답안과 정답
+
+1번
+ALTER table Mytest add
+constraint column 칼럼명
+default not null
+2번
+정답
+ALTER table Mytest modify (칼럼명 not null)
+3번
+내 답안
+ALTER table Mytest add column 칼럼명 default not null
+4번
+ALTER table Mytest alter column 칼럼명 not null
+
+###
+정답 : 2번
+
+이미 만들어져 있는 테이블의 칼럼 속성(데이터 타입, NOT NULL 조건 등)을 바꾸고 싶을 때는 ALTER TABLE ~ MODIFY 문법을 사용해야 해요. 그래서 정답이 2번이 되는 거랍니다. 
+
+승원님이 고르신 3번을 포함해서 왜 다른 답안들이 틀렸고, 오라클의 ALTER TABLE 핵심 문법은 어떻게 쓰는지 깔끔하게 정리해 드릴게요!
+
+🔍 왜 2번 MODIFY가 정답이고, 3번 ADD는 틀렸을까요?
+- ADD (승원님의 선택):
+	- ADD는 테이블에 새로운 칼럼을 '추가'할 때 쓰는 명령어예요. 지문에서는 기존에 있는 칼럼을 "수정하시오"라고 했기 때문에 ADD를 쓰면 안 돼요!
+
+- MODIFY (정답):
+	- MODIFY는 기존에 이미 존재하는 칼럼의 타입이나 제약조건(NOT NULL 등)을 '수정'할 때 쓰는 명령어예요. 지문의 요구사항과 완벽하게 일치합니다!
+
+- ALTER COLUMN (4번):
+	- 이건 SQL Server(MSSQL)에서 칼럼을 수정할 때 쓰는 문법이에요. 오라클에서는 MODIFY를 쓰기 때문에 오라클 기준으로는 틀린 문법이 됩니다!
+
+오라클 : ALTER table Mytest modify(칼럼명 데이터타입 not null)
+SQL서버 : ALTER table Mytest ALTER COLUMN 칼럼명 데이터타입 not null
+
 =============================================================================
 
 =============================================================================
