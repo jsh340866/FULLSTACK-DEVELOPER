@@ -94,8 +94,80 @@
 
 ---
 
-## 🚀 성장 흐름
+## 🚀 5월 학습 내용 (Java 심화 / 네트워크 / JSP & Servlet 웹 프로그래밍)
 
-3월에는 **프론트엔드 기초와 개발환경 적응**,  
-4월에는 **데이터베이스와 Java 백엔드 기초**까지 확장하며  
+### 주요 학습 주제
+* Object 클래스 및 예외처리(Exception)
+* Generic 문법 및 타입 안정성
+* Collection Framework(List / Set / Map)
+* Swing GUI 및 이벤트 처리
+* 파일 입출력(IO) 및 스트림 구조
+* 보조 스트림 / 객체 스트림 / 데이터 스트림
+* JDBC 기반 DB 연동 및 SQL 처리
+* Socket 네트워크 프로그래밍
+* Thread 기반 멀티채팅 구조
+* Reflection 및 동적 객체 처리
+* 디자인 패턴(Factory Pattern)
+* 람다식(Lambda) 및 함수형 프로그래밍
+* Stream API 활용
+* 객체지향 설계(OOP) 심화
+* 추상클래스 / 인터페이스 기반 설계
+* JSP 기본 문법 및 내장객체
+* EL(Expression Language)
+* DTO / DAO 구조
+* Cookie / Session 기반 인증 처리
+* Servlet 생명주기 및 MVC 흐름
+* 회원가입 / 로그인 / 로그아웃 처리
+* Forward / Redirect 처리 구조
+
+<details>
+  <summary>일차별요약</summary>
+
+### 일차별 요약
+
+* **5월 2일** : Object 클래스 / Exception / Generic 구조 학습
+* **5월 6일(1부)** : Collection Framework(List / Set / Map) 구조 학습
+* **5월 6일(2부)** : Swing GUI 및 이벤트 처리 구조 학습
+* **5월 7일** : 문자 스트림 / 바이트 스트림 / 파일 입출력(IO) 학습
+* **5월 8일** : 보조 스트림 / 객체 스트림 / BufferedReader 처리 학습
+* **5월 11일** : JDBC 기반 DB 연결 및 INSERT / UPDATE / SELECT 처리
+* **5월 12일(1부)** : Socket 통신 / Thread / 멀티채팅 구조 학습
+* **5월 12일(2부)** : Reflection / Factory Pattern / GUI 채팅 구조 학습
+* **5월 13일** : 람다식(Lambda) 및 함수형 인터페이스 학습
+* **5월 14일** : 함수형 프로그래밍 및 Stream API 활용
+* **5월 15일** : 추상 클래스 기반 Unit 설계 및 객체지향 구조 학습
+* **5월 18일** : Marine / Medic 구조 및 인터페이스 기반 설계 학습
+* **5월 19일** : JSP 기본 문법(선언문 / 스크립틀릿 / 표현식) 학습
+* **5월 20일** : Forward / Redirect / EL / DTO 구조 학습
+* **5월 21일(1부)** : 회원가입 / 로그인 처리 흐름 및 DAO 연동 학습
+* **5월 21일(2부)** : Cookie 생성 / 조회 / 삭제 및 Session 처리 학습
+* **5월 22일** : Servlet 생명주기 및 MVC(Model2) 전체 흐름 정리
+
+---
+
+### 핵심 역량
+
+* Java 객체지향 설계 능력 향상
+* Collection Framework 활용 능력
+* 파일 입출력(IO) 및 스트림 처리 이해
+* JDBC 기반 데이터베이스 연동 능력
+* Socket / Thread 기반 네트워크 구조 이해
+* Reflection 및 동적 객체 생성 구조 이해
+* 함수형 프로그래밍 및 Stream 활용 능력
+* JSP / Servlet 기반 웹 프로그래밍 이해
+* MVC(Model2) 패턴 구조 이해
+* Session / Cookie 기반 인증 처리 능력
+* DAO / DTO 기반 계층 분리 설계 이해
+
+</details>
+
+---
+
+## 🚀 성장 흐름
+- 3월에는 **프론트엔드 기초와 개발환경 적응**을 중심으로 학습하며
+웹 개발의 기본 구조와 개발 습관을 익혔습니다.
+- 4월에는 **데이터베이스와 Java 백엔드 기초**까지 확장하며  
 풀스택 개발자로 성장하기 위한 기반을 체계적으로 학습했습니다.
+- 5월에는 **JDBC, JSP, Servlet**까지 확장하며
+실제 웹서비스의 요청 처리 흐름과 로그인 인증 구조를 구현하는 등
+실무형 웹 백엔드 개발 흐름을 단계적으로 학습했습니다.
