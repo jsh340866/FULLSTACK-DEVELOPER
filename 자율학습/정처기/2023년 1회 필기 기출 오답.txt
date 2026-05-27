@@ -189,8 +189,8 @@ ABDC
 `
 `
 75.2-- // 3
-11000011
-128+64+1+2
+11000100
+128+64+4
 
 `
 `
@@ -350,11 +350,11 @@ MOM = 비동기 = 메시지 큐 = 안정성
 ##53번 정답: 2번
 정답은 ② SELECT 이름 FROM 학생 WHERE 학과 = '교육';
 
-관계 대수 기호	연산자 명칭	SQL 대응		주요 특징
+관계 대수 기호	연산자 명칭		SQL 대응		주요 특징
 σ (Sigma)		Selection		WHERE		수평적 연산 (조건에 맞는 행 선택)
-π (Pi)		Projection	SELECT		수직적 연산 (필요한 열만 선택)
-⋈ (Bowtie)	Join		JOIN		두 릴레이션을 공통 속성으로 합침
-÷ (Division)	Division		-		모든 조건을 만족하는 튜플 검색
+π (Pi)			Projection		SELECT		수직적 연산 (필요한 열만 선택)
+⋈ (Bowtie)		Join			JOIN			두 릴레이션을 공통 속성으로 합침
+÷ (Division)		Division		-			모든 조건을 만족하는 튜플 검색
 
 
 

@@ -1,0 +1,16 @@
+1. 자바 cmd 열어서 버전확인 
+	- java -version / javac - version 출력 화면 캡쳐
+
+2. sqp 워크벤치 Bookdb 생성 쿼리문 작성후 결과 캡쳐
+
+3. Mysql JDBC Driver(mysql-connection-j) 
+	- jar파일 lib폴더에 배치하고 빌드패스(.classpath)에 등록 캡쳐
+
+4. 깃허브 레퍼런스 생성 후 
+	- 프로젝트 작업 clone -> 작업 -> commit -> push 흐름 시연
+	- git log --oneline 출력 GitHub Repository 페이지 캡쳐
+
+[제출물]
+1. 위 작업 절차 서술 + 결과 화면 캡쳐 ppt
+2. GitHub Repository URL
+3. db/schema.sql 파일

@@ -19,6 +19,7 @@ Piggyback - 업어주기
 Dicing - 깍둑썰기
 Drill-down - 파고들기
 Translate - 번역,변환
+<<<<<<< HEAD
 Instance - 사례
 
  - Java → Spring
@@ -49,3 +50,7 @@ Instance - 사례
 
 
 
+=======
+Coalesce - 합쳐지다
+Unbounded - 무한대
+>>>>>>> 039829648e79d246101dfc6d04ab9aff636fcdc3

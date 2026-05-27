@@ -48,6 +48,7 @@ ABC+*D/E-
 `
 `	44.4--
 `	45.3--
+수평 분할 기법 : 라운드 로빈, 해쉬 분할, 범위 분할
 `
 `
 `
@@ -251,7 +252,7 @@ Git: 분산형 관리 방식 (승원 님이 학원에서 주로 쓰시는 방식
 Fragmentation Transparency (분할 투명성): 하나의 논리적 릴레이션이 여러 단편으로 분할되어 저장되어도 사용자는 원래의 전체 릴레이션으로 인식해야 합니다.
 
 분산 데이터베이스 투명성은 앞 글자만 따서 '위-복-장-분'으로 기억하세요!
-위치(Location) - 복제(Replication) - 장애(Failure) - 분산(Fragmentation)
+위치(Location) - 복제(Replication) - 장애(Failure) - 분산(Fragmentation) - 병행(Concurrency)
 
 
 
