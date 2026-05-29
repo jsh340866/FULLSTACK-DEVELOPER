@@ -1,0 +1,3 @@
+
+netstat -a -o | more
+taskkill /f /pid 번호		-- 포트 종료 안될시 강제종료 방법
