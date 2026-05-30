@@ -282,6 +282,7 @@ ON (A. 고객ID = B.고객ID) BETWEEN
 JOIN 시간대구간 C
 GROUP BY A.고객ID, A.고객명
 ORDER BY A.고객ID, A.고객명;
+
 2번
 정답
 SELECT A.고객ID, A.고객명, SUM(B.사용량 * C.단가) AS 사용금액
@@ -295,6 +296,7 @@ ON B.사용시간대 BETWEEN C.시작시간대
 AND C.종료시간대
 GROUP BY A.고객ID, A.고객명
 ORDER BY A.고객ID, A.고객명;
+
 3번
 SELECT A.고객ID, A.고객명, SUM(B.사용량 * C.단가) AS 사용금액
 FROM 고객 A
@@ -308,6 +310,7 @@ BETWEEN C.시작시간대
 AND C.종료시간대)
 GROUP BY A.고객ID, A.고객명
 ORDER BY A.고객ID, A.고객명;
+
 4번
 SELECT A.고객ID, A.고객명, SUM(B.사용량 * C. 단가) AS 사용금액
 FROM 고객 A
