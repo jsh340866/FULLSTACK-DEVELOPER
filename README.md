@@ -94,31 +94,28 @@
 
 ---
 
-## 🚀 5월 학습 내용 (Java 심화 / 네트워크 / JSP & Servlet 웹 프로그래밍)
+## 🚀 5월 학습 내용 (Java 심화 / 네트워크 / JSP & Servlet 웹 프로그래밍 / Spring Boot)
 
 ### 주요 학습 주제
 * Object 클래스 및 예외처리(Exception)
-* Generic 문법 및 타입 안정성
-* Collection Framework(List / Set / Map)
+* Generic / Collection Framework
 * Swing GUI 및 이벤트 처리
 * 파일 입출력(IO) 및 스트림 구조
-* 보조 스트림 / 객체 스트림 / 데이터 스트림
 * JDBC 기반 DB 연동 및 SQL 처리
-* Socket 네트워크 프로그래밍
-* Thread 기반 멀티채팅 구조
-* Reflection 및 동적 객체 처리
-* 디자인 패턴(Factory Pattern)
-* 람다식(Lambda) 및 함수형 프로그래밍
-* Stream API 활용
-* 객체지향 설계(OOP) 심화
-* 추상클래스 / 인터페이스 기반 설계
-* JSP 기본 문법 및 내장객체
-* EL(Expression Language)
-* DTO / DAO 구조
+* Socket / Thread 기반 네트워크 프로그래밍
+* Reflection / Factory Pattern
+* 람다식(Lambda) 및 Stream API
+* 객체지향 설계(OOP) / 추상클래스 / 인터페이스
+* JSP / Servlet 기반 웹 프로그래밍
+* DTO / DAO / MVC(Model2) 구조
 * Cookie / Session 기반 인증 처리
-* Servlet 생명주기 및 MVC 흐름
-* 회원가입 / 로그인 / 로그아웃 처리
-* Forward / Redirect 처리 구조
+* Filter / Listener / Resource 관리
+* JDBC 인터페이스 연동 / Batch / Transaction 처리
+* Spring Framework / Spring Boot 구조
+* IoC / DI / Bean Container
+* Spring MVC / Controller / Parameter Binding
+* Validation / Exception Handling
+* Thymeleaf 템플릿 엔진
 
 <details>
   <summary>일차별요약</summary>
@@ -141,33 +138,40 @@
 * **5월 20일** : Forward / Redirect / EL / DTO 구조 학습
 * **5월 21일(1부)** : 회원가입 / 로그인 처리 흐름 및 DAO 연동 학습
 * **5월 21일(2부)** : Cookie 생성 / 조회 / 삭제 및 Session 처리 학습
-* **5월 22일** : Servlet 생명주기 및 MVC(Model2) 전체 흐름 정리
+* **5월 22일(1부)** : Servlet 생명주기 및 MVC(Model2) 전체 흐름 정리
+* **5월 22일(2부)** : Filter / Listener / Resource 기반 요청 처리 구조 학습
+* **5월 26일** : JDBC 인터페이스 프로젝트(SEND / RECV / MONITOR) 및 Batch / Transaction 구조 학습
+* **5월 27일** : Spring Framework / Spring Boot / IoC / DI / Bean / MVC 구조 학습
+* **5월 28일** : Spring Boot Controller / Lombok / DTO Binding / RequestParam / MVC 요청 처리 학습
+* **5월 29일** : Validation / BindingResult / Exception Handling / Thymeleaf 학습
 
 ---
 
 ### 핵심 역량
 
-* Java 객체지향 설계 능력 향상
-* Collection Framework 활용 능력
-* 파일 입출력(IO) 및 스트림 처리 이해
-* JDBC 기반 데이터베이스 연동 능력
-* Socket / Thread 기반 네트워크 구조 이해
-* Reflection 및 동적 객체 생성 구조 이해
-* 함수형 프로그래밍 및 Stream 활용 능력
-* JSP / Servlet 기반 웹 프로그래밍 이해
-* MVC(Model2) 패턴 구조 이해
-* Session / Cookie 기반 인증 처리 능력
-* DAO / DTO 기반 계층 분리 설계 이해
+* Java 객체지향 프로그래밍 및 계층형 구조 설계 능력
+* 데이터베이스 연동(JDBC) 및 트랜잭션 처리 이해
+* 네트워크(Socket / Thread) 기반 서버 구조 이해
+* JSP / Servlet 기반 웹 백엔드 개발 흐름 이해
+* MVC 패턴 기반 요청 처리 및 인증(Session / Cookie) 구조 구현 경험
+* Spring Framework / Spring Boot 기반 백엔드 애플리케이션 개발 이해
+* IoC / DI / Validation / 예외처리 등 프레임워크 핵심 개념 이해
 
 </details>
 
 ---
 
 ## 🚀 성장 흐름
-- 3월에는 **프론트엔드 기초와 개발환경 적응**을 중심으로 학습하며
+
+- 3월에는 **프론트엔드 기초와 개발환경 적응**을 중심으로 학습하며  
 웹 개발의 기본 구조와 개발 습관을 익혔습니다.
+
 - 4월에는 **데이터베이스와 Java 백엔드 기초**까지 확장하며  
 풀스택 개발자로 성장하기 위한 기반을 체계적으로 학습했습니다.
-- 5월에는 **JDBC, JSP, Servlet**까지 확장하며
-실제 웹서비스의 요청 처리 흐름과 로그인 인증 구조를 구현하는 등
-실무형 웹 백엔드 개발 흐름을 단계적으로 학습했습니다.
+
+- 5월에는 **JDBC, JSP, Servlet**부터 **Spring Framework / Spring Boot**까지 학습 범위를 확장하며  
+실제 웹서비스의 요청 처리 흐름과 로그인 인증 구조를 구현하고,  
+**IoC / DI / Bean 관리 / MVC 요청 처리 / Validation / 예외처리** 등  
+프레임워크 기반 애플리케이션 설계와 실무형 웹 백엔드 개발 구조를 단계적으로 학습했습니다.
+
+
