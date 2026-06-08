@@ -17,6 +17,10 @@ krx:
   api:
     key: 6e44ea19e426d0313e5d161b2344d93d98636c7c0fbbb44285b4b3dc4929b136
     url: https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo
+    filter:
+      bas-dt: 20250605      # 예: 20250607 (비우면 전체)
+      mrkt-ctg:      # 예: KOSPI, KOSDAQ (비우면 전체)
+      stock-code:    # 예: 005930 (비우면 전체)
 
 # OPEN DART (금융감독원 전자공시)
 dart:

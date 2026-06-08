@@ -9,4 +9,10 @@ import java.util.Optional;
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     Optional<Company> findByStockCode(String stockCode);
+
+    Optional<Company> findByCorpCode(String corpCode);
+
+    List<Company> findByMarket(String market);
+
+    List<Company> findByListedTrue();
 }

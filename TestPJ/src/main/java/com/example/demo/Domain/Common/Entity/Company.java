@@ -12,13 +12,13 @@ import lombok.*;
 
 public class Company {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    private String stockCode;
     private String corpCode;
     private String corpName;
-    private String stockCode;
     private String market;
     private boolean listed;
 }

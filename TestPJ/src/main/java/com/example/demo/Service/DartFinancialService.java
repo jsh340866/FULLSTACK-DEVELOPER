@@ -9,6 +9,7 @@ import com.example.demo.Domain.Common.Repository.FinancialRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class DartFinancialService {
 
     private final CompanyRepository companyRepository;
@@ -37,16 +39,26 @@ public class DartFinancialService {
     @Transactional
     public void fetchAndSave(String corpCode, String year) throws Exception {
 
+        if (financialRepository.findByCorpCodeAndBsnsYear(corpCode, year).isPresent()) {
+            log.debug("이미 저장됨 - 스킵: {} / {}", corpCode, year);
+            return;
+        }
+
         String url = apiUrl + "/fnlttSinglAcntAll.json"
                 + "?crtfc_key=" + apiKey
                 + "&corp_code=" + corpCode
                 + "&bsns_year=" + year
                 + "&reprt_code=11011"
                 + "&fs_div=CFS";
-
+        log.info(url);
         String response = restTemplate.getForObject(url, String.class);
 
         DartResponse dto = objectMapper.readValue(response, DartResponse.class);
+
+        if (dto.getList() == null || dto.getList().isEmpty()) {
+            log.warn("재무 데이터 없음: {} / {}", corpCode, year);
+            return;
+        }
 
         Long netIncome = null;
         Long equity = null;
@@ -84,34 +96,56 @@ public class DartFinancialService {
     // =========================
     public void fetchByCorpCode(String corpCode) throws Exception {
 
-        for (int year = 2020; year <= 2026; year++) {
+        for (int year = 2020; year <= 2025; year++) {
             fetchAndSave(corpCode, String.valueOf(year));
         }
     }
 
     // =========================
-    // 3. 🚀 전체 기업 + 전체 연도 (방법 3)
+    // 3. 필터 기반 배치 실행
     // =========================
-    public void fetchAllCompanies() throws Exception {
+    public void fetchFiltered(String market, Integer fromYear, Integer toYear, String stockCode) throws Exception {
 
-        List<Company> companies = companyRepository.findAll();
+        List<Company> companies = resolveCompanies(market, stockCode);
+        int startYear = fromYear != null ? fromYear : 2025;
+        int endYear = toYear != null ? toYear : startYear;
+
+        log.info("DART 배치 시작 - 기업 {}건, {}~{}", companies.size(), startYear, endYear);
 
         for (Company company : companies) {
-
             String corpCode = company.getCorpCode();
+            if (corpCode == null || corpCode.isBlank()) {
+                continue;
+            }
 
-            for (int year = 2020; year <= 2026; year++) {
-
+            for (int year = startYear; year <= endYear; year++) {
                 try {
                     fetchAndSave(corpCode, String.valueOf(year));
-
-                    System.out.println("완료: " + corpCode + " / " + year);
-
+                    log.info("완료: {} / {}", corpCode, year);
                 } catch (Exception e) {
-                    System.out.println("실패: " + corpCode + " / " + year);
+                    log.warn("실패: {} / {} - {}", corpCode, year, e.getMessage());
                 }
             }
         }
+    }
+
+    // =========================
+    // 4. 전체 기업 + 전체 연도 (하위 호환)
+    // =========================
+    public void fetchAllCompanies() throws Exception {
+        fetchFiltered(null, 2025, 2025, null);
+    }
+
+    private List<Company> resolveCompanies(String market, String stockCode) {
+        if (stockCode != null && !stockCode.isBlank()) {
+            return companyRepository.findByStockCode(stockCode.trim())
+                    .map(List::of)
+                    .orElse(List.of());
+        }
+        if (market != null && !market.isBlank()) {
+            return companyRepository.findByMarket(market.trim());
+        }
+        return companyRepository.findByListedTrue();
     }
 
     // =========================

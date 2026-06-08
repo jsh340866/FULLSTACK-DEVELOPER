@@ -12,11 +12,12 @@ import lombok.*;
 @Builder
 public class StockPrice {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
 
     /** srtnCd - 종목코드 */
+    @Id
     private String stockCode;
 
     /** basDt - 기준일자 */
