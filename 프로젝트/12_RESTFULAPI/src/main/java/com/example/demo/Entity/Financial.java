@@ -33,4 +33,6 @@ public class Financial {
     private Long revenue;          // 매출액
     private Long operatingProfit;  // 영업이익
     private Long netIncome;       // 당기순이익
+
+
 }

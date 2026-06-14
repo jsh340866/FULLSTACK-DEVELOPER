@@ -62,13 +62,10 @@ public class DartFinancialCollector {
                 );
 
                 financialRepository.save(financial); // DB 저장
-
+                savedCount++;
                 log.info("저장 완료: {}", company.getCorpName()); // 성공 로그
-
                 Thread.sleep(SLEEP_MS); // API 차단 방지 딜레이
 
-                financialRepository.save(financial);
-                savedCount++;
 
 
             } catch (Exception e) {
