@@ -1,0 +1,14 @@
+1. 생성형 인공지능 (Generative AI) - Chat GPT
+- 사용자의 입력에 반응하여 새로운 콘텐츠를 창조
+
+2. 인공일반지능(Artificial General Intelligence: AGI)
+- 인간의 인지 능력을 모방하여 독립적인 추론, 학습, 적응 능력을 갖춘 시스템
+
+3. CXL (Computer Express Link)
+- CPU나 메모리, 저장장치간의 데이터를 더 빠르게 전송하기 위한 연결기술
+
+4. PMIC (Power Management IC)
+- 종 전자기기에 들어오는 전력을 해당 기기에 적합하게 변환하고 배분 및 제어하는 전력반도체
+
+5. 양자 컴퓨팅(Quantum Computing)
+- 양자 역학의 법칙을 활용하여 기존 컴퓨터로는 너무 복잡한 문제를 해결하는 빠르게 부상하는 기술
