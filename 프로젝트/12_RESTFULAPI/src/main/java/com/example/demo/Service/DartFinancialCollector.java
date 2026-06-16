@@ -129,7 +129,7 @@ public class DartFinancialCollector {
 
         Long revenue = 0L; // 매출액
         Long operatingProfit = 0L; // 영업이익
-        Long netIncome = 0L; // 당기순이익
+        Long thstrm_amount = 0L; // 당기순이익
 
         for (DartItem item : items) { // 계정별 데이터 반복
 
@@ -141,7 +141,8 @@ public class DartFinancialCollector {
             else if ("자본총계".equals(name)) equity = value; // 자본
             else if ("매출액".equals(name)) revenue = value; // 매출
             else if ("영업이익".equals(name)) operatingProfit = value; // 영업이익
-            else if ("당기순이익".equals(name)) netIncome = value; // 순이익
+            else if ("당기순이익(손실)".equals(name)) thstrm_amount = value; // 순이익
+
         }
 
         return Financial.builder() // Entity 생성
@@ -153,7 +154,7 @@ public class DartFinancialCollector {
                 .equity(equity) // 자본
                 .revenue(revenue) // 매출
                 .operatingProfit(operatingProfit) // 영업이익
-                .netIncome(netIncome) // 순이익
+                .thstrm_amount(thstrm_amount) // 순이익
                 .build();
     }
 
