@@ -23,6 +23,8 @@ Translate - 번역,변환
 <<<<<<< HEAD
 Instance - 사례
 
+Iterator : 순차적
+
  - Java → Spring
  - Python → Django (혹은 Flask)
  - JavaScript → Node.js / React / Vue
