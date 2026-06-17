@@ -12,6 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"stockCode", "year"}) // 종목코드 + 연도 중복 방지
+        }
+)
 public class Financial {
 
     @Id
@@ -32,7 +37,13 @@ public class Financial {
 
     private Long revenue;          // 매출액
     private Long operatingProfit;  // 영업이익
-    private Long thstrm_amount;       // 당기순이익
+    private Long thstrm_amount;    // 당기순이익
+
+    // 이걸로 교체
+    private Double dividendYield; // 현금배당수익률(%) 보통주
+    private String stlmDt;        // 결산일
+    private Double AAAA;          // 주당현금배당원
+    private boolean 보통주;
 
 
 

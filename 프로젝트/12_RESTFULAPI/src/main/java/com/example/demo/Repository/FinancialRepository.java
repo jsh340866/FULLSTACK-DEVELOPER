@@ -5,10 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FinancialRepository extends JpaRepository<Financial, Long> {
 
     List<Financial> findByStockCode(String stockCode);
+
+    Optional<Financial> findByStockCodeAndYear(String stockCode, Integer year); // 이미 있으면 스킵용
 
 }

@@ -1,5 +1,6 @@
 package com.example.demo.Dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -10,5 +11,6 @@ public class DartResponse {
     private String status;
     private String message;
 
+    @JsonProperty("list")
     private List<DartItem> list;
 }

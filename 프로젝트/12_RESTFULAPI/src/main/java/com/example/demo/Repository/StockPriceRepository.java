@@ -16,4 +16,5 @@ public interface StockPriceRepository extends JpaRepository<StockPrice, Long> {
             String stockCode,
             LocalDate tradeDate
     );
+    Optional<StockPrice> findTopByStockCodeOrderByTradeDateDesc(String stockCode);
 }
