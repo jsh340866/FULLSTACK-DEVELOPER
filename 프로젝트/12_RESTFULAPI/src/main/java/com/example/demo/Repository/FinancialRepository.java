@@ -16,5 +16,4 @@ public interface FinancialRepository extends JpaRepository<Financial, Long> {
 
     Optional<Financial> findByStockCodeAndYear(String stockCode, Integer year); // 이미 있으면 스킵용
 
-    Optional<Financial> findByCompanyAndFsDiv(Company company, String cfs);
 }
