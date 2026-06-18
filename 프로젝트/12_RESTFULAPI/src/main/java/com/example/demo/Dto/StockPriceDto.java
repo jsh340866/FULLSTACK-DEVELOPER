@@ -18,4 +18,6 @@ public class StockPriceDto {
 
     private Double changeRate;
     private Long changePrice;
+
+    private String mrktCtg;
 }

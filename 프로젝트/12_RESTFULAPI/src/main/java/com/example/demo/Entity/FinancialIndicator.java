@@ -33,9 +33,13 @@ public class FinancialIndicator {
     private Double eps; // 주당순이익 (순이익 / 발행주식수)
     private Double bps; // 주당순자산 (자본총계 / 발행주식수)
 
-    private Double debtRatio; // 부채비율 (부채총계 / 자본총계 * 100)
+    @Column(name = "영업이익률")
     private Double operatingProfitMargin; // 영업이익률 (영업이익 / 매출액 * 100)
-    private Double dividendYield; // 배당수익률 (배당금 / 주가 * 100) ```````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+    @Column(name = "배당수익률")
+    private Double dividendYield; // 배당수익률 (배당금 / 주가 * 100)
+    @Column(name = "부채비율")
+    private Double debtRatio; // 부채비율 (부채총계 / 자본총계 * 100)
+    @Column(name = "시가총액")
     private Long marketCap; // 시가총액 (종가 × 발행주식수)
 
 }

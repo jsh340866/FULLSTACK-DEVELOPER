@@ -3,12 +3,13 @@ package com.example.demo.Parser;
 import com.example.demo.Dto.StockPriceDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
-import java.time.LocalDate;
 
 @Component // 스프링에서 자동 주입 가능
 @Slf4j
@@ -58,6 +59,7 @@ public class StockPriceXmlParser {
 
             dto.setChangePrice(parseLong(get(item, "vs")));   // 등락폭
             dto.setChangeRate(parseDouble(get(item, "fltRt"))); // 등락률
+            dto.setMrktCtg(get(item, "mrktCtg")); // 코스피 코스닥
 
             return dto;
 

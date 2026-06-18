@@ -1,13 +1,7 @@
 package com.example.demo.Service;
 
-import com.example.demo.Entity.Company;
-import com.example.demo.Entity.Financial;
-import com.example.demo.Entity.FinancialIndicator;
-import com.example.demo.Entity.StockPrice;
-import com.example.demo.Repository.CompanyRepository;
-import com.example.demo.Repository.FinancialRepository;
-import com.example.demo.Repository.FinancialIndicatorRepository;
-import com.example.demo.Repository.StockPriceRepository;
+import com.example.demo.Entity.*;
+import com.example.demo.Repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -27,40 +21,38 @@ public class FinancialIndicatorService {
     private final FinancialRepository financialRepository;
     private final StockPriceRepository stockPriceRepository;
     private final FinancialIndicatorRepository financialIndicatorRepository;
+    private final DividendRepository dividendRepository; // 배당 데이터 조회
 
-    /**
-     * 전체 회사 지표 계산 및 저장
-     */
     public void calculateAll(int year) {
 
         int savedCount = 0;
         int page = 0;
-        final int PAGE_SIZE = 100; // 한 번에 처리할 회사 수
+        final int PAGE_SIZE = 100;
 
         while (true) {
 
-            Pageable pageable = PageRequest.of(page, PAGE_SIZE); // 현재 페이지 번호와 사이즈로 Pageable 생성
-            Page<Company> companyPage = companyRepository.findAll(pageable); // 100건씩 DB에서 조회
-            List<Company> companies = companyPage.getContent(); // Page에서 실제 회사 리스트 추출
+            Pageable pageable = PageRequest.of(page, PAGE_SIZE);
+            Page<Company> companyPage = companyRepository.findAll(pageable);
+            List<Company> companies = companyPage.getContent();
 
-            if (companies.isEmpty()) break; // 조회 결과 없으면 반복 종료
+            if (companies.isEmpty()) break;
 
             for (Company company : companies) {
 
                 try {
 
                     Optional<Financial> financialOpt =
-                            financialRepository.findByStockCodeAndYear(company.getStockCode(), year); // 재무데이터 조회
+                            financialRepository.findByStockCodeAndYear(company.getStockCode(), year); // 해당 연도 재무데이터 조회
 
-                    if (financialOpt.isEmpty()) { // 재무데이터 없으면 스킵
+                    if (financialOpt.isEmpty()) {
                         log.warn("재무데이터 없음: {}", company.getCorpName());
                         continue;
                     }
 
                     Optional<StockPrice> stockPriceOpt =
-                            stockPriceRepository.findTopByStockCodeOrderByTradeDateDesc(company.getStockCode()); // 최신 주가 조회
+                            stockPriceRepository.findTopByStockCodeOrderByTradeDateDesc(company.getStockCode()); // 가장 최신 주가 조회
 
-                    if (stockPriceOpt.isEmpty()) { // 주가데이터 없으면 스킵
+                    if (stockPriceOpt.isEmpty()) {
                         log.warn("주가데이터 없음: {}", company.getCorpName());
                         continue;
                     }
@@ -70,85 +62,107 @@ public class FinancialIndicatorService {
 
                     FinancialIndicator indicator = calculate(company, financial, stockPrice, year); // 지표 계산
 
-                    financialIndicatorRepository.save(indicator); // DB 저장
+                    financialIndicatorRepository.save(indicator);
                     savedCount++;
-                    log.info("지표 저장 완료: {} (page={}, total={})",
-                            company.getCorpName(), page, savedCount); // 저장 로그
+                    log.info("지표 저장 완료: {} (page={}, total={})", company.getCorpName(), page, savedCount);
 
                 } catch (Exception e) {
                     log.error("지표 계산 실패: {}", company.getCorpName(), e);
                 }
             }
 
-            if (!companyPage.hasNext()) break; // 마지막 페이지면 반복 종료
-            page++; // 다음 페이지로 이동
+            if (!companyPage.hasNext()) break;
+            page++;
         }
 
         log.info("지표 계산 완료: {}건", savedCount);
     }
 
-    /**
-     * 지표 계산 핵심 로직
-     */
     private FinancialIndicator calculate(Company company, Financial financial,
                                          StockPrice stockPrice, int year) {
 
-        long shareCount = company.getIstcTotqy(); // 발행주식수 (Company 테이블)
-        long closePrice = stockPrice.getClosePrice(); // 종가 (StockPrice 테이블)
+        // ── 기초 데이터 추출 ──────────────────────────────────────────
+        long shareCount      = company.getIstcTotqy();         // 발행주식수
+        long closePrice      = stockPrice.getClosePrice();      // 최신 종가
+        long netIncome       = financial.getThstrm_amount();    // 당기순이익
+        long equity          = financial.getEquity();           // 자본총계
+        long liabilities     = financial.getLiabilities();      // 부채총계
+        long operatingProfit = financial.getOperatingProfit();  // 영업이익
+        long revenue         = financial.getRevenue();          // 매출액
 
-        long netIncome = financial.getThstrm_amount(); // 당기순이익 (Financial 테이블)
-        long equity = financial.getEquity(); // 자본총계
-        long liabilities = financial.getLiabilities(); // 부채총계
-        long operatingProfit = financial.getOperatingProfit(); // 영업이익
-        long revenue = financial.getRevenue(); // 매출액
-        long marketCap = closePrice * shareCount; // 시가총액
+        // ── 시가총액 = 종가 × 발행주식수 ─────────────────────────────
+        long marketCap = closePrice * shareCount;
 
-
-        // EPS: 주당순이익 = 순이익 / 발행주식수
+        // ── EPS (주당순이익) = 당기순이익 / 발행주식수 ───────────────
         Double eps = safeDiv(netIncome, shareCount);
 
-        // BPS: 주당순자산 = 자본총계 / 발행주식수
+        // ── BPS (주당순자산) = 자본총계 / 발행주식수 ─────────────────
         Double bps = safeDiv(equity, shareCount);
 
-        // PER: 주가수익비율 = 주가 / EPS
-        Double per = (eps != null && eps != 0) ? closePrice / eps : null;
+        // ── PER (주가수익비율) = 종가 / EPS ──────────────────────────
+        Double per = (eps != null && eps != 0) ? round(closePrice / eps) : null;
 
-        // PBR: 주가순자산비율 = 주가 / BPS
-        Double pbr = (bps != null && bps != 0) ? closePrice / bps : null;
+        // ── PBR (주가순자산비율) = 종가 / BPS ────────────────────────
+        Double pbr = (bps != null && bps != 0) ? round(closePrice / bps) : null;
 
-        // ROE: 자기자본이익률 = 순이익 / 자본총계 * 100
-        Double roe = (equity != 0) ? (double) netIncome / equity * 100 : null;
+        // ── ROE (자기자본이익률) = 당기순이익 / 자본총계 × 100 ───────
+        Double roe = (equity != 0) ? round((double) netIncome / equity * 100) : null;
 
-        // 부채비율 = 부채총계 / 자본총계 * 100
-        Double debtRatio = (equity != 0) ? (double) liabilities / equity * 100 : null;
+        // ── 부채비율 = 부채총계 / 자본총계 × 100 ────────────────────
+        Double debtRatio = (equity != 0) ? round((double) liabilities / equity * 100) : null;
 
-        // 영업이익률 = 영업이익 / 매출액 * 100
-        Double operatingProfitMargin = (revenue != 0) ? (double) operatingProfit / revenue * 100 : null;
+        // ── 영업이익률 = 영업이익 / 매출액 × 100 ────────────────────
+        Double operatingProfitMargin = (revenue != 0) ? round((double) operatingProfit / revenue * 100) : null;
 
-        // 배당수익률 = 별도 배당 데이터 필요 → 현재 null 처리
-        Double dividendYield = null;
+        // ── 배당수익률 ────────────────────────────────────────────────
+        // Dividend 테이블에서 해당 종목 + 연도 + 보통주 기준으로 조회
+        Optional<Dividend> dividendOpt = dividendRepository
+                .findByIdStockCodeAndIdYearAndIdStockType(
+                        company.getStockCode(), year, Dividend.StockType.COMMON);
+
+        // 방법 1: Dividend 테이블에 저장된 배당수익률 직접 사용
+        Double dividendYieldFromTable = dividendOpt
+                .map(d -> round(d.getDividendYield()))  // 이미 % 단위로 저장된 값
+                .orElse(null);
+
+        // 방법 2: 주당배당금으로 직접 계산 = 주당배당금 / 종가 × 100
+        Double dividendYieldCalc = dividendOpt
+                .filter(d -> d.getDividendPerShare() != null && closePrice != 0)
+                .map(d -> round(d.getDividendPerShare() / closePrice * 100))
+                .orElse(null);
+
+        // 최종 사용: 직접 계산값 우선, 없으면 테이블 저장값 사용
+        Double dividendYield = (dividendYieldCalc != null) ? dividendYieldCalc : dividendYieldFromTable;
 
         return FinancialIndicator.builder()
                 .corpCode(company.getCorpCode())
                 .stockCode(company.getStockCode())
                 .year(year)
-                .eps(eps)
-                .bps(bps)
-                .per(per)
-                .pbr(pbr)
-                .roe(roe)
-                .debtRatio(debtRatio)
-                .operatingProfitMargin(operatingProfitMargin)
-                .dividendYield(dividendYield)
-                .marketCap(marketCap)
+                .eps(eps != null ? round(eps) : null)           // 주당순이익
+                .bps(bps != null ? round(bps) : null)           // 주당순자산
+                .per(per)                                        // 주가수익비율
+                .pbr(pbr)                                        // 주가순자산비율
+                .roe(roe)                                        // 자기자본이익률 (%)
+                .debtRatio(debtRatio)                            // 부채비율 (%)
+                .operatingProfitMargin(operatingProfitMargin)    // 영업이익률 (%)
+                .dividendYield(dividendYield)                    // 배당수익률 (%)
+                .marketCap(marketCap)                            // 시가총액
                 .build();
+    }
+
+    /**
+     * 소수점 둘째자리 반올림
+     */
+    private Double round(Double value) {
+        if (value == null) return null;
+        return Math.round(value * 100.0) / 100.0; // 100 곱해서 반올림 후 다시 나누기
     }
 
     /**
      * 0 나누기 방지 유틸
      */
     private Double safeDiv(long numerator, long denominator) {
-        if (denominator == 0) return null; // 분모가 0이면 null 반환
+        if (denominator == 0) return null; // 분모 0이면 null 반환
         return (double) numerator / denominator;
     }
 }

@@ -37,4 +37,6 @@ public class StockPrice {
 
     private Long changePrice; // 등락폭
     private Double changeRate; // 등락률 (%)
+
+    private String mrktCtg; // 코스닥, 코스피
 }

@@ -39,11 +39,8 @@ public class Financial {
     private Long operatingProfit;  // 영업이익
     private Long thstrm_amount;    // 당기순이익
 
-    // 이걸로 교체
-    private Double dividendYield; // 현금배당수익률(%) 보통주
-    private String stlmDt;        // 결산일
-    private Double AAAA;          // 주당현금배당원
-    private boolean 보통주;
+
+
 
 
 

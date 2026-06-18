@@ -12,6 +12,12 @@ public class DartItem {
     @JsonProperty("thstrm_amount")
     private String amount;
 
+    @JsonProperty("frmtrm_amount")
+    private String frmtrm_amount;
+
+    @JsonProperty("bfefrmtrm_amount")
+    private String bfefrmtrm_amount;
+
     @JsonProperty("se")
     private String se;          // 구분 (현금배당수익률(%) 등)
 

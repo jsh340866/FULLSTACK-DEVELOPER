@@ -8,6 +8,10 @@ import com.example.demo.Repository.StockPriceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -15,6 +19,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -43,48 +49,66 @@ public class StockPriceCollector {
      * 전체 종목 주가 수집 시작
      * (Company에 있는 모든 stockCode 기준)
      */
+    /**
+     * 전체 종목 주가 수집 시작
+     * (Company에 있는 모든 stockCode 기준)
+     */
+    @Async("stockExecutor")
     public void collect(LocalDate startDate, LocalDate endDate) {
 
-        // 전체 종목 코드 조회
-        List<String> stockCodes = companyRepository.findAllStockCodes();
+        int savedCount = 0;
+        int page = 0;
+        final int PAGE_SIZE = 100;
 
-        log.info("총 종목 수: {}", stockCodes.size());
+        while (true) {
 
-        // 종목별 수집 루프
-        for (String stockCode : stockCodes) {
+            Pageable pageable = PageRequest.of(page, PAGE_SIZE);
+            Page<String> stockCodePage = companyRepository.findAllStockCodes(pageable);
+            List<String> stockCodes = stockCodePage.getContent();
 
-            log.info("종목 시작: {}", stockCode);
+            if (stockCodes.isEmpty()) break;
 
-            try {
-                // 해당 종목 기간별 수집
-                collectByDateRange(stockCode, startDate, endDate);
+            log.info("페이지 {}: {}건 처리 중", page, stockCodes.size());
 
-            } catch (Exception e) {
-                log.error("종목 전체 실패: {}", stockCode, e);
-            }
+            // ↓ 이 부분만 변경
+            int pageCount = stockCodes.parallelStream()
+                    .mapToInt(stockCode -> {
+                        try {
+                            log.info("종목 시작: {}", stockCode);
+                            return collectByDateRange(stockCode, startDate, endDate);
+                        } catch (Exception e) {
+                            log.error("종목 전체 실패: {}", stockCode, e);
+                            return 0;
+                        }
+                    })
+                    .sum();
+
+            savedCount += pageCount;
+
+            if (!stockCodePage.hasNext()) break;
+            page++;
         }
+
+        log.info("전체 저장 완료: {}건", savedCount);
     }
 
     /**
      * 특정 종목의 기간별 주가 수집
      */
-    private void collectByDateRange(String stockCode,
-                                    LocalDate startDate,
-                                    LocalDate endDate) {
+    private int collectByDateRange(String stockCode,
+                                   LocalDate startDate,
+                                   LocalDate endDate) {
 
-        // 날짜 하루씩 증가하면서 API 호출
+        int savedCount = 0;
+
         for (LocalDate date = startDate;
              !date.isAfter(endDate);
              date = date.plusDays(1)) {
 
             try {
-
                 log.info("수집: {} {}", stockCode, date);
 
-                // 공공데이터 API 호출 (XML 반환)
                 String xml = requestApi(stockCode, date);
-
-                // XML → DTO 변환
                 StockPriceDto dto = stockPriceXmlParser.parse(xml);
 
                 if (dto == null) {
@@ -92,23 +116,23 @@ public class StockPriceCollector {
                     continue;
                 }
 
-                // DTO → Entity 변환 후 저장
                 StockPrice entity = mapToEntity(dto);
-
                 stockPriceRepository.save(entity);
+                savedCount++;
 
                 log.info("저장 완료: {} {}", stockCode, date);
 
-                // API 호출 제한 방지
-                Thread.sleep(50);
+                // Thread.sleep(50) 제거
 
             } catch (Exception e) {
                 log.error("날짜 수집 실패: {} {}", stockCode, date, e);
             }
         }
+
+        return savedCount;
     }
 
-    /**
+        /**
      * 공공데이터 API 호출 (XML 반환)
      */
     private String requestApi(String stockCode, LocalDate date) {
@@ -117,6 +141,7 @@ public class StockPriceCollector {
 
         return restTemplate.getForObject(url, String.class);
     }
+
 
     /**
      * API URL 생성
@@ -151,6 +176,7 @@ public class StockPriceCollector {
                 .amount(dto.getAmount())
                 .changePrice(dto.getChangePrice())
                 .changeRate(dto.getChangeRate())
+                .mrktCtg(dto.getMrktCtg())
                 .build();
     }
 }

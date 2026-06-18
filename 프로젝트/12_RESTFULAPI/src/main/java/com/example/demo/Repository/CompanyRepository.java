@@ -20,4 +20,7 @@ public interface CompanyRepository extends JpaRepository<Company, String> {
 
     Page<Company> findAll(Pageable pageable);
 
+    @Query("SELECT c.stockCode FROM Company c")
+    Page<String> findAllStockCodes(Pageable pageable);
+
 }
