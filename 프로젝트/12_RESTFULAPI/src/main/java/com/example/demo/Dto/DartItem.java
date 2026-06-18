@@ -29,4 +29,7 @@ public class DartItem {
 
     @JsonProperty("stlm_dt")
     private String stlmDt;      // 결산일
+
+    @JsonProperty("fs_div")
+    private String fsDiv;       // CFS OFS
 }

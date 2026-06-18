@@ -22,7 +22,7 @@
 //@Service
 //@RequiredArgsConstructor // final 필드 생성자 자동 생성
 //@Slf4j
-//public class 기존DartFinancialCollector {
+//public class 수전DartFinancialCollector {
 //
 //    private final RestTemplate restTemplate; // API 호출용
 //    private final CompanyRepository companyRepository; // 회사 조회
@@ -62,12 +62,8 @@
 //                            reportCode
 //                    );
 //
-//                    // 기존 재무 API 호출 아래에 추가
-//                    DartResponse dividendResponse = requestWithRetry(
-//                            buildDividendUrl(company.getCorpCode(), year, reportCode)
-//                    );
-//                    log.info("배당 응답 status: {}", dividendResponse != null ? dividendResponse.getStatus() : "null");
-//                    log.info("배당 리스트: {}", dividendResponse != null ? dividendResponse.getList() : "null");
+//
+//
 //
 //                    if (response == null || !"000".equals(response.getStatus())) { // API 실패 체크
 //                        log.warn("API 실패: {}", company.getCorpName());
@@ -77,9 +73,6 @@
 //                    Financial financial = mapToFinancial( // DTO → Entity 변환
 //                            company,
 //                            response.getList(),
-//                            dividendResponse != null && dividendResponse.getList() != null
-//                                    ? dividendResponse.getList()
-//                                    : List.of(), // 둘 다 null 체크
 //                            Integer.parseInt(year)
 //                    );
 //
@@ -183,7 +176,7 @@
 //     * DTO → Entity 변환
 //     */
 //    private Financial mapToFinancial(Company company, List<DartItem> items,
-//                                     List<DartItem> dividendItems, int year) {
+//                                      int year) {
 //
 //        Long assets = 0L; // 자산총계
 //        Long liabilities = 0L; // 부채총계
@@ -193,14 +186,12 @@
 //        Long operatingProfit = 0L; // 영업이익
 //        Long thstrm_amount = 0L; // 당기순이익
 //
-//        Double dividendYield = null;
-//        String stlmDt = null;
-//        Double dividendPerShare = null;
 //
 //        for (DartItem item : items) { // 계정별 데이터 반복
 //
 //            String name = item.getAccountNm(); // 계정명
 //            Long value = parseAmount(item.getAmount()); // 금액 변환
+//            String fsDiv = item.getFsDiv(); // "CFS" or "OFS"
 //
 //            if ("자산총계".equals(name)) assets = value; // 자산
 //            else if ("부채총계".equals(name)) liabilities = value; // 부채
@@ -208,22 +199,6 @@
 //            else if ("매출액".equals(name)) revenue = value; // 매출
 //            else if ("영업이익".equals(name)) operatingProfit = value; // 영업이익
 //            else if ("당기순이익(손실)".equals(name)) thstrm_amount = value; // 순이익
-//
-//        }
-//
-//        // 배당 데이터 파싱 (별도 루프)
-//        for (DartItem item : dividendItems) {
-//
-//            if ("현금배당수익률(%)".equals(item.getSe())
-//                    && "보통주".equals(item.getStockKnd())) { // 보통주 현금배당수익률만 추출
-//                dividendYield = parseDouble(item.getThstrm()); // 당기 배당수익률
-//                stlmDt = item.getStlmDt();                     // 결산일
-//                break;
-//            }
-//            if ("주당 현금배당금(원)".equals(item.getSe())) { // 보통주 현금배당수익률만 추출
-//                dividendPerShare = parseDouble(item.getThstrm()); // 당기 배당수익률
-//                break;
-//            }
 //
 //        }
 //
@@ -237,9 +212,6 @@
 //                .revenue(revenue) // 매출
 //                .operatingProfit(operatingProfit) // 영업이익
 //                .thstrm_amount(thstrm_amount) // 순이익
-//                .dividendYield(dividendYield)      // 주당배당금 추가
-//                .stlmDt(stlmDt)
-//                .dividendPerShare(dividendPerShare)
 //                .build();
 //    }
 //
@@ -255,10 +227,4 @@
 //        return Long.parseLong(amount.replace(",", "")); // 콤마 제거 후 숫자 변환
 //    }
 //
-//    private Double parseDouble(String value) {
-//        if (value == null || value.isBlank() || "-".equals(value.trim())) {
-//            return null; // 없는 값 처리
-//        }
-//        return Double.parseDouble(value.replace(",", ""));
-//    }
 //}

@@ -17,7 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.lang.Double.parseDouble;
 
@@ -177,42 +179,42 @@ public class DartFinancialCollector {
     /**
      * DTO → Entity 변환
      */
-    private Financial mapToFinancial(Company company, List<DartItem> items,
-                                      int year) {
+    private Financial mapToFinancial(Company company, List<DartItem> items, int year) {
 
-        Long assets = 0L; // 자산총계
-        Long liabilities = 0L; // 부채총계
-        Long equity = 0L; // 자본총계
+        // CFS(연결) 우선, 없으면 OFS(별도) 사용
+        Map<String, Long> cfsMap = new HashMap<>();
+        Map<String, Long> ofsMap = new HashMap<>();
 
-        Long revenue = 0L; // 매출액
-        Long operatingProfit = 0L; // 영업이익
-        Long thstrm_amount = 0L; // 당기순이익
+        for (DartItem item : items) {
+            String name = item.getAccountNm();
+            Long value = parseAmount(item.getAmount());
+            String fsDiv = item.getFsDiv(); // "CFS" or "OFS"
 
-
-        for (DartItem item : items) { // 계정별 데이터 반복
-
-            String name = item.getAccountNm(); // 계정명
-            Long value = parseAmount(item.getAmount()); // 금액 변환
-
-            if ("자산총계".equals(name)) assets = value; // 자산
-            else if ("부채총계".equals(name)) liabilities = value; // 부채
-            else if ("자본총계".equals(name)) equity = value; // 자본
-            else if ("매출액".equals(name)) revenue = value; // 매출
-            else if ("영업이익".equals(name)) operatingProfit = value; // 영업이익
-            else if ("당기순이익(손실)".equals(name)) thstrm_amount = value; // 순이익
-
+            if ("CFS".equals(fsDiv)) {
+                cfsMap.put(name, value);
+            } else if ("OFS".equals(fsDiv)) {
+                ofsMap.put(name, value);
+            }
         }
 
-        return Financial.builder() // Entity 생성
-                .corpCode(company.getCorpCode()) // 기업코드
-                .stockCode(company.getStockCode()) // 종목코드
-                .year(year) // 연도
-                .assets(assets) // 자산
-                .liabilities(liabilities) // 부채
-                .equity(equity) // 자본
-                .revenue(revenue) // 매출
-                .operatingProfit(operatingProfit) // 영업이익
-                .thstrm_amount(thstrm_amount) // 순이익
+        // CFS 우선, 없으면 OFS, 둘 다 없으면 0
+        Long assets          = getValue(cfsMap, ofsMap, "자산총계");
+        Long liabilities     = getValue(cfsMap, ofsMap, "부채총계");
+        Long equity          = getValue(cfsMap, ofsMap, "자본총계");
+        Long revenue         = getValue(cfsMap, ofsMap, "매출액");
+        Long operatingProfit = getValue(cfsMap, ofsMap, "영업이익");
+        Long thstrm_amount   = getValue(cfsMap, ofsMap, "당기순이익(손실)");
+
+        return Financial.builder()
+                .corpCode(company.getCorpCode())
+                .stockCode(company.getStockCode())
+                .year(year)
+                .assets(assets)
+                .liabilities(liabilities)
+                .equity(equity)
+                .revenue(revenue)
+                .operatingProfit(operatingProfit)
+                .thstrm_amount(thstrm_amount)
                 .build();
     }
 
@@ -226,6 +228,13 @@ public class DartFinancialCollector {
         }
 
         return Long.parseLong(amount.replace(",", "")); // 콤마 제거 후 숫자 변환
+    }
+
+    // CFS 우선, 없으면 OFS, 둘 다 없으면 0
+    private Long getValue(Map<String, Long> cfsMap, Map<String, Long> ofsMap, String accountNm) {
+        if (cfsMap.containsKey(accountNm)) return cfsMap.get(accountNm);
+        if (ofsMap.containsKey(accountNm)) return ofsMap.get(accountNm);
+        return 0L;
     }
 
 }
