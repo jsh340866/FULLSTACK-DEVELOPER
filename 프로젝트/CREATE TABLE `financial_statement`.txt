@@ -1,0 +1,21 @@
+CREATE TABLE `financial_statement` (
+   `id` bigint NOT NULL AUTO_INCREMENT,
+   `bsns_year` char(4) DEFAULT NULL,
+   `fs_div` char(3) DEFAULT NULL,
+   `net_income` bigint DEFAULT NULL,
+   `operating_income` bigint DEFAULT NULL,
+   `reprt_code` char(5) DEFAULT NULL,
+   `revenue` bigint DEFAULT NULL,
+   `total_assets` bigint DEFAULT NULL,
+   `total_equity` bigint DEFAULT NULL,
+   `total_liabilities` bigint DEFAULT NULL,
+   `stock_code` char(6) DEFAULT NULL,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `UKmd79vbq54qy938fggasujnd5i` (`bsns_year`,`stock_code`,`reprt_code`,`fs_div`),
+   KEY `FK8898a8pwg7fxyupvgxutvevuq` (`stock_code`),
+   CONSTRAINT `FK8898a8pwg7fxyupvgxutvevuq` FOREIGN KEY (`stock_code`) REFERENCES `company` (`stock_code`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+SHOW INDEX FROM financial_statement;
+SHOW CREATE TABLE financial_statement;
