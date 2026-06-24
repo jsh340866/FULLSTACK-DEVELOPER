@@ -1,4 +1,4 @@
-package com.example.demo.domain.dto;
+package com.example.demo.domain.dart;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

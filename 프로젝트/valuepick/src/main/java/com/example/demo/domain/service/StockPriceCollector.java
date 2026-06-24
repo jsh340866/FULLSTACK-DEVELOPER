@@ -1,6 +1,7 @@
 package com.example.demo.domain.service;
 
 import com.example.demo.domain.dto.StockPriceDto;
+import com.example.demo.domain.entity.Company;
 import com.example.demo.domain.repository.CompanyRepository;
 import com.example.demo.domain.repository.StockPriceRepository;
 import com.example.demo.domain.parser.StockPriceXmlParser;
@@ -45,22 +46,22 @@ public class StockPriceCollector {
 
         while (true) {
 
-            // Company 테이블에서 종목코드만 100건씩 페이징 조회
+            // corpCls 업데이트도 같이 하기 위해 종목코드만이 아닌 Company 객체로 조회
             Pageable pageable = PageRequest.of(page, PAGE_SIZE);
-            Page<String> stockCodePage = companyRepository.findAllStockCodes(pageable);
-            List<String> stockCodes = stockCodePage.getContent();
+            Page<Company> companyPage = companyRepository.findAll(pageable);
+            List<Company> companies = companyPage.getContent();
 
-            if (stockCodes.isEmpty()) break;
+            if (companies.isEmpty()) break;
 
-            log.info("페이지 {}: {}건 처리 중", page, stockCodes.size());
+            log.info("페이지 {}: {}건 처리 중", page, companies.size());
 
             // 병렬 스트림으로 종목별 주가 수집 (처리 속도 향상)
-            int pageCount = stockCodes.parallelStream()
-                    .mapToInt(stockCode -> {
+            int pageCount = companies.parallelStream()
+                    .mapToInt(company -> {
                         try {
-                            return collectByDateRange(stockCode, startDate, endDate);
+                            return collectByDateRange(company, startDate, endDate);
                         } catch (Exception e) {
-                            log.error("종목 전체 실패: {}", stockCode, e);
+                            log.error("종목 전체 실패: {}", company.getStockCode(), e);
                             return 0;
                         }
                     })
@@ -68,7 +69,7 @@ public class StockPriceCollector {
 
             savedCount += pageCount;
 
-            if (!stockCodePage.hasNext()) break;
+            if (!companyPage.hasNext()) break;
             page++;
         }
 
@@ -76,7 +77,7 @@ public class StockPriceCollector {
     }
 
     // 특정 종목의 날짜 범위별 주가 수집
-    private int collectByDateRange(String stockCode, LocalDate startDate, LocalDate endDate) {
+    private int collectByDateRange(Company company, LocalDate startDate, LocalDate endDate) {
 
         int savedCount = 0;
 
@@ -85,30 +86,41 @@ public class StockPriceCollector {
             try {
 
                 // 이미 해당 종목 + 날짜 데이터가 있으면 중복 저장 방지
-                if (stockPriceRepository.findBySrtnCdAndBasDt(stockCode, date).isPresent()) {
-                    log.info("이미 존재, 스킵: {} {}", stockCode, date);
+                if (stockPriceRepository.findBySrtnCdAndBasDt(company.getStockCode(), date).isPresent()) {
+                    log.info("이미 존재, 스킵: {} {}", company.getStockCode(), date);
                     continue;
                 }
 
                 // 공공데이터 API 호출 → XML 문자열 반환
-                String xml = requestApi(stockCode, date);
+                String xml = requestApi(company.getStockCode(), date);
 
                 // XML → StockPriceDto 변환 (파서 사용)
                 StockPriceDto dto = stockPriceXmlParser.parse(xml);
 
                 if (dto == null) {
-                    log.warn("데이터 없음 SKIP: {} {}", stockCode, date);
+                    log.warn("데이터 없음 SKIP: {} {}", company.getStockCode(), date);
                     continue;
                 }
 
-                // DTO → 새 StockPrice 엔티티로 변환 후 저장
+                // DTO → StockPrice 엔티티 저장
                 stockPriceRepository.save(dto.toEntity());
                 savedCount++;
 
-                log.info("저장 완료: {} {}", stockCode, date);
+                // corpCls가 null이면 파서로 mrktCtg 추출해서 Company에 바로 업데이트
+                // StockPriceDto 수정 없이 XML에서 직접 꺼내는 방식
+                if (company.getCorpCls() == null) {
+                    String mrktCtg = stockPriceXmlParser.parseMrktCtg(xml);
+                    if (mrktCtg != null) {
+                        String corpCls = mrktCtg.equals("KOSPI") ? "K" : "Q"; // KOSPI→K, KOSDAQ→Q 변환
+                        company.updateCorpCls(corpCls);
+                        companyRepository.save(company);
+                    }
+                }
+
+                log.info("저장 완료: {} {}", company.getStockCode(), date);
 
             } catch (Exception e) {
-                log.error("날짜 수집 실패: {} {}", stockCode, date, e);
+                log.error("날짜 수집 실패: {} {}", company.getStockCode(), date, e);
             }
         }
 

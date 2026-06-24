@@ -126,7 +126,7 @@ public class FinancialIndicatorService {
         // ── 배당수익률 - DividendInfo에서 corpCode 기준으로 조회 ──────
         // 기존 Dividend(복합키, 보통주/우선주 분리) → DividendInfo(corpCode 단일 PK)로 변경
         Optional<DividendInfo> dividendOpt =
-                dividendInfoRepository.findByCorpCode(company.getCorpCode());
+                dividendInfoRepository.findByCorpCodeAndDividendKind(company.getCorpCode(), "보통주");
 
         // 주당배당금 / 종가 × 100 으로 배당수익률 계산
         Double dividendYield = dividendOpt

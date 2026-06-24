@@ -1,7 +1,7 @@
 package com.example.demo.domain.service;
 
-import com.example.demo.domain.dto.DartItem;
-import com.example.demo.domain.dto.DartResponse;
+import com.example.demo.domain.dart.DartItem;
+import com.example.demo.domain.dart.DartResponse;
 import com.example.demo.domain.entity.Company;
 import com.example.demo.domain.entity.DividendInfo;
 import com.example.demo.domain.repository.CompanyRepository;
@@ -72,7 +72,7 @@ public class DividendCollector {
                         continue;
                     }
 
-                    // 배당 데이터 파싱 후 DividendInfo 저장
+                    // 배당 데이터 파싱 후 DividendInfo 저장 (보통주/우선주 각각)
                     int count = saveDividendInfo(company, dividendResponse.getList());
                     savedCount += count;
 
@@ -92,11 +92,13 @@ public class DividendCollector {
     }
 
     // 배당 API 응답 파싱 → DividendInfo 엔티티 저장
-    // 새 DividendInfo는 PK가 corpCode(String)이므로 보통주 기준 1건만 저장
+    // 복합키(corpCode + dividendKind)로 보통주/우선주 각각 저장
     private int saveDividendInfo(Company company, List<DartItem> dividendItems) {
 
-        String dividendKind = null;  // 배당 종류 (현금배당 등)
-        Long dividendAmount = null;  // 주당 배당금
+        int count = 0;
+
+        Long commonAmount = null;   // 보통주 주당 배당금
+        Long preferredAmount = null; // 우선주 주당 배당금
         LocalDateTime stlmDt = null; // 결산일
 
         for (DartItem item : dividendItems) {
@@ -104,15 +106,14 @@ public class DividendCollector {
             String se = item.getSe();
             String stockKnd = item.getStockKnd();
 
-            // 보통주 배당 종류 추출
-            if ("배당금의 종류".equals(se) && "보통주".equals(stockKnd)) {
-                dividendKind = item.getThstrm();
-            }
-
             // 보통주 주당 현금배당금 추출
             if ("주당 현금배당금(원)".equals(se) && "보통주".equals(stockKnd)) {
-                Long parsed = parseLong(item.getThstrm());
-                if (parsed != null) dividendAmount = parsed;
+                commonAmount = parseLong(item.getThstrm());
+            }
+
+            // 우선주 주당 현금배당금 추출
+            if ("주당 현금배당금(원)".equals(se) && "우선주".equals(stockKnd)) {
+                preferredAmount = parseLong(item.getThstrm());
             }
 
             // 결산일 추출 - DART API 형식 "20231231" → LocalDateTime 변환
@@ -125,26 +126,41 @@ public class DividendCollector {
             }
         }
 
-        // corpCode 기준으로 이미 존재하면 스킵 (중복 저장 방지)
-        if (dividendInfoRepository.existsById(company.getCorpCode())) {
-            log.info("이미 존재, 스킵: {}", company.getCorpName());
-            return 0;
+        // 보통주 저장 - dividendKind = "보통주"
+        if (commonAmount != null) {
+            if (!dividendInfoRepository.existsByCorpCodeAndDividendKind(company.getCorpCode(), "보통주")) {
+                dividendInfoRepository.save(DividendInfo.builder()
+                        .corpCode(company.getCorpCode())
+                        .dividendKind("보통주")
+                        .dividendAmount(commonAmount)
+                        .stlmDt(stlmDt)
+                        .build());
+                count++;
+            } else {
+                log.info("보통주 이미 존재, 스킵: {}", company.getCorpName());
+            }
         }
 
-        // 주당 배당금이 없으면 저장 안 함
-        if (dividendAmount == null) {
+        // 우선주 저장 - dividendKind = "우선주" (데이터 있을 때만)
+        if (preferredAmount != null) {
+            if (!dividendInfoRepository.existsByCorpCodeAndDividendKind(company.getCorpCode(), "우선주")) {
+                dividendInfoRepository.save(DividendInfo.builder()
+                        .corpCode(company.getCorpCode())
+                        .dividendKind("우선주")
+                        .dividendAmount(preferredAmount)
+                        .stlmDt(stlmDt)
+                        .build());
+                count++;
+            } else {
+                log.info("우선주 이미 존재, 스킵: {}", company.getCorpName());
+            }
+        }
+
+        if (count == 0) {
             log.warn("배당금 데이터 없음, 스킵: {}", company.getCorpName());
-            return 0;
         }
 
-        dividendInfoRepository.save(DividendInfo.builder()
-                .corpCode(company.getCorpCode())
-                .dividendKind(dividendKind)
-                .dividendAmount(dividendAmount)
-                .stlmDt(stlmDt)
-                .build());
-
-        return 1;
+        return count;
     }
 
     // DART 배당 API 호출 (URL 직접 받는 버전, 재시도 포함)

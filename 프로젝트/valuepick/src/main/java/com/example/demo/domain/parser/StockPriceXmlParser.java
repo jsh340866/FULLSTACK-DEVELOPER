@@ -21,27 +21,10 @@ public class StockPriceXmlParser {
     public StockPriceDto parse(String xml) {
 
         try {
-            // XML 파서 생성
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-
-            // XML 문자열 → InputStream 변환 후 DOM 파싱
-            Document doc = builder.parse(new ByteArrayInputStream(xml.getBytes()));
-            doc.getDocumentElement().normalize();
-
-            // <item> 노드 추출
-            NodeList items = doc.getElementsByTagName("item");
-
-            log.info("ITEM SIZE = {}", items.getLength());
+            Element item = getFirstItem(xml);
 
             // 데이터가 없으면 null 반환 (거래 없는 날 등)
-            if (items.getLength() == 0) return null;
-
-            Element item = (Element) items.item(0);
-
-            // API XML 태그명은 그대로 사용하되, DTO 필드명을 새 엔티티 기준으로 변경
-            // 기존: dto.setStockCode / dto.setTradeDate / dto.setClosePrice ...
-            // 변경: srtnCd / basDt / clpr / mkp / fltRt / lstgStCnt / mrktTotAmt
+            if (item == null) return null;
 
             // "basDt" XML 태그값 "20240101" → LocalDate 변환
             String basDtStr = get(item, "basDt");
@@ -49,6 +32,7 @@ public class StockPriceXmlParser {
                     ? LocalDate.parse(basDtStr, DateTimeFormatter.ofPattern("yyyyMMdd"))
                     : null;
 
+            // 새 StockPriceDto 필드명 기준으로 매핑
             return StockPriceDto.builder()
                     .srtnCd(get(item, "srtnCd"))                    // 종목코드
                     .basDt(basDt)                                   // 기준일 (String → LocalDate 변환)
@@ -64,6 +48,32 @@ public class StockPriceXmlParser {
         } catch (Exception e) {
             throw new RuntimeException("StockPrice XML 파싱 실패", e);
         }
+    }
+
+    // mrktCtg만 추출 - StockPriceDto 수정 없이 Company.corpCls 업데이트할 때 사용
+    public String parseMrktCtg(String xml) {
+        try {
+            Element item = getFirstItem(xml);
+            if (item == null) return null;
+            return get(item, "mrktCtg"); // 코스피/코스닥 구분값 반환
+        } catch (Exception e) {
+            log.warn("mrktCtg 파싱 실패", e);
+            return null;
+        }
+    }
+
+    // XML에서 첫 번째 <item> 엘리먼트 추출 - parse()와 parseMrktCtg() 공통 사용
+    private Element getFirstItem(String xml) throws Exception {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.parse(new ByteArrayInputStream(xml.getBytes()));
+        doc.getDocumentElement().normalize();
+
+        NodeList items = doc.getElementsByTagName("item");
+        log.info("ITEM SIZE = {}", items.getLength());
+
+        if (items.getLength() == 0) return null;
+        return (Element) items.item(0);
     }
 
     // XML 태그 값 추출 유틸

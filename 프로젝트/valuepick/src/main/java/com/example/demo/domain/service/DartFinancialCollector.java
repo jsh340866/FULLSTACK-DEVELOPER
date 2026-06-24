@@ -1,10 +1,9 @@
 package com.example.demo.domain.service;
 
-import com.example.demo.domain.dto.DartItem;
-import com.example.demo.domain.dto.DartResponse;
+import com.example.demo.domain.dart.DartItem;
+import com.example.demo.domain.dart.DartResponse;
 import com.example.demo.domain.dto.FinancialStatementDto;
 import com.example.demo.domain.entity.Company;
-import com.example.demo.domain.entity.FinancialStatement;
 import com.example.demo.domain.repository.CompanyRepository;
 import com.example.demo.domain.repository.FinancialStatementRepository;
 import lombok.RequiredArgsConstructor;
