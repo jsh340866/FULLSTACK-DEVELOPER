@@ -1,5 +1,10 @@
 
 
 company , stockprice 기준 재정렬
-재무재표 통화 기준 추가
+재무재표에 통화 기준 추가
 계산 테이블 통화기준으로 다시 계산
+
+https://apis.data.go.kr/1160100/service/GetKrxListedInfoService/getItemInfo
+
+
+https://apis.data.go.kr/1160100/service/GetKrxListedInfoService/getItemInfo

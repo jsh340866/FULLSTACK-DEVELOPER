@@ -40,7 +40,7 @@ public class DividendCollector {
     // dartExecutor 스레드풀 사용 - 재무 수집과 동시에 실행 가능 (corePoolSize=2)
     // 내부는 순차 처리 + SLEEP_MS 유지로 DART IP 차단 방지
     @Async("dartExecutor")
-    public void collect(String year, String reportCode) {
+    public void collect(String year, String reprtCode) {
 
         int savedCount = 0;
         int page = 0;
@@ -61,7 +61,7 @@ public class DividendCollector {
 
                     // DART 배당 API 호출 (재시도 포함)
                     DartResponse dividendResponse = requestWithRetry(
-                            buildDividendUrl(company.getCorpCode(), year, reportCode));
+                            buildDividendUrl(company.getCorpCode(), year, reprtCode));
 
                     log.info("배당 응답 status: {}", dividendResponse != null ? dividendResponse.getStatus() : "null");
 
@@ -128,32 +128,25 @@ public class DividendCollector {
 
         // 보통주 저장 - dividendKind = "보통주"
         if (commonAmount != null) {
-            if (!dividendInfoRepository.existsByCorpCodeAndDividendKind(company.getCorpCode(), "보통주")) {
-                dividendInfoRepository.save(DividendInfo.builder()
-                        .corpCode(company.getCorpCode())
-                        .dividendKind("보통주")
-                        .dividendAmount(commonAmount)
-                        .stlmDt(stlmDt)
-                        .build());
-                count++;
-            } else {
-                log.info("보통주 이미 존재, 스킵: {}", company.getCorpName());
-            }
+            dividendInfoRepository.save(DividendInfo.builder()
+                    .corpCode(company.getCorpCode())
+                    .dividendKind("보통주")
+                    .dividendAmount(commonAmount)
+                    .stlmDt(stlmDt)
+                    .build());
+            count++;
         }
+
 
         // 우선주 저장 - dividendKind = "우선주" (데이터 있을 때만)
         if (preferredAmount != null) {
-            if (!dividendInfoRepository.existsByCorpCodeAndDividendKind(company.getCorpCode(), "우선주")) {
-                dividendInfoRepository.save(DividendInfo.builder()
-                        .corpCode(company.getCorpCode())
-                        .dividendKind("우선주")
-                        .dividendAmount(preferredAmount)
-                        .stlmDt(stlmDt)
-                        .build());
-                count++;
-            } else {
-                log.info("우선주 이미 존재, 스킵: {}", company.getCorpName());
-            }
+            dividendInfoRepository.save(DividendInfo.builder()
+                    .corpCode(company.getCorpCode())
+                    .dividendKind("우선주")
+                    .dividendAmount(preferredAmount)
+                    .stlmDt(stlmDt)
+                    .build());
+            count++;
         }
 
         if (count == 0) {
@@ -184,12 +177,12 @@ public class DividendCollector {
     }
 
     // DART 배당 API URL 생성
-    private String buildDividendUrl(String corpCode, String year, String reportCode) {
+    private String buildDividendUrl(String corpCode, String year, String reprtCode) {
         return "https://opendart.fss.or.kr/api/alotMatter.json"
                 + "?crtfc_key=" + apiKey
                 + "&corp_code=" + corpCode
                 + "&bsns_year=" + year
-                + "&reprt_code=" + reportCode;
+                + "&reprt_code=" + reprtCode;
     }
 
     // 숫자 문자열 → Long 변환 (null, 공백, "-" 처리)

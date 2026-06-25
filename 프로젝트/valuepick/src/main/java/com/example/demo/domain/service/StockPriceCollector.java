@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -84,15 +85,8 @@ public class StockPriceCollector {
         for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
 
             try {
-
-                // 이미 해당 종목 + 날짜 데이터가 있으면 중복 저장 방지
-                if (stockPriceRepository.findBySrtnCdAndBasDt(company.getStockCode(), date).isPresent()) {
-                    log.info("이미 존재, 스킵: {} {}", company.getStockCode(), date);
-                    continue;
-                }
-
                 // 공공데이터 API 호출 → XML 문자열 반환
-                String xml = requestApi(company.getStockCode(), date);
+                String xml = requestApiWithRetry(company.getStockCode(), date);
 
                 // XML → StockPriceDto 변환 (파서 사용)
                 StockPriceDto dto = stockPriceXmlParser.parse(xml);
@@ -106,24 +100,12 @@ public class StockPriceCollector {
                 stockPriceRepository.save(dto.toEntity());
                 savedCount++;
 
-                // corpCls가 null이면 파서로 mrktCtg 추출해서 Company에 바로 업데이트
-                // StockPriceDto 수정 없이 XML에서 직접 꺼내는 방식
-                if (company.getCorpCls() == null) {
-                    String mrktCtg = stockPriceXmlParser.parseMrktCtg(xml);
-                    if (mrktCtg != null) {
-                        String corpCls = mrktCtg.equals("KOSPI") ? "K" : "Q"; // KOSPI→K, KOSDAQ→Q 변환
-                        company.updateCorpCls(corpCls);
-                        companyRepository.save(company);
-                    }
-                }
-
                 log.info("저장 완료: {} {}", company.getStockCode(), date);
 
             } catch (Exception e) {
                 log.error("날짜 수집 실패: {} {}", company.getStockCode(), date, e);
             }
         }
-
         return savedCount;
     }
 
@@ -131,6 +113,24 @@ public class StockPriceCollector {
     private String requestApi(String stockCode, LocalDate date) {
         String url = buildUrl(stockCode, date);
         return restTemplate.getForObject(url, String.class);
+    }
+
+    // 429 에러 발생 시 재시도 - 최대 3회, 재시도마다 대기시간 증가
+    private String requestApiWithRetry(String stockCode, LocalDate date) throws InterruptedException {
+        int maxRetry = 3;
+        for (int i = 0; i < maxRetry; i++) {
+            try {
+                return requestApi(stockCode, date);
+            } catch (HttpClientErrorException e) {
+                if (e.getStatusCode().value() == 429) {
+                    log.warn("429 Too Many Requests - 재시도 {}/{}: {} {}", i + 1, maxRetry, stockCode, date);
+                    Thread.sleep(3000L * (i + 1)); // 1초, 2초, 3초 대기
+                } else {
+                    throw e; // 429 외 다른 에러는 바로 던짐
+                }
+            }
+        }
+        throw new RuntimeException("최대 재시도 횟수 초과: " + stockCode + " " + date);
     }
 
     // API URL 생성 - 종목코드(likeSrtnCd)와 기준일(basDt) 파라미터 사용

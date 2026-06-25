@@ -40,7 +40,7 @@ public class DartFinancialCollector {
     // dartExecutor 스레드풀 사용 - DART API 호출 제한 고려해 스레드 수 제한
     // 내부는 순차 처리 + SLEEP_MS 유지로 IP 차단 방지
     @Async("dartExecutor")
-    public void collect(String year, String reportCode) {
+    public void collect(String year, String reprtCode) {
 
         int savedCount = 0;
         int page = 0;
@@ -61,23 +61,23 @@ public class DartFinancialCollector {
 
                     // DART 재무 API 호출 (재시도 포함)
                     DartResponse response = requestWithRetry(
-                            company.getCorpCode(), year, reportCode);
+                            company.getCorpCode(), year, reprtCode);
 
                     // API 실패 또는 상태코드 비정상이면 스킵
                     if (response == null || !"000".equals(response.getStatus())) {
-                        log.warn("API 실패: {}", company.getCorpName());
+                        log.warn("API 실패: {} - status={}", company.getCorpName(), response != null ? response.getStatus() : "null");
                         continue;
                     }
 
                     // 이미 해당 종목 + 연도 데이터가 있으면 중복 저장 방지
-                    if (financialStatementRepository.findByStockCodeAndYear(
-                            company.getStockCode(), year).isPresent()) {
+                    if (financialStatementRepository.findByStockCodeAndYearAndReprtCode(
+                            company.getStockCode(), year, reprtCode).isPresent()) {
                         log.info("이미 존재, 스킵: {}", company.getCorpName());
                         continue;
                     }
 
                     // API 응답 → FinancialStatementDto → 엔티티 변환 후 저장
-                    FinancialStatementDto dto = mapToDto(company, response.getList(), year, reportCode);
+                    FinancialStatementDto dto = mapToDto(company, response.getList(), year, reprtCode);
                     financialStatementRepository.save(dto.toEntity(company));
 
                     savedCount++;
@@ -98,9 +98,9 @@ public class DartFinancialCollector {
     }
 
     // DART API 호출 (재시도 포함)
-    private DartResponse requestWithRetry(String corpCode, String year, String reportCode) {
+    private DartResponse requestWithRetry(String corpCode, String year, String reprtCode) {
 
-        String url = buildUrl(corpCode, year, reportCode);
+        String url = buildUrl(corpCode, year, reprtCode);
 
         for (int i = 0; i < RETRY_COUNT; i++) {
 
@@ -120,25 +120,25 @@ public class DartFinancialCollector {
     }
 
     // DART 재무 API URL 생성
-    private String buildUrl(String corpCode, String year, String reportCode) {
+    private String buildUrl(String corpCode, String year, String reprtCode) {
         return "https://opendart.fss.or.kr/api/fnlttMultiAcnt.json"
                 + "?crtfc_key=" + apiKey
                 + "&corp_code=" + corpCode
                 + "&bsns_year=" + year
-                + "&reprt_code=" + reportCode;
+                + "&reprt_code=" + reprtCode;
     }
 
     // API 응답 리스트 → FinancialStatementDto 변환
     // CFS(연결재무제표) 우선, 없으면 OFS(별도재무제표) 사용
     private FinancialStatementDto mapToDto(Company company, List<DartItem> items,
-                                           String year, String reportCode) {
-        Map<String, Long> cfsMap = new HashMap<>(); // 연결재무제표 항목 맵
-        Map<String, Long> ofsMap = new HashMap<>(); // 별도재무제표 항목 맵
+                                           String year, String reprtCode) {
+        Map<String, Long> cfsMap = new HashMap<>();
+        Map<String, Long> ofsMap = new HashMap<>();
 
         for (DartItem item : items) {
             String name = item.getAccountNm();
             Long value = parseAmount(item.getAmount());
-            String fsDiv = item.getFsDiv(); // "CFS" or "OFS"
+            String fsDiv = item.getFsDiv();
 
             if ("CFS".equals(fsDiv)) {
                 cfsMap.put(name, value);
@@ -147,14 +147,17 @@ public class DartFinancialCollector {
             }
         }
 
-        // CFS 데이터가 있으면 "CFS", 없으면 "OFS"로 fsDiv 결정
         String finalFsDiv = !cfsMap.isEmpty() ? "CFS" : "OFS";
+
+        // 통화단위 첫 번째 아이템에서 추출, 없으면 KRW 기본값
+        String currency = (items != null && !items.isEmpty()) ? items.get(0).getCurrency() : "KRW";
 
         return FinancialStatementDto.builder()
                 .bsnsYear(year)
                 .stockCode(company.getStockCode())
-                .reprtCode(reportCode)                              // 보고서 코드 (11011 등)
+                .reprtCode(reprtCode)
                 .fsDiv(finalFsDiv)
+                .currency(currency) // 통화단위 추가
                 .revenue(getValue(cfsMap, ofsMap, "매출액"))
                 .operatingIncome(getValue(cfsMap, ofsMap, "영업이익"))
                 .netIncome(getValue(cfsMap, ofsMap, "당기순이익(손실)"))

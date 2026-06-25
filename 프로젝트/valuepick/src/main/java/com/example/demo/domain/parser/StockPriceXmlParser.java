@@ -50,17 +50,6 @@ public class StockPriceXmlParser {
         }
     }
 
-    // mrktCtg만 추출 - StockPriceDto 수정 없이 Company.corpCls 업데이트할 때 사용
-    public String parseMrktCtg(String xml) {
-        try {
-            Element item = getFirstItem(xml);
-            if (item == null) return null;
-            return get(item, "mrktCtg"); // 코스피/코스닥 구분값 반환
-        } catch (Exception e) {
-            log.warn("mrktCtg 파싱 실패", e);
-            return null;
-        }
-    }
 
     // XML에서 첫 번째 <item> 엘리먼트 추출 - parse()와 parseMrktCtg() 공통 사용
     private Element getFirstItem(String xml) throws Exception {
