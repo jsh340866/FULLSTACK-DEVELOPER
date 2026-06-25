@@ -16,31 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_favorite`
+-- Table structure for table `investment_journal`
 --
 
-DROP TABLE IF EXISTS `user_favorite`;
+DROP TABLE IF EXISTS `investment_journal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_favorite` (
-  `stock_code` varchar(255) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
+CREATE TABLE `investment_journal` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `content` text,
   `created_at` datetime(6) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
-  PRIMARY KEY (`stock_code`,`user_id`),
-  KEY `FKs28i8t2rb5wp543d15nfg2st9` (`user_id`),
-  CONSTRAINT `FKqwxyrws40ksp6499s6y5yehq0` FOREIGN KEY (`stock_code`) REFERENCES `company` (`stock_code`),
-  CONSTRAINT `FKs28i8t2rb5wp543d15nfg2st9` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  `user_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKmhp199d94tbphv7deu2me3r99` (`user_id`),
+  CONSTRAINT `FKmhp199d94tbphv7deu2me3r99` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_favorite`
+-- Dumping data for table `investment_journal`
 --
 
-LOCK TABLES `user_favorite` WRITE;
-/*!40000 ALTER TABLE `user_favorite` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_favorite` ENABLE KEYS */;
+LOCK TABLES `investment_journal` WRITE;
+/*!40000 ALTER TABLE `investment_journal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `investment_journal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-24  1:18:03
+-- Dump completed on 2026-06-26  1:26:02

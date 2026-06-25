@@ -16,30 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `top100`
+-- Table structure for table `stock_indicator`
 --
 
-DROP TABLE IF EXISTS `top100`;
+DROP TABLE IF EXISTS `stock_indicator`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `top100` (
-  `base_dt` date NOT NULL,
+CREATE TABLE `stock_indicator` (
   `stock_code` varchar(255) NOT NULL,
-  `corp_code` varchar(255) DEFAULT NULL,
-  `score` int DEFAULT NULL,
-  PRIMARY KEY (`base_dt`,`stock_code`),
-  KEY `FK28a86omhawns202jf7j2cd7b9` (`stock_code`),
-  CONSTRAINT `FK28a86omhawns202jf7j2cd7b9` FOREIGN KEY (`stock_code`) REFERENCES `company` (`stock_code`)
+  `bps` double DEFAULT NULL,
+  `calculated_at` datetime(6) DEFAULT NULL,
+  `debt_ratio` double DEFAULT NULL,
+  `dividend_yield` double DEFAULT NULL,
+  `eps` double DEFAULT NULL,
+  `pbr` double DEFAULT NULL,
+  `per` double DEFAULT NULL,
+  `roe` double DEFAULT NULL,
+  PRIMARY KEY (`stock_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `top100`
+-- Dumping data for table `stock_indicator`
 --
 
-LOCK TABLES `top100` WRITE;
-/*!40000 ALTER TABLE `top100` DISABLE KEYS */;
-/*!40000 ALTER TABLE `top100` ENABLE KEYS */;
+LOCK TABLES `stock_indicator` WRITE;
+/*!40000 ALTER TABLE `stock_indicator` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stock_indicator` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-24  1:18:03
+-- Dump completed on 2026-06-26  1:26:02

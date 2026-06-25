@@ -16,34 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `comment`
+-- Table structure for table `dividend_info`
 --
 
-DROP TABLE IF EXISTS `comment`;
+DROP TABLE IF EXISTS `dividend_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comment` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `content` text,
-  `created_at` datetime(6) DEFAULT NULL,
-  `updated_at` datetime(6) DEFAULT NULL,
-  `journal_id` bigint DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK4svtnwf8093hcssagtmg7y5lr` (`journal_id`),
-  KEY `FKg5qa9duyns9cjttnghs627mpo` (`user_id`),
-  CONSTRAINT `FK4svtnwf8093hcssagtmg7y5lr` FOREIGN KEY (`journal_id`) REFERENCES `investment_journal` (`id`),
-  CONSTRAINT `FKg5qa9duyns9cjttnghs627mpo` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+CREATE TABLE `dividend_info` (
+  `corp_code` varchar(255) NOT NULL,
+  `dividend_kind` varchar(255) NOT NULL,
+  `dividend_amount` bigint DEFAULT NULL,
+  `stlm_dt` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`corp_code`,`dividend_kind`),
+  CONSTRAINT `FK8vucewg6ks4h7hmhua80h29sf` FOREIGN KEY (`corp_code`) REFERENCES `company` (`corp_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `comment`
+-- Dumping data for table `dividend_info`
 --
 
-LOCK TABLES `comment` WRITE;
-/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+LOCK TABLES `dividend_info` WRITE;
+/*!40000 ALTER TABLE `dividend_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dividend_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-24  1:18:02
+-- Dump completed on 2026-06-26  1:26:01

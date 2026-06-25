@@ -16,32 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `investment_journal`
+-- Table structure for table `market_index`
 --
 
-DROP TABLE IF EXISTS `investment_journal`;
+DROP TABLE IF EXISTS `market_index`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `investment_journal` (
+CREATE TABLE `market_index` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `content` text,
-  `created_at` datetime(6) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `updated_at` datetime(6) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKmhp199d94tbphv7deu2me3r99` (`user_id`),
-  CONSTRAINT `FKmhp199d94tbphv7deu2me3r99` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  `basDd` date DEFAULT NULL,
+  `clsprcIdx` double DEFAULT NULL,
+  `cmpprevddIdx` double DEFAULT NULL,
+  `flucRt` double DEFAULT NULL,
+  `idxNm` varchar(255) DEFAULT NULL,
+  `mktcap` bigint DEFAULT NULL,
+  `opnprcIdx` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `investment_journal`
+-- Dumping data for table `market_index`
 --
 
-LOCK TABLES `investment_journal` WRITE;
-/*!40000 ALTER TABLE `investment_journal` DISABLE KEYS */;
-/*!40000 ALTER TABLE `investment_journal` ENABLE KEYS */;
+LOCK TABLES `market_index` WRITE;
+/*!40000 ALTER TABLE `market_index` DISABLE KEYS */;
+/*!40000 ALTER TABLE `market_index` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-24  1:18:03
+-- Dump completed on 2026-06-26  1:26:01

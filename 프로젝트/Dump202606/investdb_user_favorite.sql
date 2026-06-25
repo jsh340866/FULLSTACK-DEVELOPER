@@ -16,32 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `market_index`
+-- Table structure for table `user_favorite`
 --
 
-DROP TABLE IF EXISTS `market_index`;
+DROP TABLE IF EXISTS `user_favorite`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `market_index` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `basDd` date DEFAULT NULL,
-  `clsprcIdx` double DEFAULT NULL,
-  `cmpprevddIdx` double DEFAULT NULL,
-  `flucRt` double DEFAULT NULL,
-  `idxNm` varchar(255) DEFAULT NULL,
-  `mktcap` bigint DEFAULT NULL,
-  `opnprcIdx` double DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `user_favorite` (
+  `stock_code` varchar(255) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `updated_at` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`stock_code`,`user_id`),
+  KEY `FKs28i8t2rb5wp543d15nfg2st9` (`user_id`),
+  CONSTRAINT `FKqwxyrws40ksp6499s6y5yehq0` FOREIGN KEY (`stock_code`) REFERENCES `company` (`stock_code`),
+  CONSTRAINT `FKs28i8t2rb5wp543d15nfg2st9` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `market_index`
+-- Dumping data for table `user_favorite`
 --
 
-LOCK TABLES `market_index` WRITE;
-/*!40000 ALTER TABLE `market_index` DISABLE KEYS */;
-/*!40000 ALTER TABLE `market_index` ENABLE KEYS */;
+LOCK TABLES `user_favorite` WRITE;
+/*!40000 ALTER TABLE `user_favorite` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-24  1:18:02
+-- Dump completed on 2026-06-26  1:26:02
