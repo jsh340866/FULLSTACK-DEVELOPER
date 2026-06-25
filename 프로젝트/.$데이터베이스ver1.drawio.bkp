@@ -1,12 +1,12 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
   <diagram name="페이지-1" id="30kxY91xIzLevEqZuJVZ">
-    <mxGraphModel dx="1810" dy="1233" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="5153" dy="3230" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <UserObject label="" mermaidData="{&#xa;  &quot;data&quot;: &quot;erDiagram\n  MARKET_INDEX {\n    BIGINT id PK\n    DATE base_dt UK\n    DECIMAL kospi_close\n    DECIMAL kosdaq_close\n    DATETIME created_at\n    DATETIME updated_at\n  }\n\n  EXCHANGE {\n    BIGINT id PK\n    DATE base_dt UK\n    DECIMAL usd_krw_rate\n    DECIMAL usd_krw_vs\n    DATETIME created_at\n    DATETIME updated_at\n  }\n\n  COMPANY {\n    VARCHAR stock_code PK\n    VARCHAR corp_code UK\n    VARCHAR corp_name\n    CHAR corp_cls\n    DATETIME created_at\n    DATETIME updated_at\n  }\n\n  FINANCIAL_STATEMENT {\n    BIGINT id PK\n    CHAR bsns_year\n    VARCHAR stock_code FK\n    VARCHAR reprt_code\n    VARCHAR fs_div\n    BIGINT revenue\n    BIGINT operating_income\n    BIGINT net_income\n    BIGINT total_assets\n    BIGINT total_liabilities\n    BIGINT total_equity\n  }\n\n  STOCK_PRICE {\n    BIGINT id PK\n    DATE bas_dt\n    VARCHAR srtn_cd FK\n    BIGINT clpr\n    BIGINT lstg_st_cnt\n    BIGINT mrkt_tot_amt\n    DATETIME created_at\n    DATETIME updated_at\n  }\n\n  DIVIDEND_INFO {\n    BIGINT id PK\n    VARCHAR corp_code FK UK\n    VARCHAR dividend_kind\n    BIGINT dividend_amount\n    DATETIME stlm_dt\n  }\n\n  STOCK_INDICATOR {\n    BIGINT id PK\n    VARCHAR stock_code FK\n    CHAR calc_year\n    DECIMAL per\n    DECIMAL pbr\n    DECIMAL roe\n    DECIMAL debt_ratio\n    DECIMAL dividend_yield\n    DATETIME calculated_at\n  }\n\n  TOP100 {\n    BIGINT id PK\n    DATE base_dt\n    VARCHAR corp_code FK\n    VARCHAR stock_code FK\n    INT score\n    DATETIME created_at\n    DATETIME updated_at\n  }\n\n  USER {\n    BIGINT id PK\n    VARCHAR email UK\n    VARCHAR password\n    VARCHAR nickname\n    ENUM role\n    DATETIME created_at\n    DATETIME updated_at\n  }\n\n  USER_FAVORITE {\n    BIGINT id PK\n    BIGINT user_id FK\n    VARCHAR stock_code FK\n    DATETIME created_at\n    DATETIME updated_at\n  }\n\n  INVESTMENT_JOURNAL {\n    BIGINT id PK\n    BIGINT user_id FK\n    VARCHAR title\n    TEXT content\n    DATETIME created_at\n    DATETIME updated_at\n  }\n\n  COMMENT {\n    BIGINT id PK\n    BIGINT journal_id FK\n    BIGINT user_id FK\n    TEXT content\n    DATETIME created_at\n    DATETIME updated_at\n  }\n\n  COMPANY ||--o{ FINANCIAL_STATEMENT : \&quot;stock_code\&quot;\n  COMPANY ||--|| STOCK_PRICE : \&quot;stock_code=srtn_cd\&quot;\n  COMPANY ||--|| DIVIDEND_INFO : \&quot;corp_code\&quot;\n  COMPANY ||--|| STOCK_INDICATOR : \&quot;stock_code\&quot;\n  COMPANY ||--|| TOP100 : \&quot;stock_code\&quot;\n  COMPANY ||--o{ USER_FAVORITE : \&quot;stock_code\&quot;\n\n  USER ||--o{ USER_FAVORITE : \&quot;user_id\&quot;\n  USER ||--o{ INVESTMENT_JOURNAL : \&quot;user_id\&quot;\n  USER ||--o{ COMMENT : \&quot;user_id\&quot;\n  INVESTMENT_JOURNAL ||--o{ COMMENT : \&quot;journal_id\&quot;&quot;,&#xa;  &quot;config&quot;: null&#xa;}" id="352">
           <mxCell connectable="0" parent="1" style="group;transparentBounds=1;editIcon=1;lockedGroup=0;groupPadding=20;" vertex="1">
-            <mxGeometry height="1955.08" width="3009" x="-1" y="2" as="geometry" />
+            <mxGeometry height="1955.08" width="3009" x="-4" y="3" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="MARKET_INDEX" mermaidId="n:MARKET_INDEX" mermaidBaseStyle="shape=table;startSize=43;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;strokeWidth=1;align=center;resizeLast=1;html=1;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);" mermaidBaseValue="MARKET_INDEX" id="2">
@@ -386,7 +386,7 @@
         </mxCell>
         <UserObject label="FINANCIAL_STATEMENT" mermaidId="n:FINANCIAL_STATEMENT" mermaidBaseStyle="shape=table;startSize=43;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;strokeWidth=1;align=center;resizeLast=1;html=1;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);" mermaidBaseValue="FINANCIAL_STATEMENT" id="77">
           <mxCell parent="352" style="shape=table;startSize=43;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;strokeWidth=1;align=center;resizeLast=1;html=1;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);" vertex="1">
-            <mxGeometry height="559" width="287" x="1324" y="1465" as="geometry" />
+            <mxGeometry height="516" width="287" x="1324" y="1465" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="78" parent="77" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=1;fillColor=light-dark(#ffffff,#1f2020);strokeColor=inherit;strokeWidth=1;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1">
@@ -583,24 +583,6 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="121" parent="118" style="shape=partialRectangle;connectable=0;fillColor=none;strokeColor=light-dark(#9370DB,#cccccc);strokeWidth=1;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;top=1;left=1;bottom=1;right=1;align=left;spacingLeft=8;overflow=hidden;fontSize=16;" value="" vertex="1">
-          <mxGeometry height="43" width="43" x="244" as="geometry">
-            <mxRectangle height="43" width="43" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="W6EW14Otl-KvB6Xz8SBi-361" parent="77" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=1;fillColor=light-dark(#ffffff,#1f2020);strokeColor=inherit;strokeWidth=1;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1">
-          <mxGeometry height="43" width="287" y="516" as="geometry" />
-        </mxCell>
-        <mxCell id="W6EW14Otl-KvB6Xz8SBi-362" parent="W6EW14Otl-KvB6Xz8SBi-361" style="shape=partialRectangle;connectable=0;fillColor=none;strokeColor=light-dark(#9370DB,#cccccc);strokeWidth=1;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;top=1;left=1;bottom=1;right=1;align=left;spacingLeft=8;overflow=hidden;fontSize=16;" value="VARCHAR" vertex="1">
-          <mxGeometry height="43" width="90" as="geometry">
-            <mxRectangle height="43" width="90" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="W6EW14Otl-KvB6Xz8SBi-363" parent="W6EW14Otl-KvB6Xz8SBi-361" style="shape=partialRectangle;connectable=0;fillColor=none;strokeColor=light-dark(#9370DB,#cccccc);strokeWidth=1;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;top=1;left=1;bottom=1;right=1;align=left;spacingLeft=8;overflow=hidden;fontSize=16;" value="currency" vertex="1">
-          <mxGeometry height="43" width="154" x="90" as="geometry">
-            <mxRectangle height="43" width="154" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="W6EW14Otl-KvB6Xz8SBi-364" parent="W6EW14Otl-KvB6Xz8SBi-361" style="shape=partialRectangle;connectable=0;fillColor=none;strokeColor=light-dark(#9370DB,#cccccc);strokeWidth=1;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;top=1;left=1;bottom=1;right=1;align=left;spacingLeft=8;overflow=hidden;fontSize=16;" value="" vertex="1">
           <mxGeometry height="43" width="43" x="244" as="geometry">
             <mxRectangle height="43" width="43" as="alternateBounds" />
           </mxGeometry>
@@ -1754,9 +1736,6 @@
         </mxCell>
         <mxCell id="Y0kImwftEncvZ9jdjJpX-1121" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="가치주점수" vertex="1">
           <mxGeometry height="30" width="60" x="3021" y="1728" as="geometry" />
-        </mxCell>
-        <mxCell id="W6EW14Otl-KvB6Xz8SBi-365" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="통화" vertex="1">
-          <mxGeometry height="30" width="60" x="1247" y="1989" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

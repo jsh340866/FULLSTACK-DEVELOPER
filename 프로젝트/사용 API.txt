@@ -14,3 +14,10 @@ https://oapi.koreaexim.go.kr/site/program/financial/exchangeJSON
 KRX 정보데이터시스템 Open API
 https://data-dbg.krx.co.kr/svc/apis/idx/kospi_dd_trd
 
+1211
+
+93398157020
+
+4141982 / 77124820
+
+오픈다트  "currency": "KRW" 값 받아와서 비교
