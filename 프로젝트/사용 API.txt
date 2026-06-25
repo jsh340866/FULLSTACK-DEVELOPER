@@ -1,0 +1,16 @@
+
+DART API 
+https://opendart.fss.or.kr/api/company.json
+https://opendart.fss.or.kr/api/corpCode.xml
+https://opendart.fss.or.kr/api/fnlttMultiAcnt.json
+https://opendart.fss.or.kr/api/alotMatter.json
+
+Stock(공공데이터) API 
+https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo
+
+한국수출입은행 환율 API
+https://oapi.koreaexim.go.kr/site/program/financial/exchangeJSON
+
+KRX 정보데이터시스템 Open API
+https://data-dbg.krx.co.kr/svc/apis/idx/kospi_dd_trd
+
