@@ -53,7 +53,7 @@ public class DartCompanyCollector {
             log.info("DART corpCode 매핑 완료: {}건", stockToCorpMap.size());
 
             // 기존 데이터 전체 삭제
-            companyRepository.deleteAllInBatch();
+//            companyRepository.deleteAllInBatch();
 
             int savedCount = 0;
 

@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.concurrent.Executor;
 
 @Configuration
-//@EnableAsync
+@EnableAsync
 public class AsyncConfig {
 
     // 주가 수집용 스레드풀
