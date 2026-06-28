@@ -16,32 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `investment_journal`
+-- Table structure for table `comment`
 --
 
-DROP TABLE IF EXISTS `investment_journal`;
+DROP TABLE IF EXISTS `comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `investment_journal` (
+CREATE TABLE `comment` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `content` text,
   `created_at` datetime(6) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
+  `journal_id` bigint DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKmhp199d94tbphv7deu2me3r99` (`user_id`),
-  CONSTRAINT `FKmhp199d94tbphv7deu2me3r99` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  KEY `FK4svtnwf8093hcssagtmg7y5lr` (`journal_id`),
+  KEY `FKg5qa9duyns9cjttnghs627mpo` (`user_id`),
+  CONSTRAINT `FK4svtnwf8093hcssagtmg7y5lr` FOREIGN KEY (`journal_id`) REFERENCES `investment_journal` (`id`),
+  CONSTRAINT `FKg5qa9duyns9cjttnghs627mpo` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `investment_journal`
+-- Dumping data for table `comment`
 --
 
-LOCK TABLES `investment_journal` WRITE;
-/*!40000 ALTER TABLE `investment_journal` DISABLE KEYS */;
-/*!40000 ALTER TABLE `investment_journal` ENABLE KEYS */;
+LOCK TABLES `comment` WRITE;
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-26  1:26:02
+-- Dump completed on 2026-06-28 19:49:52

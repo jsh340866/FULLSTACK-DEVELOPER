@@ -16,29 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `dividend_info`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `dividend_info`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `dividend_info` (
-  `corp_code` varchar(255) NOT NULL,
-  `dividend_kind` varchar(255) NOT NULL,
-  `dividend_amount` bigint DEFAULT NULL,
-  `stlm_dt` datetime(6) DEFAULT NULL,
-  PRIMARY KEY (`corp_code`,`dividend_kind`),
-  CONSTRAINT `FK8vucewg6ks4h7hmhua80h29sf` FOREIGN KEY (`corp_code`) REFERENCES `company` (`corp_code`)
+CREATE TABLE `user` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `provider` varchar(255) DEFAULT NULL,
+  `provider_id` varchar(255) DEFAULT NULL,
+  `role` enum('ADMIN','USER') DEFAULT NULL,
+  `updated_at` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UKatuxy89tfs7h7hcpmr4hh1gw1` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `dividend_info`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `dividend_info` WRITE;
-/*!40000 ALTER TABLE `dividend_info` DISABLE KEYS */;
-/*!40000 ALTER TABLE `dividend_info` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-26  1:26:01
+-- Dump completed on 2026-06-28 19:49:52

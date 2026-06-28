@@ -16,30 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `exchange`
+-- Table structure for table `refresh_token`
 --
 
-DROP TABLE IF EXISTS `exchange`;
+DROP TABLE IF EXISTS `refresh_token`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `exchange` (
-  `curUnit` varchar(255) NOT NULL,
-  `baseDate` date DEFAULT NULL,
-  `changeAmount` double DEFAULT NULL,
-  `changeRate` double DEFAULT NULL,
-  `country` varchar(255) DEFAULT NULL,
-  `dealBasR` double DEFAULT NULL,
-  PRIMARY KEY (`curUnit`)
+CREATE TABLE `refresh_token` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `expiresAt` datetime(6) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK6t7skxndr9jtm3ckw71g75tfl` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `exchange`
+-- Dumping data for table `refresh_token`
 --
 
-LOCK TABLES `exchange` WRITE;
-/*!40000 ALTER TABLE `exchange` DISABLE KEYS */;
-/*!40000 ALTER TABLE `exchange` ENABLE KEYS */;
+LOCK TABLES `refresh_token` WRITE;
+/*!40000 ALTER TABLE `refresh_token` DISABLE KEYS */;
+/*!40000 ALTER TABLE `refresh_token` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-26  1:26:01
+-- Dump completed on 2026-06-28 19:49:51

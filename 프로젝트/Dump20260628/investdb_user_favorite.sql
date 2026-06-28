@@ -16,35 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `stock_price`
+-- Table structure for table `user_favorite`
 --
 
-DROP TABLE IF EXISTS `stock_price`;
+DROP TABLE IF EXISTS `user_favorite`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stock_price` (
-  `bas_dt` date NOT NULL,
-  `srtn_cd` varchar(255) NOT NULL,
-  `clpr` bigint DEFAULT NULL,
+CREATE TABLE `user_favorite` (
+  `stock_code` varchar(255) NOT NULL,
+  `user_id` bigint NOT NULL,
   `created_at` datetime(6) DEFAULT NULL,
-  `flt_rt` double DEFAULT NULL,
-  `lstg_st_cnt` bigint DEFAULT NULL,
-  `mkp` bigint DEFAULT NULL,
-  `mrkt_tot_amt` bigint DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
-  PRIMARY KEY (`bas_dt`,`srtn_cd`),
-  KEY `FKtlqi4oj2ps0n9167iqsf0gt2q` (`srtn_cd`),
-  CONSTRAINT `FKtlqi4oj2ps0n9167iqsf0gt2q` FOREIGN KEY (`srtn_cd`) REFERENCES `company` (`stock_code`)
+  PRIMARY KEY (`stock_code`,`user_id`),
+  KEY `FKs28i8t2rb5wp543d15nfg2st9` (`user_id`),
+  CONSTRAINT `FKqwxyrws40ksp6499s6y5yehq0` FOREIGN KEY (`stock_code`) REFERENCES `company` (`stock_code`),
+  CONSTRAINT `FKs28i8t2rb5wp543d15nfg2st9` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `stock_price`
+-- Dumping data for table `user_favorite`
 --
 
-LOCK TABLES `stock_price` WRITE;
-/*!40000 ALTER TABLE `stock_price` DISABLE KEYS */;
-/*!40000 ALTER TABLE `stock_price` ENABLE KEYS */;
+LOCK TABLES `user_favorite` WRITE;
+/*!40000 ALTER TABLE `user_favorite` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-26  1:26:01
+-- Dump completed on 2026-06-28 19:49:52

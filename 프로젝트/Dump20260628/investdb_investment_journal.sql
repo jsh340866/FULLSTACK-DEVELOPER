@@ -16,33 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `stock_indicator`
+-- Table structure for table `investment_journal`
 --
 
-DROP TABLE IF EXISTS `stock_indicator`;
+DROP TABLE IF EXISTS `investment_journal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stock_indicator` (
-  `stock_code` varchar(255) NOT NULL,
-  `bps` double DEFAULT NULL,
-  `calculated_at` datetime(6) DEFAULT NULL,
-  `debt_ratio` double DEFAULT NULL,
-  `dividend_yield` double DEFAULT NULL,
-  `eps` double DEFAULT NULL,
-  `pbr` double DEFAULT NULL,
-  `per` double DEFAULT NULL,
-  `roe` double DEFAULT NULL,
-  PRIMARY KEY (`stock_code`)
+CREATE TABLE `investment_journal` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `content` text,
+  `created_at` datetime(6) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `updated_at` datetime(6) DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKmhp199d94tbphv7deu2me3r99` (`user_id`),
+  CONSTRAINT `FKmhp199d94tbphv7deu2me3r99` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `stock_indicator`
+-- Dumping data for table `investment_journal`
 --
 
-LOCK TABLES `stock_indicator` WRITE;
-/*!40000 ALTER TABLE `stock_indicator` DISABLE KEYS */;
-/*!40000 ALTER TABLE `stock_indicator` ENABLE KEYS */;
+LOCK TABLES `investment_journal` WRITE;
+/*!40000 ALTER TABLE `investment_journal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `investment_journal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-26  1:26:02
+-- Dump completed on 2026-06-28 19:49:51
