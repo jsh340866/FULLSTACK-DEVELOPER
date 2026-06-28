@@ -39,25 +39,34 @@ public class DartCompanyCollector {
 
     private static final String KRX_LISTED_URL = "https://apis.data.go.kr/1160100/service/GetKrxListedInfoService/getItemInfo";
 
+
     @Async("dartExecutor")
     public void collectCompanies(String basDt) {
 
         try {
 
-            // 1단계: KRX상장종목정보 API로 현재 상장된 종목 정보 수집 (KOSPI + KOSDAQ)
+            // 1단계: KRX 상장종목 정보 수집 (KOSPI + KOSDAQ)
             Map<String, KrxStockInfo> krxStockMap = collectKrxStockInfo(basDt);
             log.info("KRX 상장 종목 수집 완료: {}건", krxStockMap.size());
 
-            // 2단계: corpCode.xml에서 KRX 종목과 매핑되는 stockCode→corpCode 맵 추출
+            // 2단계: DART corpCode.xml에서 KRX 종목과 매핑되는 stockCode→corpCode 맵 추출
             Map<String, String> stockToCorpMap = collectCorpCodeMap(krxStockMap.keySet());
             log.info("DART corpCode 매핑 완료: {}건", stockToCorpMap.size());
 
-            // 기존 데이터 전체 삭제
-//            companyRepository.deleteAllInBatch();
+            // 3단계: DB에 있지만 KRX 목록에 없는 종목 = 상장폐지 → cascade 삭제
+            Set<String> currentListedCodes = krxStockMap.keySet();
+            List<String> delistedCodes = companyRepository.findAllIds().stream()
+                    .filter(code -> !currentListedCodes.contains(code))
+                    .toList();
+
+            if (!delistedCodes.isEmpty()) {
+                companyRepository.deleteAllById(delistedCodes);
+                log.info("상장폐지 종목 삭제: {}건", delistedCodes.size());
+            }
 
             int savedCount = 0;
 
-            // 3단계: KRX 정보 + corpCode 합쳐서 Company 저장
+            // 4단계: KRX 정보 + corpCode 합쳐서 Company 저장
             for (Map.Entry<String, String> entry : stockToCorpMap.entrySet()) {
 
                 String stockCode = entry.getKey();
@@ -93,7 +102,7 @@ public class DartCompanyCollector {
         }
     }
 
-    // KRX상장종목정보 API로 전체 종목 수집 후 mrktCtg로 직접 분류
+    // KRX 상장종목 API 호출 후 KOSPI/KOSDAQ 필터링 및 스팩/리츠 제외
     private Map<String, KrxStockInfo> collectKrxStockInfo(String basDt) {
 
         Map<String, KrxStockInfo> stockMap = new HashMap<>();
@@ -121,12 +130,16 @@ public class DartCompanyCollector {
             List<Map<String, Object>> itemList = (List<Map<String, Object>>) items.get("item");
 
             for (Map<String, Object> item : itemList) {
-                String srtnCd = ((String) item.get("srtnCd")).trim().replaceAll("^A", ""); // A 접두사 제거
-                String itmsNm = ((String) item.get("itmsNm")).trim(); // 종목명
-                String mrktCtgValue = ((String) item.get("mrktCtg")).trim(); // 실제 시장구분
+                // A 접두사 제거 (KRX srtnCd는 A로 시작)
+                String srtnCd = ((String) item.get("srtnCd")).trim().replaceAll("^A", "");
+                String itmsNm = ((String) item.get("itmsNm")).trim();
+                String mrktCtgValue = ((String) item.get("mrktCtg")).trim();
 
-                // KOSPI, KOSDAQ만 저장 (KONEX, 기타 제외)
+                // KOSPI, KOSDAQ 외 제외 (KONEX 등)
                 if (!"KOSPI".equals(mrktCtgValue) && !"KOSDAQ".equals(mrktCtgValue)) continue;
+
+                // 스팩, 리츠 등 투자 분석 대상 아닌 종목 제외
+                if (isExcludedStock(itmsNm)) continue;
 
                 // KOSPI → Y, KOSDAQ → K
                 String corpCls = "KOSPI".equals(mrktCtgValue) ? "Y" : "K";
@@ -145,7 +158,7 @@ public class DartCompanyCollector {
         return stockMap;
     }
 
-    // corpCode.xml에서 listedStockCodes에 있는 종목만 stockCode→corpCode 맵으로 추출
+    // DART corpCode.xml에서 KRX 상장 종목에 해당하는 stockCode→corpCode 맵 추출
     private Map<String, String> collectCorpCodeMap(Set<String> listedStockCodes) throws Exception {
 
         String url = "https://opendart.fss.or.kr/api/corpCode.xml?crtfc_key=" + dartApiKey;
@@ -168,6 +181,7 @@ public class DartCompanyCollector {
             String stockCode = element.getElementsByTagName("stock_code")
                     .item(0).getTextContent().trim();
 
+            // KRX 상장 종목에 없는 종목은 스킵
             if (stockCode.isBlank() || !listedStockCodes.contains(stockCode)) continue;
 
             String corpCode = element.getElementsByTagName("corp_code")
@@ -177,6 +191,15 @@ public class DartCompanyCollector {
         }
 
         return stockToCorpMap;
+    }
+
+    // 종목명 기반 제외 여부 판단
+    // 리츠: 부동산투자회사법상 상호 끝에 "리츠" 의무 표기 → endsWith로 오탐 방지 (메리츠, 블리츠 등 제외)
+    // 스팩/기업인수목적: 자본시장법상 상호에 반드시 포함 → contains로 충분
+    private boolean isExcludedStock(String corpName) {
+        return corpName.endsWith("리츠")
+                || corpName.contains("스팩")
+                || corpName.contains("기업인수목적");
     }
 
     // KRX 종목 정보 담는 레코드

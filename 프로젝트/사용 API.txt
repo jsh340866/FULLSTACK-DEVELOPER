@@ -1,12 +1,12 @@
 
 DART API 
-https://opendart.fss.or.kr/api/company.json
 https://opendart.fss.or.kr/api/corpCode.xml
 https://opendart.fss.or.kr/api/fnlttMultiAcnt.json
 https://opendart.fss.or.kr/api/alotMatter.json
 
-Stock(공공데이터) API 
+공공데이터 API 
 https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo
+https://apis.data.go.kr/1160100/service/GetKrxListedInfoService/getItemInfo
 
 한국수출입은행 환율 API
 https://oapi.koreaexim.go.kr/site/program/financial/exchangeJSON

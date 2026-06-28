@@ -19,6 +19,7 @@ public class FinancialStatementService {
     private final CompanyRepository companyRepository;
     private final FinancialStatementRepository financialStatementRepository;
 
+    // 종목코드로 재무제표 목록 반환 (최신 연도 순), 존재하지 않는 종목코드면 404
     public List<FinancialStatementDto> getFinancialStatements(String stockCode) {
         if (!companyRepository.existsById(stockCode)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "존재하지 않는 종목코드입니다: " + stockCode);
