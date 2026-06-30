@@ -39,6 +39,6 @@ cd "" //주소 변경
 | 상황                    | 명령어                           |
 | --------------------- | ----------------------------- |
 | 마지막 커밋 취소(파일도 같이 되돌림) | `git reset --hard HEAD~1`     |
-| 마지막 커밋 취소(파일은 유지)     | `git reset --soft HEAD~1`     |
-| 원격도 내 히스토리로 덮어쓰기      | `git push --force-with-lease` |
-| 커밋 메시지만 수정            | `git commit --amend`          |
+| 마지막 커밋 취소(파일은 유지)     	| `git reset --soft HEAD~1`     |
+| 원격도 내 히스토리로 덮어쓰기     	| `git push --force-with-lease` |
+| 커밋 메시지만 수정          		| `git commit --amend`          |
