@@ -51,10 +51,10 @@ class CollectorTest {
 
     @Test
     public void t4_주가수집() {
-        LocalDate date = LocalDate.of(2025, 6,22);
-//        LocalDate dateEnd = LocalDate.of(2026, 6,26);
-        stockPriceCollector.collect(date, date);
-//        stockPriceCollector.collect(date, dateEnd);
+        LocalDate date = LocalDate.of(2026, 6,22);
+        LocalDate endDate = LocalDate.of(2026, 6,26);
+//        stockPriceCollector.collect(date, date);
+        stockPriceCollector.collect(date, endDate);
     }
 
     @Test

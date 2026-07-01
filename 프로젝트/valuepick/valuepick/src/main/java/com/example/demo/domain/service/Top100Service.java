@@ -89,7 +89,7 @@ public class Top100Service {
      * - PER 낮을수록 고점수 (저평가 매력)
      * - PBR 낮을수록 고점수 (순자산 대비 저평가)
      * - ROE 높을수록 고점수 (수익성)
-     * - 부채비율 낮을수록 고점수 (재무건전성)
+     * - 배당수익률 높을수록 고점수 (배당매력) — 없으면 0점
      */
     private List<ScoredIndicator> scoreAll(List<StockIndicator> indicators) {
 

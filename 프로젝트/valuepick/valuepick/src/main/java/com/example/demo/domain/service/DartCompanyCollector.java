@@ -5,6 +5,9 @@ import com.example.demo.domain.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -96,10 +99,67 @@ public class DartCompanyCollector {
 
             log.info("전체 기업정보 저장 완료: {}건", savedCount);
 
+            // 5단계: 저장된 Company의 corpCode로 DART company.json 호출 → 업종코드, 대표자명 저장
+            collectIndustryInfo();
+
         } catch (Exception e) {
             log.error("기업정보 수집 실패", e);
             throw new RuntimeException(e);
         }
+    }
+
+    // 전 종목 순회하며 DART company.json 호출 - induty_code, ceo_nm 업데이트 (호출 간격 sleep 적용)
+    private void collectIndustryInfo() {
+
+        int page = 0;
+        int updatedCount = 0;
+        final int PAGE_SIZE = 100; // StockPriceCollector와 동일하게 100건씩 페이징 처리
+
+        while (true) {
+
+            // DB에 이미 저장된 Company를 페이징으로 조회 (findAll(pageable)로 가져온 엔티티는 영속 상태 = managed)
+            Pageable pageable = PageRequest.of(page, PAGE_SIZE);
+            Page<Company> companyPage = companyRepository.findAll(pageable);
+            List<Company> companies = companyPage.getContent();
+
+            if (companies.isEmpty()) break; // 더 조회할 데이터 없으면 종료
+
+            for (Company company : companies) {
+                try {
+                    // corpCode로 DART 기업개황 API 호출 (응답 필드: induty_code, ceo_nm 등)
+                    Map<String, Object> response = restTemplate.getForObject(buildCompanyInfoUrl(company.getCorpCode()), Map.class);
+
+                    // 응답 없거나 status가 정상(000)이 아니면 스킵
+                    if (response == null || !"000".equals(response.get("status"))) {
+                        log.warn("업종정보 조회 실패: {}", company.getCorpName());
+                        continue;
+                    }
+
+                    // managed 엔티티를 setter로 직접 수정 → save() 시 merge 없이 dirty checking으로 UPDATE만 발생
+                    company.setIndustryInfo(
+                            (String) response.get("induty_code"), // 표준산업분류코드 (예: "264")
+                            (String) response.get("ceo_nm")       // 대표자명 (복수 대표는 콤마로 구분된 문자열)
+                    );
+                    companyRepository.save(company);
+                    updatedCount++;
+
+                    Thread.sleep(100); // DART API 호출 간격 유지 (차단 방지) - DartFinancialCollector와 동일 패턴
+
+                } catch (Exception e) {
+                    log.error("업종정보 처리 실패: {}", company.getCorpName(), e);
+                }
+            }
+
+            if (!companyPage.hasNext()) break; // 마지막 페이지면 종료
+            page++;
+        }
+
+        log.info("업종정보 업데이트 완료: {}건", updatedCount);
+    }
+
+    // DART 기업개황 API URL 생성 - corpCode로 induty_code, ceo_nm 등 회사 상세정보 조회
+    private String buildCompanyInfoUrl(String corpCode) {
+        return "https://opendart.fss.or.kr/api/company.json?crtfc_key=" + dartApiKey + "&corp_code=" + corpCode;
     }
 
     // KRX 상장종목 API 호출 후 KOSPI/KOSDAQ 필터링 및 스팩/리츠 제외

@@ -6,7 +6,10 @@ function formatPrice(price) {
 
 function formatMarketCap(cap) {
   if (cap == null) return '-';
-  return Math.round(cap / 10000).toLocaleString('ko-KR') + '만원';
+  else if(Math.round(cap/1000000000000>=1)) return (Math.round((cap  /1000000000000)*10)/10).toLocaleString('ko-KR') + '조원';
+  else if(Math.round(cap/100000000>=1)) return (Math.round((cap  /100000000)*10)/10).toLocaleString('ko-KR') + '억원';
+  else if(cap/10000>=1) return (Math.round((cap / 10000) * 10) / 10).toLocaleString('ko-KR') + '만원';
+  else  return Math.round(cap).toLocaleString('ko-KR') + '원';
 }
 
 function fmt2(v, suffix = '') {
@@ -22,6 +25,22 @@ function formatChange(rate) {
 
 function changeClass(rate) {
   return Number(rate) >= 0 ? 'up' : 'down';
+}
+
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
+}
+
+function formatNewsDate(value) {
+  if (!value) return '-';
+  // Jackson이 LocalDateTime을 [year, month, day, hour, minute] 배열로 직렬화하는 경우 처리
+  const d = Array.isArray(value)
+    ? new Date(value[0], value[1] - 1, value[2], value[3] || 0, value[4] || 0)
+    : new Date(value);
+  if (isNaN(d.getTime())) return '-';
+  return d.toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
 }
 
 function sortStocks(stocks, key, dir) {
@@ -89,8 +108,8 @@ async function fetchMarketIndices() {
     result.push({
       name:         k.idxNm || 'KOSPI',
       value:        (Number(k.clsprcIdx) || 0).toLocaleString('ko-KR'),
-      changeRate:   Number(k.flucRt)       || 0,
-      changeAmount: Number(k.cmpprevddIdx) || 0,
+      changeRate:   Math.round(Number(k.flucRt)*100)/100       || 0,
+      changeAmount: Math.round(Number(k.cmpprevddIdx)*100)/100 || 0,
     });
   }
 
@@ -99,8 +118,8 @@ async function fetchMarketIndices() {
     result.push({
       name:         `${e.curUnit || 'USD'} (${e.country || ''})`,
       value:        (Number(e.dealBasR) || 0).toLocaleString('ko-KR') + '원',
-      changeRate:   Number(e.changeRate)   || 0,
-      changeAmount: Number(e.changeAmount) || 0,
+      changeRate:   Math.round(Number(e.changeRate)*100)/100   || 0,
+      changeAmount: Math.round(Number(e.changeAmount)*100)/100 || 0,
     });
   }
 
@@ -141,11 +160,14 @@ async function fetchTop(type = "value") {
  */
 async function fetchStocks(params = {}) {
   const { keyword, page = 0, size = 10,
-          perMin, perMax, pbrMin, pbrMax, roeMin, roeMax, divMin, divMax } = params;
+          perMin, perMax, pbrMin, pbrMax, roeMin, roeMax, divMin, divMax,
+          sort, dir } = params;
+
+  const sortQ = sort ? `&sort=${encodeURIComponent(sort)}&dir=${dir || 'desc'}` : '';
 
   // 키워드 검색 (서버 페이징)
   if (keyword) {
-    const res = await fetch(`${API_BASE}/info/search?keyword=${encodeURIComponent(keyword)}&page=${page}&size=${size}`);
+    const res = await fetch(`${API_BASE}/info/search?keyword=${encodeURIComponent(keyword)}&page=${page}&size=${size}${sortQ}`);
     if (!res.ok) throw new Error(`fetchStocks(search) failed: ${res.status}`);
     const body = await res.json();
     return {
@@ -172,6 +194,7 @@ async function fetchStocks(params = {}) {
     if (divMax != null) q.set('dyMax', divMax);
     q.set('page', page);
     q.set('size', size);
+    if (sort) { q.set('sort', sort); q.set('dir', dir || 'desc'); }
     const res = await fetch(`${API_BASE}/info/list/filter?${q.toString()}`);
     if (!res.ok) throw new Error(`fetchStocks(filter) failed: ${res.status}`);
     const body = await res.json();
@@ -184,7 +207,7 @@ async function fetchStocks(params = {}) {
   }
 
   // 전체 목록 (서버 페이징)
-  const res = await fetch(`${API_BASE}/info/list?page=${page}&size=${size}`);
+  const res = await fetch(`${API_BASE}/info/list?page=${page}&size=${size}${sortQ}`);
   if (!res.ok) throw new Error(`fetchStocks(list) failed: ${res.status}`);
   const body = await res.json();
   return {
@@ -200,14 +223,16 @@ async function fetchStocks(params = {}) {
  * ※ 재무제표 상세 API 구현
  */
 async function fetchStockFull(code) {
-   const [stockRes, fsRes] = await Promise.all([
+   const [stockRes, fsRes, newsRes] = await Promise.all([
     fetch(`${API_BASE}/api/stocks/${encodeURIComponent(code)}`),
     fetch(`${API_BASE}/api/stocks/${encodeURIComponent(code)}/financial-statements`),
+    fetch(`${API_BASE}/api/stocks/${encodeURIComponent(code)}/news`),
   ]);
   if (!stockRes.ok) throw new Error(`fetchStockFull failed: ${stockRes.status}`);
 
   const { company, indicator, latestPrice, priceHistory = [] } = await stockRes.json();
   const statements = fsRes.ok ? await fsRes.json() : [];
+  const news = newsRes.ok ? await newsRes.json() : [];
 
   // 등락액: 최근 2개 종가 차이
   const changeAmount = priceHistory.length >= 2
@@ -225,6 +250,7 @@ async function fetchStockFull(code) {
 
   return {
   code:            company.stockCode,
+    news,
     name:            company.corpName,
     price:           Number(latestPrice?.clpr) || 0,
     changeRate:      Number(latestPrice?.fltRt) || 0,

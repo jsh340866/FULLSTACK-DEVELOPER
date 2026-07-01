@@ -30,7 +30,6 @@ public interface Top100Repository extends JpaRepository<Top100, Top100Id> {
                     FROM STOCK_PRICE sp2
                     WHERE sp2.srtn_cd = t.stock_code
                 )
-            WHERE t.base_dt = (SELECT MAX(t2.base_dt) FROM TOP100 t2)
             ORDER BY t.score DESC
             LIMIT 10
             """,
@@ -51,7 +50,6 @@ public interface Top100Repository extends JpaRepository<Top100, Top100Id> {
                     FROM STOCK_PRICE sp2
                     WHERE sp2.srtn_cd = t.stock_code
                 )
-            WHERE t.base_dt = (SELECT MAX(t2.base_dt) FROM TOP100 t2)
             ORDER BY t.score DESC
             """,
             nativeQuery = true)
