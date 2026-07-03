@@ -1,7 +1,8 @@
 
 DART API 
 https://opendart.fss.or.kr/api/corpCode.xml
-https://opendart.fss.or.kr/api/fnlttMultiAcnt.json
+https://opendart.fss.or.kr/api/Company.json
+https://opendart.fss.or.kr/api/fnlttSingleAcnt.json
 https://opendart.fss.or.kr/api/alotMatter.json
 
 공공데이터 API 
