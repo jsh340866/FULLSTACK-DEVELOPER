@@ -1,0 +1,2541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>정보처리기사 실기 최근 기출 경향 실전 모의고사 3회</title>
+<meta name="description" content="2025년~2026년 1회 정보처리기사 실기 출제 경향을 반영한 신규 실전 모의고사 3회분">
+<style>
+:root {
+  --bg:#f4f6fb;
+  --panel:#ffffff;
+  --text:#1d2433;
+  --muted:#647084;
+  --line:#dce3ee;
+  --accent:#5b4bcc;
+  --accent-soft:#eeebff;
+  --accent-strong:#4738b3;
+  --code:#111a2d;
+  --code-text:#edf4ff;
+  --good:#087a55;
+  --warn:#b45309;
+  --shadow:0 10px 35px rgba(25,38,66,.09);
+  --font-size:17px;
+}
+html[data-theme="dark"] {
+  --bg:#0f1727;
+  --panel:#172235;
+  --text:#edf2ff;
+  --muted:#a9b5ca;
+  --line:#33435b;
+  --accent:#aa9eff;
+  --accent-soft:#29264d;
+  --accent-strong:#c1b8ff;
+  --code:#090f1d;
+  --code-text:#f3f7ff;
+  --good:#67dca7;
+  --warn:#f8bd70;
+  --shadow:none;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:var(--font-size); }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.72;
+}
+button, textarea { font:inherit; }
+button { cursor:pointer; }
+a { color:var(--accent-strong); }
+.topbar {
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:.72rem 1.1rem;
+  border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--panel) 92%,transparent);
+  backdrop-filter:blur(14px);
+}
+.brand { font-weight:900; letter-spacing:-.03em; white-space:nowrap; }
+.controls { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.42rem; }
+.controls button, .timer-buttons button {
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--panel);
+  color:var(--text);
+  padding:.48rem .7rem;
+  font-size:.8rem;
+}
+.controls button:hover, .timer-buttons button:hover { border-color:var(--accent); }
+.hero {
+  padding:3.4rem 1.2rem 2.6rem;
+  background:
+    radial-gradient(circle at 10% 20%, color-mix(in srgb,var(--accent) 22%,transparent), transparent 35%),
+    linear-gradient(135deg,var(--accent-soft),var(--panel));
+  border-bottom:1px solid var(--line);
+}
+.hero-inner { max-width:1180px; margin:0 auto; }
+.hero .eyebrow, .exam-heading .eyebrow {
+  margin:0 0 .4rem;
+  color:var(--accent-strong);
+  font-size:.82rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.hero h1 {
+  margin:.15rem 0 .8rem;
+  max-width:900px;
+  font-size:clamp(2rem,5vw,3.45rem);
+  line-height:1.16;
+  letter-spacing:-.055em;
+}
+.hero p { max-width:900px; margin:.5rem 0; color:var(--muted); }
+.badges { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.25rem; }
+.badge {
+  padding:.42rem .72rem;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-weight:800;
+  font-size:.84rem;
+}
+.layout {
+  max-width:1320px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:250px minmax(0,1fr);
+  gap:1.35rem;
+  padding:1.35rem;
+}
+.sidebar {
+  position:sticky;
+  top:76px;
+  align-self:start;
+  padding:1rem;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+.sidebar h2 { margin:.15rem .3rem .75rem; font-size:1rem; }
+.sidebar a {
+  display:flex;
+  flex-direction:column;
+  gap:.05rem;
+  margin:.35rem 0;
+  padding:.65rem .7rem;
+  border-radius:11px;
+  color:var(--text);
+  text-decoration:none;
+}
+.sidebar a:hover { background:var(--accent-soft); color:var(--accent-strong); }
+.sidebar a span { color:var(--muted); font-size:.78rem; }
+.notice {
+  margin-top:1rem;
+  padding:.75rem;
+  background:var(--accent-soft);
+  border-radius:12px;
+  color:var(--muted);
+  font-size:.77rem;
+}
+main { min-width:0; }
+.trend-card {
+  margin-bottom:1.25rem;
+  padding:1.25rem 1.4rem;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--panel);
+  box-shadow:var(--shadow);
+}
+.trend-card h2 { margin:.05rem 0 .7rem; font-size:1.2rem; }
+.trend-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.75rem;
+}
+.trend-grid div {
+  padding:.85rem;
+  border-radius:13px;
+  background:var(--accent-soft);
+}
+.trend-grid strong { display:block; margin-bottom:.25rem; }
+.trend-grid span { color:var(--muted); font-size:.83rem; }
+.exam-section {
+  margin-bottom:2rem;
+  padding:clamp(1rem,3vw,2rem);
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  scroll-margin-top:82px;
+}
+.exam-heading {
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  align-items:flex-start;
+  padding-bottom:1rem;
+  border-bottom:2px solid var(--line);
+}
+.exam-heading h2 {
+  margin:.1rem 0 .35rem;
+  font-size:clamp(1.55rem,3vw,2.15rem);
+  letter-spacing:-.04em;
+}
+.exam-heading p { margin:.3rem 0; color:var(--muted); }
+.exam-meta { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.4rem; }
+.exam-meta span {
+  padding:.35rem .58rem;
+  border-radius:999px;
+  background:var(--accent-soft);
+  color:var(--accent-strong);
+  font-size:.78rem;
+  font-weight:900;
+  white-space:nowrap;
+}
+.timer-panel {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  margin:1rem 0 1.25rem;
+  padding:.9rem 1rem;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--bg);
+}
+.timer-label { color:var(--muted); font-size:.76rem; font-weight:800; }
+.timer { font-size:1.5rem; font-weight:950; letter-spacing:.04em; font-variant-numeric:tabular-nums; }
+.timer-buttons { display:flex; flex-wrap:wrap; gap:.4rem; }
+.question-grid { display:grid; gap:1rem; }
+.question-card {
+  padding:1.1rem 1.15rem;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--panel);
+  scroll-margin-top:85px;
+}
+.question-head {
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  margin-bottom:.8rem;
+}
+.qnum {
+  display:inline-grid;
+  place-items:center;
+  min-width:2.35rem;
+  height:2.1rem;
+  padding:0 .45rem;
+  border-radius:9px;
+  background:var(--accent);
+  color:white;
+  font-weight:950;
+}
+.tag {
+  padding:.25rem .52rem;
+  border-radius:999px;
+  background:var(--accent-soft);
+  color:var(--accent-strong);
+  font-size:.76rem;
+  font-weight:850;
+}
+.answer-jump { margin-left:auto; font-size:.74rem; text-decoration:none; }
+.question-body { overflow-wrap:anywhere; }
+.answer-label {
+  display:block;
+  margin-top:1rem;
+  color:var(--muted);
+  font-size:.78rem;
+  font-weight:850;
+}
+textarea {
+  width:100%;
+  margin-top:.35rem;
+  padding:.75rem;
+  border:1px solid var(--line);
+  border-radius:11px;
+  resize:vertical;
+  background:var(--bg);
+  color:var(--text);
+  outline:none;
+}
+textarea:focus {
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent);
+}
+pre {
+  position:relative;
+  margin:.85rem 0 1rem;
+  padding:1rem 1.05rem;
+  overflow:auto;
+  border-radius:14px;
+  background:var(--code);
+  color:var(--code-text);
+  line-height:1.55;
+  font-size:.86rem;
+  tab-size:4;
+}
+code { font-family:"D2Coding","Cascadia Code",Consolas,monospace; }
+:not(pre)>code {
+  padding:.1rem .32rem;
+  border-radius:5px;
+  background:var(--accent-soft);
+  color:var(--text);
+}
+.copy-btn {
+  position:absolute;
+  top:.5rem;
+  right:.5rem;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:8px;
+  padding:.25rem .48rem;
+  background:rgba(255,255,255,.1);
+  color:white;
+  font-size:.68rem;
+}
+.table-wrap { overflow:auto; margin:.8rem 0 1rem; }
+table {
+  width:100%;
+  min-width:360px;
+  border-collapse:separate;
+  border-spacing:0;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  font-size:.86rem;
+}
+th,td {
+  padding:.58rem .7rem;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  text-align:left;
+}
+th { background:var(--accent-soft); }
+tr:last-child td { border-bottom:0; }
+th:last-child,td:last-child { border-right:0; }
+.answer-book {
+  margin-top:1.35rem;
+  border:2px solid var(--accent);
+  border-radius:17px;
+  overflow:hidden;
+}
+.answer-book>summary {
+  cursor:pointer;
+  list-style:none;
+  padding:1rem 1.15rem;
+  background:var(--accent-soft);
+  color:var(--accent-strong);
+  font-size:1.05rem;
+  font-weight:950;
+}
+.answer-book>summary::-webkit-details-marker { display:none; }
+.answer-book>summary::before { content:"＋"; display:inline-block; width:1.5rem; }
+.answer-book[open]>summary::before { content:"－"; }
+.answer-list { padding:.4rem 1.05rem 1.1rem; }
+.answer-item {
+  padding:1rem 0;
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:85px;
+}
+.answer-item:last-child { border-bottom:0; }
+.answer-title {
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  align-items:center;
+  font-weight:900;
+}
+.answer-title a { font-size:.72rem; font-weight:600; text-decoration:none; }
+.answer-value {
+  margin:.55rem 0;
+  padding:.65rem .75rem;
+  border-left:4px solid var(--good);
+  border-radius:0 9px 9px 0;
+  background:color-mix(in srgb,var(--good) 10%,transparent);
+  color:var(--good);
+  font-weight:950;
+}
+.explanation { color:var(--muted); font-size:.9rem; }
+.back-top {
+  position:fixed;
+  right:1rem;
+  bottom:1rem;
+  width:46px;
+  height:46px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:var(--panel);
+  color:var(--text);
+  box-shadow:var(--shadow);
+  font-weight:950;
+}
+.footer {
+  max-width:1100px;
+  margin:0 auto;
+  padding:1rem 1rem 3rem;
+  color:var(--muted);
+  font-size:.8rem;
+  text-align:center;
+}
+@media(max-width:950px) {
+  .layout { grid-template-columns:1fr; padding:.75rem; }
+  .sidebar { position:static; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .sidebar h2,.notice { grid-column:1/-1; }
+  .trend-grid { grid-template-columns:1fr; }
+}
+@media(max-width:650px) {
+  html { font-size:16px; }
+  .topbar { align-items:flex-start; padding:.65rem; }
+  .brand { display:none; }
+  .controls { justify-content:flex-start; }
+  .hero { padding:2.2rem .9rem 1.7rem; }
+  .sidebar { grid-template-columns:1fr; }
+  .exam-section { padding:.85rem; border-radius:15px; }
+  .exam-heading { flex-direction:column; }
+  .exam-meta { justify-content:flex-start; }
+  .timer-panel { align-items:flex-start; flex-direction:column; }
+  .question-card { padding:.9rem; }
+  .question-head { flex-wrap:wrap; }
+  .answer-jump { margin-left:0; width:100%; }
+}
+@media print {
+  .topbar,.sidebar,.timer-panel,.back-top,.answer-jump,.copy-btn,.answer-label,textarea { display:none!important; }
+  body { background:white; color:black; }
+  .hero { padding:0 0 1rem; background:white; }
+  .layout { display:block; max-width:none; padding:0; }
+  .trend-card { box-shadow:none; }
+  .exam-section { border:0; box-shadow:none; padding:0; page-break-before:always; }
+  .exam-section:first-of-type { page-break-before:auto; }
+  .question-card { break-inside:avoid; }
+  pre { white-space:pre-wrap; background:#f1f3f6; color:black; border:1px solid #bbb; }
+  .answer-book { break-before:page; }
+  body.questions-only .answer-book { display:none!important; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">정보처리기사 실기 · 실전 모의고사</div>
+  <div class="controls">
+    <button type="button" onclick="fontChange(-1)">글자 작게</button>
+    <button type="button" onclick="fontChange(1)">글자 크게</button>
+    <button type="button" onclick="toggleTheme()">다크 모드</button>
+    <button type="button" onclick="toggleAllAnswers(true)">정답 모두 펼치기</button>
+    <button type="button" onclick="toggleAllAnswers(false)">정답 모두 접기</button>
+    <button type="button" onclick="printQuestions()">문제만 인쇄</button>
+    <button type="button" onclick="printAll()">전체 인쇄</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">2025년 1·2·3회 + 2026년 1회 경향 반영</p>
+    <h1>정보처리기사 실기<br>실전형 모의고사 3회분</h1>
+    <p>최근 반복 출제된 코드 해석, SQL·데이터베이스, 서브넷, HDLC, 보안, 테스트·설계 유형을 바탕으로 새롭게 제작한 문제입니다. 실제 복원 문제를 그대로 옮기지 않고 유형과 난도만 반영했습니다.</p>
+    <div class="badges">
+      <span class="badge">총 60문항</span>
+      <span class="badge">회차별 150분</span>
+      <span class="badge">코드 실행 검증 완료</span>
+      <span class="badge">SQL 결과 검증 완료</span>
+      <span class="badge">정답·상세 해설 포함</span>
+    </div>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h2>회차 바로가기</h2>
+    <a href="#exam1"><strong>1회</strong><span>최신 경향 종합형</span></a><a href="#exam2"><strong>2회</strong><span>프로그래밍·DB 강화형</span></a><a href="#exam3"><strong>3회</strong><span>최종 실전 고난도형</span></a>
+    <div class="notice">
+      답안 입력 내용은 현재 브라우저에 자동 저장됩니다. 다른 기기나 시크릿 모드에서는 이어지지 않을 수 있습니다.
+    </div>
+  </aside>
+
+  <main>
+    <section class="trend-card">
+      <h2>모의고사 구성 기준</h2>
+      <div class="trend-grid">
+        <div><strong>프로그래밍 7~8문항</strong><span>C 포인터·구조체·연결 리스트, Java 다형성·인터페이스, Python 슬라이싱·얕은 복사</span></div>
+        <div><strong>SQL·DB 3~4문항</strong><span>JOIN, 서브쿼리, NULL, 외래키, 관계대수, 정규화, 데이터베이스 설계</span></div>
+        <div><strong>이론 8~10문항</strong><span>HDLC, CIDR, 보안 공격·인증, 테스트, 디자인 패턴, 응집도·결합도</span></div>
+      </div>
+    </section>
+
+    
+    <section class="exam-section" id="exam1">
+        <div class="exam-heading">
+            <div>
+                <p class="eyebrow">실전 모의고사 1회</p>
+                <h2>제1회 · 최신 경향 종합형</h2>
+                <p>2026년 1회에서 두드러진 HDLC·DB 설계·비기능 요구사항·서브넷과 최근 반복되는 코드 문제를 종합한 회차</p>
+            </div>
+            <div class="exam-meta">
+                <span>20문항</span><span>100점</span><span>150분</span>
+            </div>
+        </div>
+
+        <div class="timer-panel">
+            <div>
+                <div class="timer-label">시험 타이머</div>
+                <div class="timer" id="timer-exam1">02:30:00</div>
+            </div>
+            <div class="timer-buttons">
+                <button type="button" onclick="startTimer('exam1')">시작</button>
+                <button type="button" onclick="pauseTimer('exam1')">일시정지</button>
+                <button type="button" onclick="resetTimer('exam1')">초기화</button>
+            </div>
+        </div>
+
+        <div class="question-grid">
+            
+        <article class="question-card" id="exam1-q1">
+            <div class="question-head">
+                <span class="qnum">01</span>
+                <span class="tag">C언어 · 구조체/포인터</span>
+                <a class="answer-jump" href="#exam1-a1">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 C 프로그램의 출력 결과를 작성하시오.<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+struct Item {
+    int n;
+    const char *s;
+};
+
+int main() {
+    struct Item items[] = {
+        {2, &quot;KOREA&quot;},
+        {3, &quot;SOFTWARE&quot;},
+        {1, &quot;DATA&quot;}
+    };
+
+    struct Item *p = &amp;items[1];
+
+    printf(&quot;%c%d&quot;,
+           *(p-&gt;s + p-&gt;n),
+           (int)(p - items) + p-&gt;n);
+
+    return 0;
+}</code></pre></div>
+            <label class="answer-label" for="exam1-input-1">내 답안</label>
+            <textarea id="exam1-input-1" data-save-key="exam1-q1" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q2">
+            <div class="question-head">
+                <span class="qnum">02</span>
+                <span class="tag">C언어 · 연결 리스트</span>
+                <a class="answer-jump" href="#exam1-a2">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 C 프로그램의 출력 결과를 작성하시오.<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct Node {
+    int v;
+    struct Node *next;
+} Node;
+
+Node* append(Node *head, int v) {
+    Node *n = (Node*)malloc(sizeof(Node));
+    n-&gt;v = v;
+    n-&gt;next = NULL;
+
+    if (head == NULL)
+        return n;
+
+    Node *p = head;
+    while (p-&gt;next != NULL)
+        p = p-&gt;next;
+
+    p-&gt;next = n;
+    return head;
+}
+
+Node* move_front(Node *head, int k) {
+    if (head == NULL || head-&gt;v == k)
+        return head;
+
+    Node *p = head;
+
+    while (p-&gt;next != NULL &amp;&amp; p-&gt;next-&gt;v != k)
+        p = p-&gt;next;
+
+    if (p-&gt;next != NULL) {
+        Node *target = p-&gt;next;
+        p-&gt;next = target-&gt;next;
+        target-&gt;next = head;
+        head = target;
+    }
+
+    return head;
+}
+
+int main() {
+    Node *head = NULL;
+
+    for (int i = 1; i &lt;= 5; i++)
+        head = append(head, i);
+
+    head = move_front(head, 4);
+
+    for (Node *p = head; p != NULL; p = p-&gt;next)
+        printf(&quot;%d&quot;, p-&gt;v);
+
+    return 0;
+}</code></pre></div>
+            <label class="answer-label" for="exam1-input-2">내 답안</label>
+            <textarea id="exam1-input-2" data-save-key="exam1-q2" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q3">
+            <div class="question-head">
+                <span class="qnum">03</span>
+                <span class="tag">C언어 · 함수 포인터/비트 연산</span>
+                <a class="answer-jump" href="#exam1-a3">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 C 프로그램의 출력 결과를 작성하시오.<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+struct Ops {
+    int* (*f)(int*);
+};
+
+int* step(int *p) {
+    return p + 2;
+}
+
+int main() {
+    int a[] = {0x12, 0x2F, 0x34, 0x45};
+    struct Ops op;
+
+    op.f = step;
+
+    printf(&quot;%X&quot;, *op.f(a) ^ a[1]);
+
+    return 0;
+}</code></pre></div>
+            <label class="answer-label" for="exam1-input-3">내 답안</label>
+            <textarea id="exam1-input-3" data-save-key="exam1-q3" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q4">
+            <div class="question-head">
+                <span class="qnum">04</span>
+                <span class="tag">Java · 오버로딩/오버라이딩/static</span>
+                <a class="answer-jump" href="#exam1-a4">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Java 프로그램의 출력 결과를 작성하시오.<pre><code class="language-java">class P {
+    String f(Object x) {
+        return &quot;P1&quot;;
+    }
+
+    String f(String x) {
+        return &quot;P2&quot;;
+    }
+
+    static String id() {
+        return &quot;P&quot;;
+    }
+}
+
+class C extends P {
+    @Override
+    String f(Object x) {
+        return &quot;C1&quot;;
+    }
+
+    String f(Integer x) {
+        return &quot;C2&quot;;
+    }
+
+    static String id() {
+        return &quot;C&quot;;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        P a = new C();
+        Object x = &quot;A&quot;;
+
+        System.out.print(
+            a.f(x) + a.f(&quot;B&quot;) + a.id()
+        );
+    }
+}</code></pre></div>
+            <label class="answer-label" for="exam1-input-4">내 답안</label>
+            <textarea id="exam1-input-4" data-save-key="exam1-q4" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q5">
+            <div class="question-head">
+                <span class="qnum">05</span>
+                <span class="tag">Java · 생성자/동적 바인딩</span>
+                <a class="answer-jump" href="#exam1-a5">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Java 프로그램의 출력 결과를 작성하시오.<pre><code class="language-java">class A {
+    static int s = 1;
+    int x = 2;
+
+    A() {
+        s += x;
+        run();
+    }
+
+    void run() {
+        s += 10;
+    }
+}
+
+class B extends A {
+    int x = 5;
+
+    B() {
+        s += x;
+    }
+
+    @Override
+    void run() {
+        s += x;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new B();
+        System.out.print(A.s);
+    }
+}</code></pre></div>
+            <label class="answer-label" for="exam1-input-5">내 답안</label>
+            <textarea id="exam1-input-5" data-save-key="exam1-q5" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q6">
+            <div class="question-head">
+                <span class="qnum">06</span>
+                <span class="tag">Java · 람다식</span>
+                <a class="answer-jump" href="#exam1-a6">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Java 프로그램의 출력 결과를 작성하시오.<pre><code class="language-java">interface F {
+    int calc(int x);
+}
+
+public class Main {
+    static int run(F f) {
+        return f.calc(4);
+    }
+
+    public static void main(String[] args) {
+        F f = x -&gt; x * 2;
+
+        System.out.print(
+            run(f) + run(x -&gt; x - 1)
+        );
+    }
+}</code></pre></div>
+            <label class="answer-label" for="exam1-input-6">내 답안</label>
+            <textarea id="exam1-input-6" data-save-key="exam1-q6" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q7">
+            <div class="question-head">
+                <span class="qnum">07</span>
+                <span class="tag">Python · 슬라이싱</span>
+                <a class="answer-jump" href="#exam1-a7">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Python 프로그램의 출력 결과를 작성하시오.<pre><code class="language-python">a = list(range(1, 10))
+b = a[-2:1:-3]
+
+print(sum(b), b)</code></pre></div>
+            <label class="answer-label" for="exam1-input-7">내 답안</label>
+            <textarea id="exam1-input-7" data-save-key="exam1-q7" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q8">
+            <div class="question-head">
+                <span class="qnum">08</span>
+                <span class="tag">Python · 얕은 복사</span>
+                <a class="answer-jump" href="#exam1-a8">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Python 프로그램의 출력 결과를 작성하시오.<pre><code class="language-python">m = [[1], [2], [3]]
+b = m[:]
+
+b[0].append(4)
+b[1] = [9]
+
+print(sum(map(len, m)), m, b)</code></pre></div>
+            <label class="answer-label" for="exam1-input-8">내 답안</label>
+            <textarea id="exam1-input-8" data-save-key="exam1-q8" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q9">
+            <div class="question-head">
+                <span class="qnum">09</span>
+                <span class="tag">SQL · JOIN/서브쿼리</span>
+                <a class="answer-jump" href="#exam1-a9">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 테이블과 SQL을 보고 출력되는 값을 작성하시오.<div class="table-wrap"><table><thead><tr><th>DEPT_ID</th><th>BUDGET</th></tr></thead><tbody><tr><td>D1</td><td>100</td></tr><tr><td>D2</td><td>200</td></tr><tr><td>D3</td><td>300</td></tr><tr><td>D4</td><td>400</td></tr></tbody></table></div><div class="table-wrap"><table><thead><tr><th>EMP_ID</th><th>DEPT_ID</th></tr></thead><tbody><tr><td>1</td><td>D1</td></tr><tr><td>2</td><td>D1</td></tr><tr><td>3</td><td>D2</td></tr><tr><td>4</td><td>D3</td></tr><tr><td>5</td><td>D3</td></tr><tr><td>6</td><td>D3</td></tr><tr><td>7</td><td>D4</td></tr><tr><td>8</td><td>D4</td></tr></tbody></table></div><pre><code class="language-sql">SELECT COUNT(*)
+FROM EMP E
+JOIN DEPT D
+  ON E.DEPT_ID = D.DEPT_ID
+WHERE D.BUDGET &gt; (
+    SELECT AVG(BUDGET)
+    FROM DEPT
+);</code></pre></div>
+            <label class="answer-label" for="exam1-input-9">내 답안</label>
+            <textarea id="exam1-input-9" data-save-key="exam1-q9" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q10">
+            <div class="question-head">
+                <span class="qnum">10</span>
+                <span class="tag">SQL · DDL/외래키</span>
+                <a class="answer-jump" href="#exam1-a10">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 SQL의 빈칸 (1)~(5)에 들어갈 내용을 순서대로 작성하시오.<pre><code class="language-sql">CREATE TABLE DEPT (
+    DEPT_ID CHAR(3) PRIMARY KEY,
+    DEPT_NAME VARCHAR(20)
+);
+
+CREATE TABLE MEMBER (
+    MEMBER_ID CHAR(5) PRIMARY KEY,
+    DEPT_ID CHAR(3) NOT NULL,
+
+    ( 1 ) FK_MEMBER_DEPT
+    ( 2 ) KEY ( ( 3 ) )
+    ( 4 ) DEPT ( ( 5 ) )
+);</code></pre></div>
+            <label class="answer-label" for="exam1-input-10">내 답안</label>
+            <textarea id="exam1-input-10" data-save-key="exam1-q10" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q11">
+            <div class="question-head">
+                <span class="qnum">11</span>
+                <span class="tag">데이터베이스 · 설계 절차</span>
+                <a class="answer-jump" href="#exam1-a11">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 데이터베이스 설계 단계를 올바른 순서로 배열하시오.<br><br>
+<code>논리적 설계 / 구현 / 요구사항 분석 / 물리적 설계 / 개념적 설계</code></div>
+            <label class="answer-label" for="exam1-input-11">내 답안</label>
+            <textarea id="exam1-input-11" data-save-key="exam1-q11" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q12">
+            <div class="question-head">
+                <span class="qnum">12</span>
+                <span class="tag">네트워크 · 서브넷</span>
+                <a class="answer-jump" href="#exam1-a12">해설로 이동</a>
+            </div>
+            <div class="question-body">호스트의 IP 주소가 <code>172.16.37.145</code>이고 서브넷 마스크가 
+<code>255.255.252.0</code>일 때 다음을 작성하시오.<br>
+① 네트워크 주소를 CIDR 표기법으로 작성<br>
+② 브로드캐스트 주소 작성</div>
+            <label class="answer-label" for="exam1-input-12">내 답안</label>
+            <textarea id="exam1-input-12" data-save-key="exam1-q12" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q13">
+            <div class="question-head">
+                <span class="qnum">13</span>
+                <span class="tag">네트워크 · HDLC</span>
+                <a class="answer-jump" href="#exam1-a13">해설로 이동</a>
+            </div>
+            <div class="question-body">HDLC 프레임에 대한 설명이다. 빈칸에 들어갈 용어를 작성하시오.<br><br>
+① 실제 사용자 데이터를 전달하며 순서 번호를 사용하는 프레임: (　　　　) 프레임<br>
+② 흐름 제어와 오류 제어에 사용되는 프레임: (　　　　) 프레임<br>
+③ 링크 설정·해제 및 모드 설정 등에 사용되는 프레임: (　　　　) 프레임</div>
+            <label class="answer-label" for="exam1-input-13">내 답안</label>
+            <textarea id="exam1-input-13" data-save-key="exam1-q13" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q14">
+            <div class="question-head">
+                <span class="qnum">14</span>
+                <span class="tag">소프트웨어 설계 · 디자인 패턴</span>
+                <a class="answer-jump" href="#exam1-a14">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 디자인 패턴을 각각 작성하시오.<br><br>
+① 기능 계층과 구현 계층을 분리하여 두 계층을 독립적으로 확장할 수 있게 한다.<br>
+② 한 객체의 상태가 바뀌면 그 객체를 구독하는 여러 객체에 자동으로 통지한다.</div>
+            <label class="answer-label" for="exam1-input-14">내 답안</label>
+            <textarea id="exam1-input-14" data-save-key="exam1-q14" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q15">
+            <div class="question-head">
+                <span class="qnum">15</span>
+                <span class="tag">요구사항 · 비기능 요구사항</span>
+                <a class="answer-jump" href="#exam1-a15">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 비기능 요구사항의 유형을 작성하시오.<br><br>
+① 월간 서비스 가동률은 99.9% 이상이어야 한다.<br>
+② 서버 프로세스의 메모리 사용량은 1GB를 초과하지 않아야 한다.<br>
+③ 개인정보는 암호화하고 모든 접근 이력을 기록해야 한다.</div>
+            <label class="answer-label" for="exam1-input-15">내 답안</label>
+            <textarea id="exam1-input-15" data-save-key="exam1-q15" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q16">
+            <div class="question-head">
+                <span class="qnum">16</span>
+                <span class="tag">정보보안 · 관리체계</span>
+                <a class="answer-jump" href="#exam1-a16">해설로 이동</a>
+            </div>
+            <div class="question-body">조직이 정보자산을 체계적으로 보호하기 위해 관리적·기술적·물리적 보호조치를 수립하고 운영하는 
+‘정보보호 관리체계’의 영문 약어를 작성하시오.</div>
+            <label class="answer-label" for="exam1-input-16">내 답안</label>
+            <textarea id="exam1-input-16" data-save-key="exam1-q16" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q17">
+            <div class="question-head">
+                <span class="qnum">17</span>
+                <span class="tag">정보보안 · 공격 기법</span>
+                <a class="answer-jump" href="#exam1-a17">해설로 이동</a>
+            </div>
+            <div class="question-body">공격자가 특정 조직 구성원이 자주 방문하는 정상 웹사이트를 미리 감염시킨 뒤, 목표 사용자가 해당 사이트에 접속할 때 악성코드에 감염되도록 하는 공격을 작성하시오.</div>
+            <label class="answer-label" for="exam1-input-17">내 답안</label>
+            <textarea id="exam1-input-17" data-save-key="exam1-q17" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q18">
+            <div class="question-head">
+                <span class="qnum">18</span>
+                <span class="tag">소프트웨어 테스트 · 통합 테스트</span>
+                <a class="answer-jump" href="#exam1-a18">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 빈칸에 들어갈 용어를 작성하시오.<br><br>
+① 하향식 통합 테스트에서 아직 개발되지 않은 하위 모듈을 대신하는 더미 모듈: (　　　　)<br>
+② 상향식 통합 테스트에서 아직 개발되지 않은 상위 모듈을 대신하는 더미 모듈: (　　　　)</div>
+            <label class="answer-label" for="exam1-input-18">내 답안</label>
+            <textarea id="exam1-input-18" data-save-key="exam1-q18" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q19">
+            <div class="question-head">
+                <span class="qnum">19</span>
+                <span class="tag">소프트웨어 설계 · 응집도</span>
+                <a class="answer-jump" href="#exam1-a19">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 응집도를 각각 작성하시오.<br><br>
+① 한 활동의 출력이 다음 활동의 입력으로 사용된다.<br>
+② 서로 다른 기능들이 동일한 입력 자료나 출력 자료를 사용한다.<br>
+③ 모듈 내부의 모든 요소가 하나의 명확한 기능을 수행한다.</div>
+            <label class="answer-label" for="exam1-input-19">내 답안</label>
+            <textarea id="exam1-input-19" data-save-key="exam1-q19" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam1-q20">
+            <div class="question-head">
+                <span class="qnum">20</span>
+                <span class="tag">소프트웨어 테스트 · 커버리지</span>
+                <a class="answer-jump" href="#exam1-a20">해설로 이동</a>
+            </div>
+            <div class="question-body">복합 조건식 내부의 각 개별 조건이 최소 한 번씩 True와 False가 되도록 테스트하는 화이트박스 테스트 커버리지를 작성하시오.</div>
+            <label class="answer-label" for="exam1-input-20">내 답안</label>
+            <textarea id="exam1-input-20" data-save-key="exam1-q20" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        </div>
+
+        <details class="answer-book">
+            <summary>1회 정답 및 해설 펼쳐보기</summary>
+            <div class="answer-list">
+                
+        <section class="answer-item" id="exam1-a1">
+            <div class="answer-title">
+                <span>01번 정답</span>
+                <a href="#exam1-q1">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">T4</div>
+            <div class="explanation"><code>p</code>는 두 번째 구조체를 가리킨다. 문자열 <code>SOFTWARE</code>의 인덱스 3은 <code>T</code>이다. 
+<code>p-items</code>는 1이고 <code>p->n</code>은 3이므로 두 번째 값은 4이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a2">
+            <div class="answer-title">
+                <span>02번 정답</span>
+                <a href="#exam1-q2">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">41235</div>
+            <div class="explanation">초기 연결 순서는 <code>1→2→3→4→5</code>이다. 값 4를 가진 노드를 분리해 맨 앞으로 옮기므로 
+<code>4→1→2→3→5</code>가 된다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a3">
+            <div class="answer-title">
+                <span>03번 정답</span>
+                <a href="#exam1-q3">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">1B</div>
+            <div class="explanation">함수 포인터 호출 결과는 <code>a+2</code>이고 역참조 값은 <code>0x34</code>이다. 
+<code>0x34 XOR 0x2F = 0x1B</code>이며, <code>%X</code>는 대문자 16진수로 출력한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a4">
+            <div class="answer-title">
+                <span>04번 정답</span>
+                <a href="#exam1-q4">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">C1P2P</div>
+            <div class="explanation"><code>a.f(x)</code>는 컴파일 시 <code>f(Object)</code>가 선택되고 실제 객체 C의 메서드가 실행되어 
+<code>C1</code>이다. <code>a.f("B")</code>는 P의 <code>f(String)</code>이 선택되며 C에서 재정의하지 않았으므로 
+<code>P2</code>이다. static 메서드는 참조형 P를 기준으로 선택되어 <code>P</code>가 된다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a5">
+            <div class="answer-title">
+                <span>05번 정답</span>
+                <a href="#exam1-q5">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">8</div>
+            <div class="explanation">A 생성자에서 먼저 <code>s=1+2=3</code>이 된다. 생성자 내부의 <code>run()</code>도 동적 바인딩되므로 
+B의 메서드가 호출되지만, 이 시점의 B.x는 아직 초기화 전이라 기본값 0이다. 이후 B.x가 5로 초기화되고 B 생성자에서 
+5가 더해져 최종값은 8이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a6">
+            <div class="answer-title">
+                <span>06번 정답</span>
+                <a href="#exam1-q6">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">11</div>
+            <div class="explanation">첫 번째 람다는 <code>4×2=8</code>, 두 번째 람다는 <code>4-1=3</code>을 반환한다. 합은 11이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a7">
+            <div class="answer-title">
+                <span>07번 정답</span>
+                <a href="#exam1-q7">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">13 [8, 5]</div>
+            <div class="explanation">리스트는 <code>[1,2,3,4,5,6,7,8,9]</code>이다. 인덱스 -2에서 시작해 인덱스 1을 제외하고 
+-3씩 이동하므로 값은 8, 5이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a8">
+            <div class="answer-title">
+                <span>08번 정답</span>
+                <a href="#exam1-q8">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">4 [[1, 4], [2], [3]] [[1, 4], [9], [3]]</div>
+            <div class="explanation">슬라이싱으로 바깥 리스트만 복사되므로 내부 리스트 객체는 공유된다. 
+<code>b[0].append(4)</code>는 m에도 반영된다. 반면 <code>b[1]=[9]</code>는 b의 참조만 새 리스트로 교체한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a9">
+            <div class="answer-title">
+                <span>09번 정답</span>
+                <a href="#exam1-q9">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">5</div>
+            <div class="explanation">부서 예산 평균은 250이다. 조건을 만족하는 부서는 D3와 D4이며, 해당 부서 사원 수는 3명과 2명으로 총 5명이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a10">
+            <div class="answer-title">
+                <span>10번 정답</span>
+                <a href="#exam1-q10">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">(1) CONSTRAINT, (2) FOREIGN, (3) DEPT_ID, (4) REFERENCES, (5) DEPT_ID</div>
+            <div class="explanation">외래키 제약조건의 기본 형식은 
+<code>CONSTRAINT 이름 FOREIGN KEY(열) REFERENCES 부모테이블(부모키)</code>이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a11">
+            <div class="answer-title">
+                <span>11번 정답</span>
+                <a href="#exam1-q11">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">요구사항 분석 → 개념적 설계 → 논리적 설계 → 물리적 설계 → 구현</div>
+            <div class="explanation">사용자 요구를 분석한 뒤 개념 모델을 만들고, 관계형 스키마 등 논리 구조로 변환한다. 이후 저장 구조와 인덱스 등을 결정하고 실제 DB를 구현한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a12">
+            <div class="answer-title">
+                <span>12번 정답</span>
+                <a href="#exam1-q12">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 172.16.36.0/22  ② 172.16.39.255</div>
+            <div class="explanation">255.255.252.0은 /22이며 세 번째 옥텟의 블록 크기는 4이다. 37은 36~39 구간에 속한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a13">
+            <div class="answer-title">
+                <span>13번 정답</span>
+                <a href="#exam1-q13">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 정보(I)  ② 감독(S)  ③ 비번호(U)</div>
+            <div class="explanation">HDLC 프레임은 정보 프레임, 감독 프레임, 비번호 프레임으로 구분한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a14">
+            <div class="answer-title">
+                <span>14번 정답</span>
+                <a href="#exam1-q14">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① Bridge  ② Observer</div>
+            <div class="explanation">Bridge는 추상화와 구현을 분리한다. Observer는 주제 객체의 상태 변화를 다수의 관찰자에게 통지한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a15">
+            <div class="answer-title">
+                <span>15번 정답</span>
+                <a href="#exam1-q15">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 가용성  ② 자원  ③ 보안</div>
+            <div class="explanation">서비스를 사용할 수 있는 정도는 가용성, 메모리·CPU 제한은 자원, 암호화·접근통제는 보안 요구사항이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a16">
+            <div class="answer-title">
+                <span>16번 정답</span>
+                <a href="#exam1-q16">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">ISMS</div>
+            <div class="explanation">ISMS는 Information Security Management System의 약어이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a17">
+            <div class="answer-title">
+                <span>17번 정답</span>
+                <a href="#exam1-q17">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">워터링 홀 공격(Watering Hole)</div>
+            <div class="explanation">표적 집단이 자주 모이는 장소를 노린다는 의미에서 워터링 홀 공격이라 한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a18">
+            <div class="answer-title">
+                <span>18번 정답</span>
+                <a href="#exam1-q18">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 스텁(Stub)  ② 드라이버(Driver)</div>
+            <div class="explanation">하향식은 하위 모듈을 흉내 내는 스텁을, 상향식은 상위 호출자를 흉내 내는 드라이버를 사용한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a19">
+            <div class="answer-title">
+                <span>19번 정답</span>
+                <a href="#exam1-q19">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 절차적 응집도  ② 교환적(통신적) 응집도  ③ 기능적 응집도</div>
+            <div class="explanation">최근 출제에서 자주 구분되는 응집도 유형이다. 기능적 응집도가 가장 강한 응집도이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam1-a20">
+            <div class="answer-title">
+                <span>20번 정답</span>
+                <a href="#exam1-q20">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">조건 커버리지(Condition Coverage)</div>
+            <div class="explanation">전체 결정문의 결과가 아니라 각 원자 조건의 참·거짓 실행 여부를 기준으로 한다.</div>
+        </section>
+        
+            </div>
+        </details>
+    </section>
+    
+    <section class="exam-section" id="exam2">
+        <div class="exam-heading">
+            <div>
+                <p class="eyebrow">실전 모의고사 2회</p>
+                <h2>제2회 · 프로그래밍·DB 강화형</h2>
+                <p>2025년 회차에서 반복된 연결 리스트·람다·객체 참조·관계대수·NULL·보안 인증 유형을 강화한 회차</p>
+            </div>
+            <div class="exam-meta">
+                <span>20문항</span><span>100점</span><span>150분</span>
+            </div>
+        </div>
+
+        <div class="timer-panel">
+            <div>
+                <div class="timer-label">시험 타이머</div>
+                <div class="timer" id="timer-exam2">02:30:00</div>
+            </div>
+            <div class="timer-buttons">
+                <button type="button" onclick="startTimer('exam2')">시작</button>
+                <button type="button" onclick="pauseTimer('exam2')">일시정지</button>
+                <button type="button" onclick="resetTimer('exam2')">초기화</button>
+            </div>
+        </div>
+
+        <div class="question-grid">
+            
+        <article class="question-card" id="exam2-q1">
+            <div class="question-head">
+                <span class="qnum">01</span>
+                <span class="tag">C언어 · 연결 리스트/스택</span>
+                <a class="answer-jump" href="#exam2-a1">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 C 프로그램의 출력 결과를 작성하시오.<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct Node {
+    char c;
+    struct Node *next;
+} Node;
+
+int main() {
+    char s[] = &quot;ALGO&quot;;
+    Node *head = NULL;
+
+    for (int i = 0; s[i] != &#x27;\0&#x27;; i++) {
+        Node *n = (Node*)malloc(sizeof(Node));
+        n-&gt;c = s[i];
+        n-&gt;next = head;
+        head = n;
+    }
+
+    while (head != NULL) {
+        putchar(head-&gt;c);
+        Node *t = head;
+        head = head-&gt;next;
+        free(t);
+    }
+
+    return 0;
+}</code></pre></div>
+            <label class="answer-label" for="exam2-input-1">내 답안</label>
+            <textarea id="exam2-input-1" data-save-key="exam2-q1" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q2">
+            <div class="question-head">
+                <span class="qnum">02</span>
+                <span class="tag">C언어 · 구조체/비트 연산</span>
+                <a class="answer-jump" href="#exam2-a2">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 C 프로그램의 출력 결과를 작성하시오.<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+typedef struct {
+    unsigned char a;
+    unsigned char b;
+} Data;
+
+int main() {
+    Data d = {0x3C, 0xA5};
+
+    printf(&quot;%02X&quot;,
+           (d.a &lt;&lt; 1) ^ (d.b &gt;&gt; 1));
+
+    return 0;
+}</code></pre></div>
+            <label class="answer-label" for="exam2-input-2">내 답안</label>
+            <textarea id="exam2-input-2" data-save-key="exam2-q2" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q3">
+            <div class="question-head">
+                <span class="qnum">03</span>
+                <span class="tag">C언어 · 재귀함수</span>
+                <a class="answer-jump" href="#exam2-a3">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 C 프로그램의 출력 결과를 작성하시오.<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int f(int n) {
+    if (n &lt;= 0)
+        return 1;
+
+    return n + f(n - 2);
+}
+
+int main() {
+    printf(&quot;%d&quot;, f(7));
+    return 0;
+}</code></pre></div>
+            <label class="answer-label" for="exam2-input-3">내 답안</label>
+            <textarea id="exam2-input-3" data-save-key="exam2-q3" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q4">
+            <div class="question-head">
+                <span class="qnum">04</span>
+                <span class="tag">Java · 객체 참조</span>
+                <a class="answer-jump" href="#exam2-a4">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Java 프로그램의 출력 결과를 작성하시오.<pre><code class="language-java">class Box {
+    int v;
+
+    Box(int v) {
+        this.v = v;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box a = new Box(1);
+        Box b = new Box(2);
+        Box c = new Box(3);
+
+        Box[] arr = {a, b, c};
+
+        arr[0] = arr[2];
+        arr[1].v = arr[0].v + 1;
+        arr[2].v = arr[1].v + 1;
+
+        System.out.print(
+            a.v + &quot; &quot; + b.v + &quot; &quot; + c.v
+        );
+    }
+}</code></pre></div>
+            <label class="answer-label" for="exam2-input-4">내 답안</label>
+            <textarea id="exam2-input-4" data-save-key="exam2-q4" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q5">
+            <div class="question-head">
+                <span class="qnum">05</span>
+                <span class="tag">Java · 상속/인터페이스</span>
+                <a class="answer-jump" href="#exam2-a5">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Java 코드의 빈칸 (1)~(3)을 채우고 출력값을 작성하시오.<pre><code class="language-java">interface Device {
+    default int value() {
+        return 2;
+    }
+}
+
+class Base {
+    int x;
+
+    Base(int x) {
+        this.x = x;
+    }
+}
+
+class Child ( 1 ) Base ( 2 ) Device {
+    Child(int x) {
+        ( 3 )(x + 1);
+    }
+
+    int calc() {
+        return x * value();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.print(
+            new Child(4).calc()
+        );
+    }
+}</code></pre></div>
+            <label class="answer-label" for="exam2-input-5">내 답안</label>
+            <textarea id="exam2-input-5" data-save-key="exam2-q5" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q6">
+            <div class="question-head">
+                <span class="qnum">06</span>
+                <span class="tag">Python · 딕셔너리/컴프리헨션</span>
+                <a class="answer-jump" href="#exam2-a6">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Python 프로그램의 출력 결과를 작성하시오.<pre><code class="language-python">data = [
+    [1, 2, 2],
+    [3, 3],
+    [1, 4]
+]
+
+result = {
+    i: len(set(v))
+    for i, v in enumerate(data)
+    if sum(v) % 2 == 1
+}
+
+print(sorted(result.items()))</code></pre></div>
+            <label class="answer-label" for="exam2-input-6">내 답안</label>
+            <textarea id="exam2-input-6" data-save-key="exam2-q6" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q7">
+            <div class="question-head">
+                <span class="qnum">07</span>
+                <span class="tag">Python · 가변 기본 인자</span>
+                <a class="answer-jump" href="#exam2-a7">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Python 프로그램의 출력 결과를 작성하시오.<pre><code class="language-python">def f(x, acc=[]):
+    acc.append(x)
+    return sum(acc)
+
+print(
+    f(2),
+    f(3),
+    f(1, []),
+    f(4)
+)</code></pre></div>
+            <label class="answer-label" for="exam2-input-7">내 답안</label>
+            <textarea id="exam2-input-7" data-save-key="exam2-q7" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q8">
+            <div class="question-head">
+                <span class="qnum">08</span>
+                <span class="tag">Python · 트리/재귀</span>
+                <a class="answer-jump" href="#exam2-a8">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Python 프로그램의 출력 결과를 작성하시오.<pre><code class="language-python">class Node:
+    def __init__(self, v):
+        self.v = v
+        self.children = []
+
+def tree(values):
+    nodes = [Node(v) for v in values]
+
+    for i in range(1, len(values)):
+        parent = (i - 1) // 2
+        nodes[parent].children.append(nodes[i])
+
+    return nodes[0]
+
+def calc(node, level=0):
+    value = node.v if level % 2 == 0 else 0
+
+    return value + sum(
+        calc(child, level + 1)
+        for child in node.children
+    )
+
+root = tree([2, 4, 6, 8, 10, 12, 14])
+print(calc(root))</code></pre></div>
+            <label class="answer-label" for="exam2-input-8">내 답안</label>
+            <textarea id="exam2-input-8" data-save-key="exam2-q8" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q9">
+            <div class="question-head">
+                <span class="qnum">09</span>
+                <span class="tag">SQL · CROSS JOIN/NULL</span>
+                <a class="answer-jump" href="#exam2-a9">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 테이블과 SQL의 실행 결과를 작성하시오.<div class="table-wrap"><table><thead><tr><th>A.CODE</th></tr></thead><tbody><tr><td>1</td></tr><tr><td>2</td></tr><tr><td>NULL</td></tr></tbody></table></div><div class="table-wrap"><table><thead><tr><th>B.CODE</th></tr></thead><tbody><tr><td>1</td></tr><tr><td>2</td></tr><tr><td>3</td></tr></tbody></table></div><pre><code class="language-sql">SELECT COUNT(*)
+FROM A
+CROSS JOIN B
+WHERE A.CODE &lt;&gt; B.CODE;</code></pre></div>
+            <label class="answer-label" for="exam2-input-9">내 답안</label>
+            <textarea id="exam2-input-9" data-save-key="exam2-q9" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q10">
+            <div class="question-head">
+                <span class="qnum">10</span>
+                <span class="tag">SQL · GROUP BY/NULL</span>
+                <a class="answer-jump" href="#exam2-a10">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 테이블과 SQL의 실행 결과를 표 형태로 작성하시오.<div class="table-wrap"><table><thead><tr><th>DEPT</th><th>AMOUNT</th></tr></thead><tbody><tr><td>A</td><td>10</td></tr><tr><td>A</td><td>NULL</td></tr><tr><td>A</td><td>20</td></tr><tr><td>B</td><td>NULL</td></tr><tr><td>B</td><td>NULL</td></tr><tr><td>C</td><td>30</td></tr><tr><td>C</td><td>40</td></tr></tbody></table></div><pre><code class="language-sql">SELECT DEPT,
+       COUNT(AMOUNT) AS C1,
+       COUNT(*) AS C2
+FROM SALES
+GROUP BY DEPT
+HAVING COUNT(AMOUNT) &gt;= 2
+ORDER BY DEPT;</code></pre></div>
+            <label class="answer-label" for="exam2-input-10">내 답안</label>
+            <textarea id="exam2-input-10" data-save-key="exam2-q10" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q11">
+            <div class="question-head">
+                <span class="qnum">11</span>
+                <span class="tag">데이터베이스 · 관계대수</span>
+                <a class="answer-jump" href="#exam2-a11">해설로 이동</a>
+            </div>
+            <div class="question-body">릴레이션 R(X, Y)와 S(Y)가 있을 때, S의 모든 Y 값과 관계를 맺는 X만 구하는 관계대수 연산을 작성하시오.</div>
+            <label class="answer-label" for="exam2-input-11">내 답안</label>
+            <textarea id="exam2-input-11" data-save-key="exam2-q11" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q12">
+            <div class="question-head">
+                <span class="qnum">12</span>
+                <span class="tag">데이터베이스 · 파일 구조</span>
+                <a class="answer-jump" href="#exam2-a12">해설로 이동</a>
+            </div>
+            <div class="question-body">레코드의 검색 키 값과 해당 레코드의 주소를 쌍으로 구성해 빠른 직접 접근을 가능하게 하는 파일 접근 방법을 작성하시오.</div>
+            <label class="answer-label" for="exam2-input-12">내 답안</label>
+            <textarea id="exam2-input-12" data-save-key="exam2-q12" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q13">
+            <div class="question-head">
+                <span class="qnum">13</span>
+                <span class="tag">정보보안 · 인증</span>
+                <a class="answer-jump" href="#exam2-a13">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 용어를 작성하시오.<br><br>
+① 사용자의 비밀번호를 외부 서비스에 직접 제공하지 않고, 권한 위임용 토큰으로 다른 서비스의 자원에 접근하게 하는 표준<br>
+② 시간 또는 카운터를 기반으로 매번 새로운 일회용 인증번호를 생성하는 방식</div>
+            <label class="answer-label" for="exam2-input-13">내 답안</label>
+            <textarea id="exam2-input-13" data-save-key="exam2-q13" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q14">
+            <div class="question-head">
+                <span class="qnum">14</span>
+                <span class="tag">정보보안 · 접근통제</span>
+                <a class="answer-jump" href="#exam2-a14">해설로 이동</a>
+            </div>
+            <div class="question-body">정보의 비밀등급과 사용자의 보안등급을 중앙 정책에 따라 비교하여 접근을 허용하며, 
+개별 사용자가 임의로 권한을 변경할 수 없는 접근통제 방식의 영문 약어를 작성하시오.</div>
+            <label class="answer-label" for="exam2-input-14">내 답안</label>
+            <textarea id="exam2-input-14" data-save-key="exam2-q14" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q15">
+            <div class="question-head">
+                <span class="qnum">15</span>
+                <span class="tag">네트워크 · 오류 검출/정정</span>
+                <a class="answer-jump" href="#exam2-a15">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 방식을 작성하시오.<br><br>
+① 생성 다항식으로 이진 나눗셈을 수행한 나머지를 전송 데이터에 붙여 오류를 검출한다.<br>
+② 여러 개의 패리티 비트를 특정 위치에 배치하여 단일 비트 오류의 위치를 찾아 정정할 수 있다.</div>
+            <label class="answer-label" for="exam2-input-15">내 답안</label>
+            <textarea id="exam2-input-15" data-save-key="exam2-q15" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q16">
+            <div class="question-head">
+                <span class="qnum">16</span>
+                <span class="tag">UML · 구조 다이어그램</span>
+                <a class="answer-jump" href="#exam2-a16">해설로 이동</a>
+            </div>
+            <div class="question-body">시스템 구성 요소를 폴더 형태의 단위로 묶고, 단위 간 <code>import</code>, <code>access</code>, 
+<code>merge</code> 등의 의존 관계를 나타내는 UML 다이어그램을 작성하시오.</div>
+            <label class="answer-label" for="exam2-input-16">내 답안</label>
+            <textarea id="exam2-input-16" data-save-key="exam2-q16" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q17">
+            <div class="question-head">
+                <span class="qnum">17</span>
+                <span class="tag">소프트웨어 테스트 · 테스트 케이스</span>
+                <a class="answer-jump" href="#exam2-a17">해설로 이동</a>
+            </div>
+            <div class="question-body">테스트 케이스를 구성하는 다음 항목을 작성하시오.<br><br>
+① 무엇을 검증할 것인지 나타내는 조건<br>
+② 테스트에 투입하는 구체적인 입력값<br>
+③ 정상 수행되었을 때 기대하는 결과</div>
+            <label class="answer-label" for="exam2-input-17">내 답안</label>
+            <textarea id="exam2-input-17" data-save-key="exam2-q17" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q18">
+            <div class="question-head">
+                <span class="qnum">18</span>
+                <span class="tag">정보보안 · 네트워크 공격</span>
+                <a class="answer-jump" href="#exam2-a18">해설로 이동</a>
+            </div>
+            <div class="question-body">TCP 연결이 성립된 뒤 공격자가 시퀀스 번호 등을 추정·조작하여 정상 사용자의 연결을 탈취하는 공격을 작성하시오.</div>
+            <label class="answer-label" for="exam2-input-18">내 답안</label>
+            <textarea id="exam2-input-18" data-save-key="exam2-q18" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q19">
+            <div class="question-head">
+                <span class="qnum">19</span>
+                <span class="tag">소프트웨어 설계 · 결합도</span>
+                <a class="answer-jump" href="#exam2-a19">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 결합도를 각각 작성하시오.<br><br>
+① 다른 모듈의 내부 코드나 내부 자료를 직접 참조한다.<br>
+② 배열·레코드·구조체처럼 복합 자료구조 전체를 매개변수로 전달한다.<br>
+③ 여러 모듈이 동일한 전역 데이터를 공동으로 사용한다.</div>
+            <label class="answer-label" for="exam2-input-19">내 답안</label>
+            <textarea id="exam2-input-19" data-save-key="exam2-q19" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam2-q20">
+            <div class="question-head">
+                <span class="qnum">20</span>
+                <span class="tag">운영체제 · UNIX 명령어</span>
+                <a class="answer-jump" href="#exam2-a20">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 기능에 해당하는 UNIX/Linux 명령어를 작성하시오.<br><br>
+① 현재 실행 중인 프로세스 정보를 확인<br>
+② 파일이나 디렉터리의 접근 권한 변경<br>
+③ 파일 내용에서 특정 문자열 패턴 검색</div>
+            <label class="answer-label" for="exam2-input-20">내 답안</label>
+            <textarea id="exam2-input-20" data-save-key="exam2-q20" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        </div>
+
+        <details class="answer-book">
+            <summary>2회 정답 및 해설 펼쳐보기</summary>
+            <div class="answer-list">
+                
+        <section class="answer-item" id="exam2-a1">
+            <div class="answer-title">
+                <span>01번 정답</span>
+                <a href="#exam2-q1">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">OGLA</div>
+            <div class="explanation">각 문자를 연결 리스트의 맨 앞에 삽입하므로 문자열 순서가 뒤집힌다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a2">
+            <div class="answer-title">
+                <span>02번 정답</span>
+                <a href="#exam2-q2">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">2A</div>
+            <div class="explanation"><code>0x3C&lt;&lt;1 = 0x78</code>, <code>0xA5&gt;&gt;1 = 0x52</code>이다. 
+<code>0x78 XOR 0x52 = 0x2A</code>이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a3">
+            <div class="answer-title">
+                <span>03번 정답</span>
+                <a href="#exam2-q3">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">17</div>
+            <div class="explanation"><code>f(7)=7+5+3+1+f(-1)</code>이고 <code>f(-1)=1</code>이므로 17이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a4">
+            <div class="answer-title">
+                <span>04번 정답</span>
+                <a href="#exam2-q4">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">1 4 5</div>
+            <div class="explanation">배열 요소를 교체해도 변수 a, b, c의 참조 자체는 바뀌지 않는다. 
+<code>arr[1]</code>은 b이므로 b.v가 4가 되고, <code>arr[2]</code>는 c이므로 c.v가 5가 된다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a5">
+            <div class="answer-title">
+                <span>05번 정답</span>
+                <a href="#exam2-q5">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">(1) extends  (2) implements  (3) super  / 출력: 10</div>
+            <div class="explanation">Child는 Base를 상속하고 Device를 구현한다. 부모 생성자에는 5가 전달되고 기본 메서드 value()는 2이므로 결과는 10이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a6">
+            <div class="answer-title">
+                <span>06번 정답</span>
+                <a href="#exam2-q6">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">[(0, 2), (2, 2)]</div>
+            <div class="explanation">합이 홀수인 행은 인덱스 0과 2이다. 각 행에서 중복을 제거한 원소 수는 모두 2이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a7">
+            <div class="answer-title">
+                <span>07번 정답</span>
+                <a href="#exam2-q7">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">2 5 1 9</div>
+            <div class="explanation">기본 인자 리스트는 호출 간 공유된다. 첫 호출 후 [2], 두 번째 후 [2,3], 세 번째는 새 리스트 [1], 
+마지막 기본 리스트는 [2,3,4]가 된다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a8">
+            <div class="answer-title">
+                <span>08번 정답</span>
+                <a href="#exam2-q8">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">46</div>
+            <div class="explanation">레벨 0과 레벨 2의 값만 더한다. 루트 2와 손자 노드 8, 10, 12, 14의 합은 46이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a9">
+            <div class="answer-title">
+                <span>09번 정답</span>
+                <a href="#exam2-q9">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">4</div>
+            <div class="explanation">A=1일 때 B=2,3 두 건, A=2일 때 B=1,3 두 건이다. A가 NULL이면 비교 결과가 UNKNOWN이므로 WHERE를 통과하지 않는다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a10">
+            <div class="answer-title">
+                <span>10번 정답</span>
+                <a href="#exam2-q10">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">A | 2 | 3<br>C | 2 | 2</div>
+            <div class="explanation">COUNT(열)은 NULL을 제외하지만 COUNT(*)는 모든 행을 센다. 조건을 통과하는 부서는 A와 C이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a11">
+            <div class="answer-title">
+                <span>11번 정답</span>
+                <a href="#exam2-q11">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">나눗셈(Division, ÷)</div>
+            <div class="explanation">‘모든 조건을 만족하는 대상’을 구할 때 나눗셈 연산을 사용한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a12">
+            <div class="answer-title">
+                <span>12번 정답</span>
+                <a href="#exam2-q12">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">색인 접근 방법(Index Access Method)</div>
+            <div class="explanation">키와 포인터를 별도 구조로 유지해 검색 속도를 높이는 방식이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a13">
+            <div class="answer-title">
+                <span>13번 정답</span>
+                <a href="#exam2-q13">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① OAuth  ② OTP</div>
+            <div class="explanation">OAuth는 권한 위임 프로토콜이고, OTP는 One-Time Password이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a14">
+            <div class="answer-title">
+                <span>14번 정답</span>
+                <a href="#exam2-q14">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">MAC</div>
+            <div class="explanation">MAC는 Mandatory Access Control, 즉 강제적 접근통제이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a15">
+            <div class="answer-title">
+                <span>15번 정답</span>
+                <a href="#exam2-q15">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① CRC  ② 해밍 코드(Hamming Code)</div>
+            <div class="explanation">CRC는 오류 검출에 강하고, 해밍 코드는 일정 범위에서 오류 위치 확인과 정정이 가능하다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a16">
+            <div class="answer-title">
+                <span>16번 정답</span>
+                <a href="#exam2-q16">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">패키지 다이어그램(Package Diagram)</div>
+            <div class="explanation">패키지 다이어그램은 클래스나 하위 패키지를 묶어 모듈 의존 관계를 표현한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a17">
+            <div class="answer-title">
+                <span>17번 정답</span>
+                <a href="#exam2-q17">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 테스트 조건  ② 테스트 데이터  ③ 예상 결과</div>
+            <div class="explanation">테스트 조건, 테스트 데이터, 예상 결과는 테스트 케이스를 작성할 때 기본적으로 구분하는 항목이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a18">
+            <div class="answer-title">
+                <span>18번 정답</span>
+                <a href="#exam2-q18">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">세션 하이재킹(Session Hijacking)</div>
+            <div class="explanation">인증이 끝난 세션을 가로채 정상 사용자로 위장하는 공격이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a19">
+            <div class="answer-title">
+                <span>19번 정답</span>
+                <a href="#exam2-q19">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 내용 결합도  ② 스탬프 결합도  ③ 공통 결합도</div>
+            <div class="explanation">내용 결합도가 가장 강한 결합도이며, 모듈 설계에서는 결합도를 낮추는 것이 바람직하다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam2-a20">
+            <div class="answer-title">
+                <span>20번 정답</span>
+                <a href="#exam2-q20">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① ps  ② chmod  ③ grep</div>
+            <div class="explanation">프로세스 조회는 ps, 권한 변경은 chmod, 텍스트 패턴 검색은 grep이다.</div>
+        </section>
+        
+            </div>
+        </details>
+    </section>
+    
+    <section class="exam-section" id="exam3">
+        <div class="exam-heading">
+            <div>
+                <p class="eyebrow">실전 모의고사 3회</p>
+                <h2>제3회 · 최종 실전 고난도형</h2>
+                <p>포인터·연결 리스트·얕은 복사·상관 서브쿼리·정규화·CIDR을 결합해 실전 난도를 높인 최종 점검 회차</p>
+            </div>
+            <div class="exam-meta">
+                <span>20문항</span><span>100점</span><span>150분</span>
+            </div>
+        </div>
+
+        <div class="timer-panel">
+            <div>
+                <div class="timer-label">시험 타이머</div>
+                <div class="timer" id="timer-exam3">02:30:00</div>
+            </div>
+            <div class="timer-buttons">
+                <button type="button" onclick="startTimer('exam3')">시작</button>
+                <button type="button" onclick="pauseTimer('exam3')">일시정지</button>
+                <button type="button" onclick="resetTimer('exam3')">초기화</button>
+            </div>
+        </div>
+
+        <div class="question-grid">
+            
+        <article class="question-card" id="exam3-q1">
+            <div class="question-head">
+                <span class="qnum">01</span>
+                <span class="tag">C언어 · 배열/포인터</span>
+                <a class="answer-jump" href="#exam3-a1">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 C 프로그램의 출력 결과를 작성하시오.<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int sum1(int a[], int n) {
+    int s = 0;
+
+    for (int i = 0; i &lt; n; i++)
+        s += a[i];
+
+    return s;
+}
+
+int sum2(int *p, int n) {
+    int s = 0;
+
+    for (int i = 0; i &lt; n; i += 2)
+        s += *(p + i);
+
+    return s;
+}
+
+int main() {
+    int a[] = {3, 6, 9, 12};
+
+    printf(&quot;%d&quot;,
+           sum1(a, 4) - sum2(a, 4));
+
+    return 0;
+}</code></pre></div>
+            <label class="answer-label" for="exam3-input-1">내 답안</label>
+            <textarea id="exam3-input-1" data-save-key="exam3-q1" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q2">
+            <div class="question-head">
+                <span class="qnum">02</span>
+                <span class="tag">C언어 · 2차원 배열 포인터</span>
+                <a class="answer-jump" href="#exam3-a2">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 C 프로그램의 출력 결과를 작성하시오.<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int a[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    int (*p)[3] = a;
+
+    printf(&quot;%d&quot;,
+           *(*(p + 1) + 2)
+           + *(*(p) + 1));
+
+    return 0;
+}</code></pre></div>
+            <label class="answer-label" for="exam3-input-2">내 답안</label>
+            <textarea id="exam3-input-2" data-save-key="exam3-q2" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q3">
+            <div class="question-head">
+                <span class="qnum">03</span>
+                <span class="tag">C언어 · 연결 리스트 뒤집기</span>
+                <a class="answer-jump" href="#exam3-a3">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 C 프로그램의 출력 결과를 작성하시오.<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct Node {
+    int v;
+    struct Node *next;
+} Node;
+
+Node* append(Node *head, int v) {
+    Node *n = (Node*)malloc(sizeof(Node));
+    n-&gt;v = v;
+    n-&gt;next = NULL;
+
+    if (head == NULL)
+        return n;
+
+    Node *p = head;
+    while (p-&gt;next != NULL)
+        p = p-&gt;next;
+
+    p-&gt;next = n;
+    return head;
+}
+
+Node* reverse_n(Node *head, int n) {
+    Node *prev = NULL;
+    Node *cur = head;
+    Node *next = NULL;
+    int count = 0;
+
+    while (cur != NULL &amp;&amp; count &lt; n) {
+        next = cur-&gt;next;
+        cur-&gt;next = prev;
+        prev = cur;
+        cur = next;
+        count++;
+    }
+
+    head-&gt;next = cur;
+    return prev;
+}
+
+int main() {
+    Node *head = NULL;
+
+    for (int i = 1; i &lt;= 5; i++)
+        head = append(head, i);
+
+    head = reverse_n(head, 3);
+
+    for (Node *p = head; p != NULL; p = p-&gt;next)
+        printf(&quot;%d&quot;, p-&gt;v);
+
+    return 0;
+}</code></pre></div>
+            <label class="answer-label" for="exam3-input-3">내 답안</label>
+            <textarea id="exam3-input-3" data-save-key="exam3-q3" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q4">
+            <div class="question-head">
+                <span class="qnum">04</span>
+                <span class="tag">Java · enum</span>
+                <a class="answer-jump" href="#exam3-a4">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Java 프로그램의 출력 결과를 작성하시오.<pre><code class="language-java">enum Level {
+    LOW(1), MID(3), HIGH(5);
+
+    int v;
+
+    Level(int v) {
+        this.v = v;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Level x = Level.values()[
+            Level.LOW.ordinal() + 1
+        ];
+
+        System.out.print(
+            x.name() + x.v
+        );
+    }
+}</code></pre></div>
+            <label class="answer-label" for="exam3-input-4">내 답안</label>
+            <textarea id="exam3-input-4" data-save-key="exam3-q4" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q5">
+            <div class="question-head">
+                <span class="qnum">05</span>
+                <span class="tag">Java · 문자열 결합</span>
+                <a class="answer-jump" href="#exam3-a5">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Java 프로그램의 출력 결과를 작성하시오.<pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        int a = 7;
+        int b = 3;
+        String s = &quot;2&quot;;
+
+        System.out.print(
+            a - b + s + (a + b)
+        );
+    }
+}</code></pre></div>
+            <label class="answer-label" for="exam3-input-5">내 답안</label>
+            <textarea id="exam3-input-5" data-save-key="exam3-q5" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q6">
+            <div class="question-head">
+                <span class="qnum">06</span>
+                <span class="tag">Python · 역방향 슬라이싱</span>
+                <a class="answer-jump" href="#exam3-a6">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Python 프로그램의 출력 결과를 작성하시오.<pre><code class="language-python">lst = list(range(12))
+
+for x in lst[10:1:-4]:
+    print(x, end=&#x27;B&#x27;)</code></pre></div>
+            <label class="answer-label" for="exam3-input-6">내 답안</label>
+            <textarea id="exam3-input-6" data-save-key="exam3-q6" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q7">
+            <div class="question-head">
+                <span class="qnum">07</span>
+                <span class="tag">Python · 얕은 복사/리스트 연산</span>
+                <a class="answer-jump" href="#exam3-a7">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 Python 프로그램의 출력 결과를 작성하시오.<pre><code class="language-python">def g(a):
+    m = [[x] for x in a]
+    b = m[:]
+
+    for i in range(len(b) - 1):
+        b[i + 1] += b[i]
+
+    return sum(
+        sum(x) for x in m
+    )
+
+print(g([2, 4, 6, 8]))</code></pre></div>
+            <label class="answer-label" for="exam3-input-7">내 답안</label>
+            <textarea id="exam3-input-7" data-save-key="exam3-q7" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q8">
+            <div class="question-head">
+                <span class="qnum">08</span>
+                <span class="tag">SQL · 상관 서브쿼리</span>
+                <a class="answer-jump" href="#exam3-a8">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 테이블과 SQL의 실행 결과를 작성하시오.<div class="table-wrap"><table><thead><tr><th>NAME</th><th>DEPT</th><th>SALARY</th></tr></thead><tbody><tr><td>Kim</td><td>A</td><td>70</td></tr><tr><td>Lee</td><td>A</td><td>90</td></tr><tr><td>Park</td><td>A</td><td>80</td></tr><tr><td>Choi</td><td>B</td><td>60</td></tr><tr><td>Jung</td><td>B</td><td>100</td></tr></tbody></table></div><pre><code class="language-sql">SELECT E1.NAME
+FROM EMP E1
+WHERE E1.SALARY &gt; (
+    SELECT AVG(E2.SALARY)
+    FROM EMP E2
+    WHERE E2.DEPT = E1.DEPT
+)
+ORDER BY E1.NAME;</code></pre></div>
+            <label class="answer-label" for="exam3-input-8">내 답안</label>
+            <textarea id="exam3-input-8" data-save-key="exam3-q8" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q9">
+            <div class="question-head">
+                <span class="qnum">09</span>
+                <span class="tag">SQL · LEFT OUTER JOIN</span>
+                <a class="answer-jump" href="#exam3-a9">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 테이블과 SQL의 실행 결과를 작성하시오.<div class="table-wrap"><table><thead><tr><th>TEAM.ID</th><th>TEAM.NAME</th></tr></thead><tbody><tr><td>1</td><td>Lions</td></tr><tr><td>2</td><td>Falcons</td></tr><tr><td>3</td><td>Bears</td></tr></tbody></table></div><div class="table-wrap"><table><thead><tr><th>PLAYER.ID</th><th>PLAYER.TEAM_ID</th></tr></thead><tbody><tr><td>101</td><td>1</td></tr><tr><td>102</td><td>1</td></tr><tr><td>103</td><td>3</td></tr></tbody></table></div><pre><code class="language-sql">SELECT T.NAME
+FROM TEAM T
+LEFT OUTER JOIN PLAYER P
+  ON T.ID = P.TEAM_ID
+WHERE P.ID IS NULL
+ORDER BY T.NAME;</code></pre></div>
+            <label class="answer-label" for="exam3-input-9">내 답안</label>
+            <textarea id="exam3-input-9" data-save-key="exam3-q9" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q10">
+            <div class="question-head">
+                <span class="qnum">10</span>
+                <span class="tag">데이터베이스 · 정규화</span>
+                <a class="answer-jump" href="#exam3-a10">해설로 이동</a>
+            </div>
+            <div class="question-body">릴레이션 <code>R(A, B, C, D)</code>의 기본키는 A이고 다음 함수적 종속성이 존재한다.<br><br>
+<code>A → B</code><br>
+<code>B → C</code><br>
+<code>A → D</code><br><br>
+① R이 현재 만족하는 가장 높은 정규형을 작성하시오.<br>
+② 제3정규형을 위반하게 하는 종속성을 작성하시오.<br>
+③ 제3정규형이 되도록 분해한 릴레이션의 예를 작성하시오.</div>
+            <label class="answer-label" for="exam3-input-10">내 답안</label>
+            <textarea id="exam3-input-10" data-save-key="exam3-q10" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q11">
+            <div class="question-head">
+                <span class="qnum">11</span>
+                <span class="tag">데이터베이스 · 관계형 용어</span>
+                <a class="answer-jump" href="#exam3-a11">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 관계형 데이터베이스 용어를 작성하시오.<br><br>
+① 릴레이션을 구성하는 속성의 개수<br>
+② 릴레이션에 포함된 튜플의 개수<br>
+③ 하나의 속성이 가질 수 있는 값의 범위<br>
+④ 다른 릴레이션의 기본키를 참조하는 속성</div>
+            <label class="answer-label" for="exam3-input-11">내 답안</label>
+            <textarea id="exam3-input-11" data-save-key="exam3-q11" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q12">
+            <div class="question-head">
+                <span class="qnum">12</span>
+                <span class="tag">네트워크 · CIDR</span>
+                <a class="answer-jump" href="#exam3-a12">해설로 이동</a>
+            </div>
+            <div class="question-body">호스트 IP가 <code>10.20.77.130/20</code>일 때 다음을 작성하시오.<br>
+① 네트워크 주소<br>
+② 브로드캐스트 주소</div>
+            <label class="answer-label" for="exam3-input-12">내 답안</label>
+            <textarea id="exam3-input-12" data-save-key="exam3-q12" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q13">
+            <div class="question-head">
+                <span class="qnum">13</span>
+                <span class="tag">네트워크 · HDLC 동작 모드</span>
+                <a class="answer-jump" href="#exam3-a13">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 HDLC 동작 모드를 작성하시오.<br><br>
+① 종국이 주국의 명령 또는 허가가 있을 때만 전송한다.<br>
+② 불균형 구성에서 종국이 주국의 명시적인 허가 없이 전송할 수 있다.<br>
+③ 두 복합국이 동등한 위치에서 명령과 응답을 주고받는다.</div>
+            <label class="answer-label" for="exam3-input-13">내 답안</label>
+            <textarea id="exam3-input-13" data-save-key="exam3-q13" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q14">
+            <div class="question-head">
+                <span class="qnum">14</span>
+                <span class="tag">소프트웨어 설계 · 디자인 패턴</span>
+                <a class="answer-jump" href="#exam3-a14">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 디자인 패턴을 작성하시오.<br><br>
+① 여러 알고리즘을 각각 캡슐화하고 실행 중 필요에 따라 교체할 수 있게 한다.<br>
+② 객체 생성 코드를 하위 클래스에 위임하여 생성할 객체의 구체적인 클래스를 결정한다.</div>
+            <label class="answer-label" for="exam3-input-14">내 답안</label>
+            <textarea id="exam3-input-14" data-save-key="exam3-q14" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q15">
+            <div class="question-head">
+                <span class="qnum">15</span>
+                <span class="tag">정보보안 · 파일 공격</span>
+                <a class="answer-jump" href="#exam3-a15">해설로 이동</a>
+            </div>
+            <div class="question-body">공격자가 권한이 높은 프로그램이 임시 파일을 검사한 뒤 사용하는 짧은 시간 차이를 악용해, 
+임시 파일을 중요 파일을 가리키는 특수 링크로 바꾸는 공격을 작성하시오.</div>
+            <label class="answer-label" for="exam3-input-15">내 답안</label>
+            <textarea id="exam3-input-15" data-save-key="exam3-q15" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q16">
+            <div class="question-head">
+                <span class="qnum">16</span>
+                <span class="tag">정보보안 · 사회공학/표적 공격</span>
+                <a class="answer-jump" href="#exam3-a16">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 공격을 작성하시오.<br><br>
+① 특정 기업의 인사담당자처럼 명확한 표적을 정해 업무 관련 내용으로 위장한 이메일을 보내는 피싱 공격<br>
+② 표적 집단이 자주 방문하는 정상 웹사이트를 감염시켜 방문자를 공격하는 방식</div>
+            <label class="answer-label" for="exam3-input-16">내 답안</label>
+            <textarea id="exam3-input-16" data-save-key="exam3-q16" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q17">
+            <div class="question-head">
+                <span class="qnum">17</span>
+                <span class="tag">요구사항 · 비기능 요구사항</span>
+                <a class="answer-jump" href="#exam3-a17">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 요구사항 유형을 작성하시오.<br><br>
+① 모든 조회 요청은 2초 이내에 응답해야 한다.<br>
+② 기능 수정 시 다른 모듈에 미치는 영향을 최소화하고 수정 절차를 문서화해야 한다.<br>
+③ 동일한 프로그램이 Windows와 Linux 환경에서 실행될 수 있어야 한다.</div>
+            <label class="answer-label" for="exam3-input-17">내 답안</label>
+            <textarea id="exam3-input-17" data-save-key="exam3-q17" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q18">
+            <div class="question-head">
+                <span class="qnum">18</span>
+                <span class="tag">소프트웨어 테스트 · 통합 전략</span>
+                <a class="answer-jump" href="#exam3-a18">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 빈칸에 들어갈 용어를 작성하시오.<br><br>
+① 상위 모듈부터 결합하는 (　　　　) 통합 테스트에서는 하위 모듈 대신 스텁을 사용한다.<br>
+② 하위 모듈부터 결합하는 (　　　　) 통합 테스트에서는 상위 모듈 대신 드라이버를 사용한다.</div>
+            <label class="answer-label" for="exam3-input-18">내 답안</label>
+            <textarea id="exam3-input-18" data-save-key="exam3-q18" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q19">
+            <div class="question-head">
+                <span class="qnum">19</span>
+                <span class="tag">소프트웨어 설계 · 결합도</span>
+                <a class="answer-jump" href="#exam3-a19">해설로 이동</a>
+            </div>
+            <div class="question-body">다음 설명에 해당하는 결합도를 각각 작성하시오.<br><br>
+① 모듈 간에 단순한 값만 매개변수로 전달한다.<br>
+② 호출 모듈이 피호출 모듈의 처리 흐름을 결정하는 제어값을 전달한다.<br>
+③ 여러 모듈이 공통된 외부 통신 규약이나 장치 인터페이스를 사용한다.</div>
+            <label class="answer-label" for="exam3-input-19">내 답안</label>
+            <textarea id="exam3-input-19" data-save-key="exam3-q19" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        <article class="question-card" id="exam3-q20">
+            <div class="question-head">
+                <span class="qnum">20</span>
+                <span class="tag">소프트웨어 테스트 · MC/DC</span>
+                <a class="answer-jump" href="#exam3-a20">해설로 이동</a>
+            </div>
+            <div class="question-body">복합 결정문에서 각 개별 조건이 다른 조건의 값은 고정된 상태에서 전체 결정 결과에 독립적으로 영향을 미친다는 것을 입증하도록 테스트하는 커버리지를 작성하시오.</div>
+            <label class="answer-label" for="exam3-input-20">내 답안</label>
+            <textarea id="exam3-input-20" data-save-key="exam3-q20" rows="3"
+                placeholder="여기에 답을 입력하세요. 입력 내용은 이 브라우저에 자동 저장됩니다."></textarea>
+        </article>
+        
+        </div>
+
+        <details class="answer-book">
+            <summary>3회 정답 및 해설 펼쳐보기</summary>
+            <div class="answer-list">
+                
+        <section class="answer-item" id="exam3-a1">
+            <div class="answer-title">
+                <span>01번 정답</span>
+                <a href="#exam3-q1">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">18</div>
+            <div class="explanation">전체 합은 30이고 짝수 인덱스 원소의 합은 3+9=12이므로 차이는 18이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a2">
+            <div class="answer-title">
+                <span>02번 정답</span>
+                <a href="#exam3-q2">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">8</div>
+            <div class="explanation">첫 번째 값은 a[1][2]=6, 두 번째 값은 a[0][1]=2이므로 합은 8이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a3">
+            <div class="answer-title">
+                <span>03번 정답</span>
+                <a href="#exam3-q3">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">32145</div>
+            <div class="explanation">처음 세 노드 1→2→3만 뒤집혀 3→2→1이 되고, 나머지 4→5가 뒤에 연결된다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a4">
+            <div class="answer-title">
+                <span>04번 정답</span>
+                <a href="#exam3-q4">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">MID3</div>
+            <div class="explanation">LOW의 ordinal은 0이므로 인덱스 1의 MID가 선택된다. 이름 MID와 값 3이 붙어서 출력된다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a5">
+            <div class="answer-title">
+                <span>05번 정답</span>
+                <a href="#exam3-q5">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">4210</div>
+            <div class="explanation">먼저 a-b는 숫자 4이다. 이후 문자열 s와 결합되어 <code>42</code>가 되고, 괄호 안 a+b의 10이 문자열로 이어진다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a6">
+            <div class="answer-title">
+                <span>06번 정답</span>
+                <a href="#exam3-q6">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">10B6B2B</div>
+            <div class="explanation">인덱스 10에서 시작해 인덱스 1보다 클 동안 -4씩 이동하므로 10, 6, 2가 선택된다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a7">
+            <div class="answer-title">
+                <span>07번 정답</span>
+                <a href="#exam3-q7">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">40</div>
+            <div class="explanation">b는 바깥 리스트만 복사하므로 내부 리스트를 m과 공유한다. 순서대로 
+[4]→[4,2], [6]→[6,4,2], [8]→[8,6,4,2]가 되고 m의 모든 원소 합은 40이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a8">
+            <div class="answer-title">
+                <span>08번 정답</span>
+                <a href="#exam3-q8">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">Jung<br>Lee</div>
+            <div class="explanation">A부서 평균은 80으로 Lee만 초과한다. B부서 평균도 80으로 Jung만 초과한다. 이름순 정렬 결과 Jung, Lee이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a9">
+            <div class="answer-title">
+                <span>09번 정답</span>
+                <a href="#exam3-q9">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">Falcons</div>
+            <div class="explanation">선수가 한 명도 없어 조인된 P.ID가 NULL이 되는 팀은 Falcons이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a10">
+            <div class="answer-title">
+                <span>10번 정답</span>
+                <a href="#exam3-q10">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 제2정규형(2NF)<br>② B → C에 의한 이행적 종속<br>③ R1(A,B,D), R2(B,C)</div>
+            <div class="explanation">기본키가 단일 속성이므로 부분 함수 종속은 없다. 그러나 A→B이고 B→C이므로 C가 A에 이행적으로 종속되어 3NF를 위반한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a11">
+            <div class="answer-title">
+                <span>11번 정답</span>
+                <a href="#exam3-q11">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 차수(Degree)  ② 카디널리티(Cardinality)  ③ 도메인(Domain)  ④ 외래키(Foreign Key)</div>
+            <div class="explanation">차수는 열의 수, 카디널리티는 행의 수를 뜻한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a12">
+            <div class="answer-title">
+                <span>12번 정답</span>
+                <a href="#exam3-q12">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 10.20.64.0/20  ② 10.20.79.255</div>
+            <div class="explanation">/20의 세 번째 옥텟 블록 크기는 16이다. 77은 64~79 구간에 포함된다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a13">
+            <div class="answer-title">
+                <span>13번 정답</span>
+                <a href="#exam3-q13">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 정규 응답 모드(NRM)  ② 비동기 응답 모드(ARM)  ③ 비동기 균형 모드(ABM)</div>
+            <div class="explanation">NRM과 ARM은 주국·종국의 불균형 구성이고, ABM은 두 복합국이 대등한 균형 구성이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a14">
+            <div class="answer-title">
+                <span>14번 정답</span>
+                <a href="#exam3-q14">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① Strategy  ② Factory Method</div>
+            <div class="explanation">Strategy는 알고리즘 교체, Factory Method는 객체 생성 책임의 하위 클래스 위임이 핵심이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a15">
+            <div class="answer-title">
+                <span>15번 정답</span>
+                <a href="#exam3-q15">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">심볼릭 링크 공격(Symbolic Link Attack)</div>
+            <div class="explanation">파일 검사 시점과 사용 시점의 차이를 악용하는 TOCTOU 계열 공격으로도 볼 수 있다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a16">
+            <div class="answer-title">
+                <span>16번 정답</span>
+                <a href="#exam3-q16">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 스피어 피싱(Spear Phishing)  ② 워터링 홀(Watering Hole)</div>
+            <div class="explanation">스피어 피싱은 특정 개인·조직을 겨냥한 맞춤형 피싱이고, 워터링 홀은 표적이 자주 찾는 웹사이트를 이용한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a17">
+            <div class="answer-title">
+                <span>17번 정답</span>
+                <a href="#exam3-q17">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 성능  ② 유지보수성  ③ 이식성</div>
+            <div class="explanation">응답시간은 성능, 수정 용이성은 유지보수성, 다른 환경으로 옮길 수 있는 능력은 이식성이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a18">
+            <div class="answer-title">
+                <span>18번 정답</span>
+                <a href="#exam3-q18">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 하향식  ② 상향식</div>
+            <div class="explanation">하향식은 상위에서 아래로 진행하며 스텁을 사용하고, 상향식은 아래에서 위로 진행하며 드라이버를 사용한다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a19">
+            <div class="answer-title">
+                <span>19번 정답</span>
+                <a href="#exam3-q19">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">① 자료 결합도  ② 제어 결합도  ③ 외부 결합도</div>
+            <div class="explanation">자료 결합도는 가장 바람직한 낮은 결합도에 속한다. 제어 플래그 전달은 제어 결합, 외부 형식이나 장치 공유는 외부 결합이다.</div>
+        </section>
+        
+        <section class="answer-item" id="exam3-a20">
+            <div class="answer-title">
+                <span>20번 정답</span>
+                <a href="#exam3-q20">문제로 돌아가기</a>
+            </div>
+            <div class="answer-value">변경 조건/결정 커버리지(MC/DC)</div>
+            <div class="explanation">MC/DC는 각 조건이 전체 결정 결과를 독립적으로 바꿀 수 있음을 보여야 한다.</div>
+        </section>
+        
+            </div>
+        </details>
+    </section>
+    
+  </main>
+</div>
+
+<button class="back-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<footer class="footer">
+  본 자료는 최근 출제 경향을 학습하기 위해 새로 제작한 예상 문제이며 실제 시험 문제 또는 공식 출제 자료가 아닙니다.
+</footer>
+
+<script>
+let baseFont = 17;
+function fontChange(delta) {
+  baseFont = Math.max(14, Math.min(22, baseFont + delta));
+  document.documentElement.style.setProperty('--font-size', baseFont + 'px');
+}
+function toggleTheme() {
+  const root = document.documentElement;
+  const dark = root.getAttribute('data-theme') === 'dark';
+  const next = dark ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('it-mock-theme', next);
+}
+const savedTheme = localStorage.getItem('it-mock-theme');
+if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+function toggleAllAnswers(open) {
+  document.querySelectorAll('.answer-book').forEach(d => d.open = open);
+}
+
+document.querySelectorAll('textarea[data-save-key]').forEach(el => {
+  const key = 'it-mock-answer-' + el.dataset.saveKey;
+  const saved = localStorage.getItem(key);
+  if (saved !== null) el.value = saved;
+  el.addEventListener('input', () => localStorage.setItem(key, el.value));
+});
+
+document.querySelectorAll('pre').forEach(pre => {
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn';
+  btn.type = 'button';
+  btn.textContent = '복사';
+  btn.addEventListener('click', async () => {
+    const text = pre.querySelector('code')?.innerText || pre.innerText;
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = '완료';
+      setTimeout(() => btn.textContent = '복사', 1000);
+    } catch (e) {
+      btn.textContent = '실패';
+    }
+  });
+  pre.appendChild(btn);
+});
+
+const timers = {};
+['exam1','exam2','exam3'].forEach(id => {
+  timers[id] = { remain: 9000, interval: null };
+});
+
+function renderTimer(id) {
+  const t = timers[id].remain;
+  const h = String(Math.floor(t / 3600)).padStart(2,'0');
+  const m = String(Math.floor((t % 3600) / 60)).padStart(2,'0');
+  const s = String(t % 60).padStart(2,'0');
+  document.getElementById('timer-' + id).textContent = `${h}:${m}:${s}`;
+}
+
+function startTimer(id) {
+  if (timers[id].interval || timers[id].remain <= 0) return;
+  timers[id].interval = setInterval(() => {
+    timers[id].remain--;
+    renderTimer(id);
+    if (timers[id].remain <= 0) {
+      pauseTimer(id);
+      alert('시험 시간이 종료되었습니다.');
+    }
+  }, 1000);
+}
+
+function pauseTimer(id) {
+  if (timers[id].interval) {
+    clearInterval(timers[id].interval);
+    timers[id].interval = null;
+  }
+}
+
+function resetTimer(id) {
+  pauseTimer(id);
+  timers[id].remain = 9000;
+  renderTimer(id);
+}
+
+function printQuestions() {
+  document.body.classList.add('questions-only');
+  window.print();
+  setTimeout(() => document.body.classList.remove('questions-only'), 300);
+}
+function printAll() {
+  document.body.classList.remove('questions-only');
+  document.querySelectorAll('.answer-book').forEach(d => d.open = true);
+  window.print();
+}
+</script>
+</body>
+</html>
