@@ -1,0 +1,131 @@
+
+aws -> Route 53 호스팅 생성(jsh340866.store) -> 세부 정보
+ns-30.awsdns-03.com
+ns-1675.awsdns-17.co.uk
+ns-816.awsdns-38.net
+ns-1384.awsdns-45.org
+
+
+// ================================================
+SSL인증서 로컬로 받기
+certbot certonly --standalone 
+
+이메일 주소 입력 : jsh340866@gmail.com
+도메인 주소 입력 : jsh340866.store
+
+find / -name *jsh340866*
+cd /etc/letsencrypt/live/www.jsh340866.store
+// ================================================
+
+#
+sudo openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out keystore.p12 -name ttp -CAfile chain.pem -caname root
+Enter Export Password:123456
+Verifying - Enter Export Password:123456
+
+keystore.p12 생성됨
+
+
+
+새로운 세션 생성 Duplication Session
+ec2-user -> sudo su -> cd /app/16_DEPLOY_SBONLY/
+
+기존 세션에서
+cp ./keystore.p12 /app/16_DEPLOY_SBONLY
+
+
+
+# 권한 설정
+chmod -R o+rx /etc/letsencrypt/live/
+
+
+# keystore.p12 키 복제
+DEPLOY_SBONLY.ppk
+DEPLOY_SBONLY.pem 
+있는곳에서 cmd 실행
+scp -i DEPLOY_SBONLY.pem ec2-user@15.165.253.103:/etc/letsencrypt/live/www.jsh340866.store/keystore.p12 .ls
+폴더에 keystore.p12 생성됨
+
+
+idea. 들어가서 -> resources/ssl/keystore.p12 여기로 옮기기
+
+## application.properties 설정 추가
+server.port=443
+server.ssl.key-store=classpath:ssl/keystore.p12
+server.ssl.key-store-type=PKCS12
+server.ssl.key-store-password=123456
+
+
+
+
+## jenkins 443 포트 열기 권한 설정
+nohup java -jar /var/lib/jenkins/workspace/MY_WEBSERVER_DEPLOY/build/libs/demo-0.0.1-SNAPSHOT.jar &
+
+
+
+## 16_DEPLOY_SBONLY - jenkins 권한 부여
+vi /etc/sudoers
+:se nu
+:100
+101 jenkins ALL=(ALL)       NOPASSWD:/usr/bin/nohup
+102 jenkins ALL=(ALL)       NOPASSWD:/usr/bin/java
+103 jenkins ALL=(ALL)       NOPASSWD:/usr/bin/kill
+:wq!
+
+
+
+
+// ========================================================
+
+## 오류 - Embed Tomcat 권한 부족 동작실패 오류 처리 - JENKINS POST TASK SCRIPT CODE 변경
+
+#!/bin/bash
+
+# 특정 프로세스의 PID 찾기
+PID=$(ps aux | grep 'java -jar /var/lib/jenkins/workspace/DEPLOY_SBONLY/build/libs/demo-0.0.1-SNAPSHOT.jar' | grep -v grep | awk '{print $2}')
+
+# PID가 존재하는지 확인
+if [ -n "$PID" ]; then
+    # PID가 있으면 프로세스 종료
+    echo "프로세스 종료 중... PID: $PID"
+    sudo kill $PID
+    echo "프로세스가 종료되었습니다."
+else
+    # PID가 없으면 메시지 출력
+    echo "종료할 프로세스가 없습니다."
+fi
+
+sudo nohup java -jar /var/lib/jenkins/workspace/DEPLOY_SBONLY/build/libs/demo-0.0.1-SNAPSHOT.jar &
+
+// ========================================================
+
+
+
+
+#!/bin/bash
+
+# 프로세스를 실행한 Java 명령어와 JAR 파일 경로를 지정합니다.
+JAVA_COMMAND="java -jar"
+JAR_PATH="/var/lib/jenkins/workspace/DEPLOY_SBLONLY/build/libs/demo-0.0.1-SNAPSHOT.jar"
+
+# 해당 Java 프로세스를 찾아서 PID를 얻어냅니다.
+TARGET_PID=$(pgrep -f "$JAVA_COMMAND $JAR_PATH")
+
+# PID를 확인하고 종료합니다.
+if [ -z "$TARGET_PID" ]; then
+    echo "해당 프로세스가 이미 종료되었습니다."
+else
+    echo "프로세스 $TARGET_PID 종료 중..."
+    kill -9 "$TARGET_PID"
+
+    # 종료 후 확인
+    if ps -p "$TARGET_PID" > /dev/null; then
+        echo "프로세스 $TARGET_PID 종료 실패"
+        # exit 1
+    else
+        echo "프로세스 $TARGET_PID 성공적으로 종료됨"
+    fi
+fi
+
+nohup java -jar /var/lib/jenkins/workspace/DEPLOY_SBLONLY/build/libs/demo-0.0.1-SNAPSHOT.jar &
+
+
