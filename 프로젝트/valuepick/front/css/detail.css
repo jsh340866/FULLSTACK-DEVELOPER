@@ -48,6 +48,13 @@
   color: var(--text-sub);
 }
 
+.summary-title .favorite-btn {
+  position: static;
+  vertical-align: middle;
+  margin-left: 8px;
+  font-size: 24px;
+}
+
 .summary-price .price {
   font-size: 32px;
   font-weight: 800;
@@ -113,10 +120,33 @@
   color: var(--text-sub);
 }
 
+.legend-item.toggle {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm, 6px);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.legend-item.toggle:hover {
+  background: var(--bg, #f2f4f6);
+}
+
+.legend-item.toggle:not(.active) {
+  opacity: 0.4;
+}
+
+.legend-item.toggle:not(.active) .legend-dot {
+  background: var(--text-sub) !important;
+}
+
 .legend-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .chart-canvas {
@@ -130,7 +160,6 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
-  margin-bottom: 24px;
 }
 
 .news-section h2 {
@@ -186,12 +215,47 @@
   color: var(--text-sub);
 }
 
+.news-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.news-page-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.news-page-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.news-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.news-page-info {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
 /* 재무제표 */
 .financial-section {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
+  margin-bottom: 24px;
 }
 
 .financial-section > h2 {

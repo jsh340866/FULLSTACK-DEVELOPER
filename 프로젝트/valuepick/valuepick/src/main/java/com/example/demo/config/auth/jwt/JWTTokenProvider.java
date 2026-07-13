@@ -91,12 +91,20 @@ public class JWTTokenProvider {
         for (String role : auth.split(",")) {
             authorities.add(new SimpleGrantedAuthority(role));
         }
-
-        if (!userRepository.existsByEmail(username)) {
+        
+        // 관심종목
+        User user = userRepository.findByEmail(username).orElse(null);
+        if (user == null) {
+          return null;
+        }
+      
+        // 회원탈퇴
+        if (!userRepository.existsByEmailAndDeletedAtIsNull(username)) {
             return null;
         }
 
         UserDto userDto = UserDto.builder()
+                .id(user.getId())
                 .email(username)
                 .role(UserRole.valueOf(auth.replace("ROLE_", "")))
                 .build();
@@ -119,11 +127,11 @@ public class JWTTokenProvider {
 
     // RefreshToken 재발급 시 email로 직접 토큰 생성
     public TokenInfo generateTokenByEmail(String email) {
-        if (!userRepository.existsByEmail(email)) {
+        if (!userRepository.existsByEmailAndDeletedAtIsNull(email)) {
             return null;
         }
 
-        User user = userRepository.findByEmail(email).get();
+        User user = userRepository.findByEmailAndDeletedAtIsNull(email).get();
         String authority = "ROLE_" + user.getRole().name();
 
         long now = new Date().getTime();
