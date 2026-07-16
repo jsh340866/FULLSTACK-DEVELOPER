@@ -1,0 +1,162 @@
+## ▶ 분류: [SQL 작성형 - DDL / 제약조건]
+
+💡 사원번호 정수·기본키 / 이름 가변문자20·빈값불가 / 급여 정수·기본값3000 / 부서코드 문자3자리·부서 참조·삭제시 NULL
+➔
+CREATE TABLE 사원 (
+    사원번호 INT PRIMARY KEY,
+    이름 VARCHAR(20) NOT NULL,
+    급여 INT DEFAULT 3000,
+    부서코드 CHAR(3),
+    FOREIGN KEY (부서코드) REFERENCES 부서(부서코드) ON DELETE SET NULL
+);
+
+* 각 컬럼 정의 뒤 콤마, 마지막만 제외
+* "삭제 시 NULL" = ON DELETE SET NULL / "함께 삭제" = ON DELETE CASCADE
+* REFERENCES 테이블(컬럼) - 컬럼명 괄호 필수
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - ALTER]
+
+💡 컬럼 추가 ➔ `ALTER TABLE t ADD 컬럼명 자료형;`
+💡 자료형/컬럼 정의 변경 ➔ `ALTER TABLE t MODIFY 컬럼명 자료형;`
+💡 컬럼 삭제 (COLUMN 필수) ➔ `ALTER TABLE t DROP COLUMN 컬럼명;`
+
+예시:
+ALTER TABLE 사원 ADD 이메일 VARCHAR(50);
+ALTER TABLE 사원 MODIFY 이름 VARCHAR(40);
+ALTER TABLE 사원 DROP COLUMN 급여;
+
+* 추가 ADD / 변경 MODIFY / 삭제 DROP COLUMN
+* COLUMN은 DROP에만 붙음
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - 인덱스 / 뷰]
+
+💡 컬럼값 중복 불가 인덱스 생성 (SELECT의 DISTINCT와 혼동 주의) ➔ `CREATE UNIQUE INDEX 인덱스명 ON 테이블명(컬럼명);`
+- 예: CREATE UNIQUE INDEX email_idx ON 사원(이메일);
+- 어순 고정: CREATE [UNIQUE] INDEX 인덱스명 ON 테이블명(컬럼명)
+
+💡 뷰를 통한 데이터 입력 시 '조건 위반 데이터 입력 방지' ➔ `WITH CHECK OPTION`
+- 예:
+CREATE VIEW v_고액연봉 AS
+SELECT 사원번호, 이름 FROM 사원 WHERE 급여 >= 5000
+WITH CHECK OPTION;
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - DML]
+
+💡 일부 컬럼만 값 지정, 나머지는 DEFAULT/NULL ➔ `INSERT INTO t (c1, c2) VALUES (v1, v2);`
+- 예: INSERT INTO 사원 (사원번호, 이름) VALUES (101, '박영희');
+- INSERT INTO - INTO 누락 주의, 문자값은 작은따옴표
+
+💡 특정 조건 대상 행의 값을 자기 값 기반으로 갱신 ➔ `UPDATE t SET c = c * n WHERE 조건;`
+- 예: UPDATE 사원 SET 급여 = 급여 * 1.1 WHERE 부서코드 = 'D01';
+- SET = 바꿀 값 / WHERE = 대상 행 (역할 반전 주의)
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - JOIN / 조회]
+
+💡 두 테이블을 공통 컬럼으로 연결해 조회, 동명 컬럼은 접두사 필수 ➔ `SELECT ... FROM t1 JOIN t2 ON t1.c = t2.c;`
+- 예: SELECT 사원.이름, 부서.부서명 FROM 사원 JOIN 부서 ON 사원.부서코드 = 부서.부서코드;
+
+💡 조회 절 어순 (고정, 순서 절대 안 바뀜) ➔ `SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ...;`
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - 권한]
+
+💡 사용자에게 권한 부여, 재부여까지 허용 ➔ `GRANT 권한 ON t TO user WITH GRANT OPTION;`
+💡 사용자로부터 권한 회수, 부여받은 권한까지 연쇄 회수 ➔ `REVOKE 권한 ON t FROM user CASCADE;`
+- 예: GRANT SELECT, UPDATE ON 사원 TO LEE; / REVOKE UPDATE ON 사원 FROM LEE;
+- GRANT는 TO, REVOKE는 FROM (혼동 주의)
+- "재부여 불가" = WITH GRANT OPTION을 안 붙이는 것 (기본값)
+
+------------------------------------------------
+
+## ▶ 감점 체크리스트 (검산 루틴)
+
+1. 나열 항목 사이 콤마 (컬럼 정의 / SELECT 절 / 권한 목록)
+2. INSERT INTO - INTO 누락
+3. DROP COLUMN - COLUMN 누락
+4. REFERENCES 테이블(컬럼) - 컬럼 괄호 누락
+5. ON DELETE - FOREIGN KEY 안에서는 CASCADE 단독 불가
+6. GRANT TO / REVOKE FROM 혼동
+7. WHERE 누락 (UPDATE/DELETE 전체 행 적용 사고)
+
+
+
+## ▶ 분류: [SQL 작성형 - 집계함수 / DISTINCT]
+
+💡 집계 함수 5종 ➔ `COUNT(*), SUM(컬럼), AVG(컬럼), MAX(컬럼), MIN(컬럼)`
+- 예: SELECT COUNT(*) FROM 사원 WHERE 부서코드 = 'D01';
+- COUNT(*) = NULL 포함 전체 행 수 / COUNT(컬럼) = 해당 컬럼이 NULL이 아닌 행 수 (혼동 주의)
+
+💡 중복 제거하고 조회 ➔ `SELECT DISTINCT 컬럼 FROM t;`
+- CREATE UNIQUE INDEX(애초에 중복 저장을 막음)와 SELECT DISTINCT(조회 결과에서만 중복 제거)는 완전히 다른 개념 — 26-1 이론 문제에서도 이 둘을 혼동 유도하는 보기가 나옴
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - 서브쿼리] — 26-1 기출 (JOIN + AVG 서브쿼리 조합)
+
+💡 SELECT문 안에 포함된 또 다른 SELECT문, 반드시 괄호로 감쌈 ➔ `서브쿼리 (Subquery)`
+
+- 예 (26-1 기출 유형): 자기 부서 평균 예산보다 급여가 큰 사원 수 조회
+```sql
+SELECT COUNT(*) FROM 사원
+WHERE 급여 > (SELECT AVG(예산) FROM 부서 WHERE 부서.부서코드 = 사원.부서코드);
+```
+
+💡 서브쿼리 결과가 한 건이라도 존재하는지만 검사 ➔ `WHERE EXISTS (서브쿼리)`
+
+💡 서브쿼리 결과 목록에 포함되는지 검사 ➔ `WHERE 컬럼 IN (서브쿼리)`
+
+- 서브쿼리는 WHERE 절 안에서 값(AVG 등) 또는 목록(IN) 자리에 들어간다는 것만 기억하면 어순은 어렵지 않음
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - OUTER JOIN / DELETE / 조건 연산자]
+
+💡 왼쪽 테이블 기준, 오른쪽에 매칭 없어도 결과에 포함(빈 자리는 NULL) ➔ `LEFT OUTER JOIN`
+
+💡 오른쪽 테이블 기준 ➔ `RIGHT OUTER JOIN`
+
+- 예: SELECT 사원.이름, 부서.부서명 FROM 사원 LEFT OUTER JOIN 부서 ON 사원.부서코드 = 부서.부서코드;
+
+💡 행 삭제 (WHERE 없으면 전체 행 삭제 — 실수 유발 1순위) ➔ `DELETE FROM t WHERE 조건;`
+
+- 예: DELETE FROM 사원 WHERE 사원번호 = 101;
+
+💡 범위 조건 ➔ `BETWEEN a AND b`
+
+💡 목록 포함 조건 ➔ `IN (v1, v2, ...)`
+
+💡 패턴(와일드카드) 조건 ➔ `LIKE '%문자%'` (`%` = 0글자 이상, `_` = 정확히 1글자)
+
+💡 NULL 검사 (`=`, `!=` 사용 불가, 반드시 전용 구문) ➔ `IS NULL / IS NOT NULL`
+
+------------------------------------------------
+
+## ▶ 감점 체크리스트 추가 (기존 1~7번에 이어서)
+
+8. DELETE에서 WHERE 누락 → 의도치 않은 전체 삭제
+9. NULL 비교에 `= NULL` 사용 (반드시 `IS NULL`)
+10. 서브쿼리 괄호 누락 / 서브쿼리 안에서 바깥 테이블 컬럼 참조 시 상관관계(correlated) 처리 누락
+11. COUNT(*) vs COUNT(컬럼) 구분 안 하고 아무거나 씀
+
+
+
+
+
+
+
+
+
+
+
+
+
+
