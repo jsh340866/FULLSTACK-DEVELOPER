@@ -44,6 +44,11 @@ CREATE VIEW v_고액연봉 AS
 SELECT 사원번호, 이름 FROM 사원 WHERE 급여 >= 5000
 WITH CHECK OPTION;
 
+CREATE VIEW 고액_V AS
+SELECT * FROM ㅇㅇ
+WITH CHECK OPTION;
+
+
 ------------------------------------------------
 
 ## ▶ 분류: [SQL 작성형 - DML]
@@ -87,6 +92,11 @@ WITH CHECK OPTION;
 6. GRANT TO / REVOKE FROM 혼동
 7. WHERE 누락 (UPDATE/DELETE 전체 행 적용 사고)
 
+
+### 깨
+delete from 사원 where 부서='금융';
+truncate table 사원;
+- truncate는 where, from 모두 사용하지않음 오직 전체데이터삭제
 
 
 ## ▶ 분류: [SQL 작성형 - 집계함수 / DISTINCT]
