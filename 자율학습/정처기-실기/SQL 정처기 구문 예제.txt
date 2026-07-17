@@ -7,7 +7,7 @@ CREATE TABLE 사원 (
     이름 VARCHAR(20) NOT NULL,
     급여 INT DEFAULT 3000,
     부서코드 CHAR(3),
-    FOREIGN KEY (부서코드) REFERENCES 부서(부서코드) ON DELETE SET NULL
+    CONSTRAINT 부서_FK FOREIGN KEY (부서코드) REFERENCES 부서(부서코드) ON DELETE SET NULL
 );
 
 * 각 컬럼 정의 뒤 콤마, 마지막만 제외
@@ -150,7 +150,43 @@ WHERE 급여 > (SELECT AVG(예산) FROM 부서 WHERE 부서.부서코드 = 사�
 
 
 
+## ▶ 분류: [SQL 작성형 - 순위 함수] — 기출 빈출 (20-2, 22-2 등)
 
+💡 동순위 다음 순위 건너뜀 (1,2,2,4) ➔ `RANK() OVER (ORDER BY 컬럼 DESC)`
+💡 동순위 다음 순위 연속 (1,2,2,3) ➔ `DENSE_RANK() OVER (ORDER BY 컬럼 DESC)`
+💡 동순위 없이 무조건 일련번호 (1,2,3,4) ➔ `ROW_NUMBER() OVER (ORDER BY 컬럼 DESC)`
+- 예: SELECT 이름, RANK() OVER (ORDER BY 급여 DESC) AS 순위 FROM 사원;
+- OVER 괄호 누락이 최다 감점 포인트 / PARTITION BY 부서코드 = 부서별로 순위 따로
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - 집합 연산]
+
+💡 두 조회 결과 합집합, 중복 제거 ➔ `UNION`
+💡 합집합, 중복 포함 ➔ `UNION ALL`
+💡 교집합 ➔ `INTERSECT` / 차집합 ➔ `MINUS`
+- 예: SELECT 이름 FROM 사원_서울 UNION SELECT 이름 FROM 사원_부산;
+- UNION(중복 제거) vs UNION ALL(중복 유지) 구분이 단골 출제
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - GROUP BY / HAVING 실전 예시]
+
+💡 그룹별 집계 후, 집계 결과에 조건 ➔ WHERE가 아니라 `HAVING`
+- 예: SELECT 부서코드, AVG(급여) FROM 사원 GROUP BY 부서코드 HAVING AVG(급여) >= 4000;
+- WHERE = 그룹핑 전 행 필터 / HAVING = 그룹핑 후 집계값 필터 (역할 구분 빈출)
+- SELECT에 집계 아닌 컬럼이 오면 반드시 GROUP BY에 포함
+
+💡 소계/합계 행 추가 ➔ `GROUP BY ROLLUP(컬럼)` / 모든 조합 집계 ➔ `CUBE(컬럼)`
+
+------------------------------------------------
+
+## ▶ 분류: [SQL 작성형 - DROP / TRUNCATE]
+
+💡 테이블 삭제, 참조하는 객체까지 연쇄 삭제 ➔ `DROP TABLE t CASCADE;`
+💡 참조 객체 있으면 삭제 취소 ➔ `DROP TABLE t RESTRICT;`
+💡 구조는 남기고 전체 행만 제거 (롤백 불가, DDL) ➔ `TRUNCATE TABLE t;`
+- DELETE(DML, 롤백 가능, WHERE 가능) / TRUNCATE(DDL, 구조 유지) / DROP(구조까지 제거) 3단 비교 빈출
 
 
 
