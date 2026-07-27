@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   initHeader('');
+  initFooter();
 
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     </section>
 
     <section class="chart-section">
-      <h2>수익 및 자산 추이 (최근 5년)</h2>
+      <h2>수익 및 자산 추이</h2>
       <div class="tab-header" id="chartTabHeader" role="tablist">
         <button class="tab-btn active" role="tab" data-chart="revenue">수익 추이</button>
         <button class="tab-btn" role="tab" data-chart="asset">자산 추이</button>

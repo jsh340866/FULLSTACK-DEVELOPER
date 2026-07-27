@@ -22,8 +22,9 @@ function renderHeader(activePage) {
     { href: 'list.html', label: '종목리스트', key: 'list' },
     { href: 'rank.html', label: '랭킹', key: 'ranking' },
     { href: 'investment-journal.html', label: '투자일지', key: 'journal' },
-    { href: 'community.html', label: '커뮤니티', key: 'community' },
-    { href: 'admin.html', label: '관리자', key: 'admin' },
+    // 1차 배포에서는 미노출 - 추후 활성화 예정
+    // { href: 'community.html', label: '커뮤니티', key: 'community' },
+    // { href: 'admin.html', label: '관리자', key: 'admin' },
     { href: 'favorites.html', label: '관심종목', key: 'watchlist' },
   ];
 
@@ -59,6 +60,55 @@ function renderHeader(activePage) {
       </div>
     </header>
   `;
+}
+
+function renderFooter() {
+  return `
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="footer-brand">ValuePick</div>
+            <p class="footer-desc">가치투자 지표 기반<br />종목 스크리닝 서비스</p>
+          </div>
+
+          <div class="footer-col">
+            <div class="footer-heading">서비스</div>
+            <ul class="footer-list">
+              <li><a href="list.html">종목 리스트</a></li>
+              <li><a href="investment-journal.html">투자일지</a></li>
+              <li><a href="mypage.html">마이페이지</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <div class="footer-heading">데이터 출처</div>
+            <ul class="footer-list footer-list--plain">
+              <li>DART (금융감독원 전자공시)</li>
+              <li>KRX (한국거래소)</li>
+              <li>공공데이터포털</li>
+              <li>한국수출입은행 (환율)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-disclaimer">
+            ⚠ 본 서비스는 투자 참고용 정보만을 제공하며, 제공된 정보는 투자 권유가 아닙니다.
+            투자 판단 및 결과에 대한 책임은 전적으로 투자자 본인에게 있습니다.
+          </p>
+          <p class="footer-copyright">© 2025 ValuePick. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  `;
+}
+
+function initFooter() {
+  const placeholder = document.getElementById('footer-placeholder');
+  if (placeholder) {
+    placeholder.outerHTML = renderFooter();
+  }
 }
 
 function initHeader(activePage) {
