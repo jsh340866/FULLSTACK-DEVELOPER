@@ -1,6 +1,6 @@
 # 📚 풀스택 개발자 학습 기록 (2026-02 ~ 2026-07)
 
-2026년 2월 말부터 7월까지 진행한 풀스택 개발자 과정의 학습 기록입니다. 요구사항 분석/화면설계 → 프론트엔드 기초(HTML/CSS/JS) → 데이터베이스(MySQL) → Java → 웹 백엔드(JSP/Servlet → Spring Boot) → 인증/외부 API 연동 → React → Docker/AWS 배포 → Python/ML 입문 순으로 학습 범위를 확장했습니다.
+2026년 2월 말부터 7월까지 진행한 풀스택 개발자 과정의 학습 기록입니다. 요구사항 분석/화면설계 → 프론트엔드 기초(HTML/CSS/JS) → 데이터베이스(MySQL) → Java → 웹 백엔드(JSP/Servlet → Spring Boot) → 인증/외부 API 연동 → React → Docker/AWS 배포 → Python/데이터분석·머신러닝(회귀/분류/군집화/이상치탐지) → FastAPI 서버 개발 → PySpark 분산처리 순으로 학습 범위를 확장했습니다.
 
 ## 목차
 
@@ -11,7 +11,7 @@
 | [🌱 4월](#-4월-학습-내용-데이터베이스--java-입문) | 04-01 ~ 04-29 | MySQL(DDL/DML/정규화/JOIN), Java 기초 문법, OOP 입문 |
 | [🚀 5월](#-5월-학습-내용-java-심화--jspservlet--spring-boot-입문) | 05-04 ~ 05-29 | Java 심화(컬렉션/스트림/네트워크), JSP/Servlet, Spring Boot 입문 |
 | [⚙️ 6월](#️-6월-학습-내용-spring-boot-고급--외부-api--보안--react) | 06-01 ~ 06-30 | JPA/MyBatis, 외부 API(OAuth2/결제), Spring Security/JWT, React |
-| [☁️ 7월](#️-7월-학습-내용-배포인프라--pythonml-입문) | 07-01 ~ 07-13 | React-Spring 연동, Docker/AWS/Jenkins 배포, Python·NumPy(ML 입문) |
+| [☁️ 7월](#️-7월-학습-내용-배포인프라--pythonml-입문) | 07-01 ~ 07-28 | React-Spring 연동, Docker/AWS/Jenkins 배포, Python 머신러닝(회귀/분류/군집화/이상치탐지), FastAPI, PySpark |
 
 ---
 
@@ -217,9 +217,14 @@
 - AWS EC2, Jenkins CI/CD, Route 53 도메인 + SSL 인증서, HTTPS 자동배포
 - Docker 기반 Jenkins 전환, GitHub-EC2 연동 자동배포
 - Python 기초 문법 및 NumPy — 머신러닝 입문
+- pandas 데이터 전처리(결측치/인코딩)와 지도학습(LinearRegression/LogisticRegression/RandomForest/LightGBM) 회귀·분류 파이프라인, 평가지표(MAE/RMSE/R², accuracy/ROC-AUC/precision/recall)
+- 비지도학습(KMeans 군집화, PCA 차원축소, Apriori 연관규칙)과 IsolationForest 이상치 탐지
+- Matplotlib/Seaborn 데이터 시각화(히스토그램/산점도/히트맵)
+- FastAPI REST API 서버 구축 및 Docker 컨테이너화
+- PySpark 분산처리(로컬/스탠드얼론 클러스터, Window 함수, Parquet 저장)
 
 <details>
-<summary>날짜별 요약 (9일)</summary>
+<summary>날짜별 요약 (17일)</summary>
 
 | 날짜 | 핵심 학습 주제 |
 |---|---|
@@ -232,16 +237,26 @@
 | 2026-07-09 | Route 53 도메인 연결, Let's Encrypt SSL 발급, Jenkins HTTPS(443) 자동배포; Jenkins Docker 컨테이너 전환(DooD 구조) |
 | 2026-07-10 | Docker 리소스 전체 정리 후 재기동, Jenkins-GitHub-EC2 SSH 자동배포, Nginx(FN)가 SSL 종단하도록 전환 |
 | 2026-07-13 | 파이썬 기초 문법(변수/자료구조/제어문/함수) 및 중급 패턴, NumPy 배열(ndarray) 생성/인덱싱/벡터연산/axis 집계 — 머신러닝 입문 |
+| 2026-07-14 | pandas Series/DataFrame 조작(loc/iloc/조건필터/인코딩), 결측치 처리(중앙값/최빈값), Adult Income 데이터 이진분류(RandomForest, accuracy/ROC-AUC) |
+| 2026-07-15 | 이진분류 노트북 코드 리뷰 — EDA→전처리→인코딩→분할→학습→평가→제출 전체 파이프라인 원리 정리(데이터 누수 방지, stratify, predict vs predict_proba) |
+| 2026-07-20 | 선형회귀(단순/다중) — 상관분석/히트맵, 원핫인코딩, MAE/RMSE/R², LightGBM 비교, statsmodels OLS로 계수 유의성(p-value) 검증 |
+| 2026-07-21 | 로지스틱회귀 — 시그모이드, StandardScaler(fit은 train에만), 임계값 조정과 recall/precision 트레이드오프, joblib 모델+스케일러 저장 |
+| 2026-07-22 | 비지도학습 — KMeans 군집화(실루엣 점수/Elbow Method), PCA 차원축소(explained_variance_ratio_), Apriori 연관규칙(지지도/신뢰도/향상도), 이상치 탐지 알고리즘 개관 |
+| 2026-07-23 | IsolationForest 이상치 탐지(contamination, decision_function) 및 제거 전후 분류 성능 비교; Matplotlib 시각화(히스토그램/산점도/추세선)로 EDA·다중분류·회귀 관계 확인 |
+| 2026-07-24 | FastAPI 서버 구축 및 Docker 컨테이너화, CORSMiddleware/Pydantic 요청 검증, feature_spec.json 기반 폼 자동생성, SQLite 연동 CRUD API |
+| 2026-07-28 | PySpark 로컬(`local[*]`) 실행 — stack()으로 Wide→Long 변환, Window 함수(row_number/avg over), Parquet partitionBy 저장; 스탠드얼론 클러스터(spark://) 전환과 분산 처리 원리(executor/파티션 지역성) 검증 |
 
 </details>
 
-> 7/11(토)~7/12(일)은 주말. 7/13부터는 그동안의 Spring/Docker/배포 트랙과 별개로 **Python·NumPy 기반 머신러닝 입문** 트랙이 새로 시작되었습니다.
 
 ### 핵심 역량
 - Docker/Docker Compose 기반 다중 컨테이너 설계·배포 능력
 - AWS EC2 + Jenkins + Route 53/SSL을 이용한 CI/CD 파이프라인 구축 경험
 - React-Spring Boot 풀스택 서비스 통합 및 배포 경험
 - Python 기초 및 NumPy를 활용한 데이터 처리 입문
+- pandas 기반 데이터 전처리와 scikit-learn 지도학습(회귀/분류)·비지도학습(군집화/차원축소/이상치탐지) 파이프라인 구현 및 평가지표 해석 능력
+- FastAPI로 REST API 서버를 구축하고 Docker로 컨테이너화하는 능력
+- PySpark를 활용한 대용량 데이터 분산 처리 개념 이해
 
 ---
 
@@ -252,6 +267,6 @@
 - **4월**에는 **데이터베이스와 Java 백엔드 기초**로 범위를 넓혀, MySQL 설계·정규화·SQL부터 Java 문법과 객체지향(상속·다형성·인터페이스)까지 풀스택 개발자로 성장하기 위한 기반을 체계적으로 학습했습니다.
 - **5월**에는 **Java 심화(컬렉션·스트림·네트워크)**부터 **JSP/Servlet**을 거쳐 **Spring Boot**까지 학습 범위를 확장하며, 로그인 인증과 MVC 요청 처리 흐름을 직접 구현했습니다.
 - **6월**에는 **JPA/MyBatis 데이터 계층, OAuth2 소셜 로그인·결제 등 외부 API 연동, Spring Security/JWT 인증**을 심화 학습하고, 후반부에는 **React**로 넘어가 프론트엔드와 Spring Boot를 Axios로 연동하는 풀스택 흐름을 완성했습니다.
-- **7월**에는 React-Spring Boot 통합을 마무리한 뒤 **Docker, AWS EC2, Jenkins, Route 53/SSL**을 이용한 **CI/CD 자동배포 파이프라인**을 직접 구축했고, 마지막 주에는 **Python·NumPy 기반 머신러닝 입문**으로 학습 방향을 새롭게 확장했습니다.
+- **7월**에는 React-Spring Boot 통합을 마무리한 뒤 **Docker, AWS EC2, Jenkins, Route 53/SSL**을 이용한 **CI/CD 자동배포 파이프라인**을 직접 구축했고, 이후 **Python·NumPy 기반 머신러닝**으로 학습 방향을 새롭게 확장했습니다. pandas 전처리부터 **지도학습(회귀·분류)과 비지도학습(군집화·차원축소·연관규칙·이상치탐지)** 전체 파이프라인을 실습했고, 이를 **FastAPI REST API 서버**로 서빙하는 흐름과 **PySpark 분산처리**(로컬→스탠드얼론 클러스터)까지 경험을 넓혔습니다.
 
-요구사항 분석 → 프론트엔드 → 데이터베이스/Java → 웹 백엔드(Spring) → 인증/외부연동/React → 배포 인프라(Docker/AWS/Jenkins) → 데이터/ML 입문까지, 5개월간 풀스택 개발 전 영역을 단계적으로 확장하며 학습했습니다.
+요구사항 분석 → 프론트엔드 → 데이터베이스/Java → 웹 백엔드(Spring) → 인증/외부연동/React → 배포 인프라(Docker/AWS/Jenkins) → 데이터분석/머신러닝 → API 서버/분산처리까지, 5개월간 풀스택 개발 전 영역을 단계적으로 확장하며 학습했습니다.
