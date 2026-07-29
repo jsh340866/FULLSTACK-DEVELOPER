@@ -33,7 +33,7 @@ cd docker
 docker compose up -d
 ```
 
-- Spark 마스터 UI: http://localhost:8080
+- Spark 마스터 UI: http://localhost:8088 (8080은 기존 ValuePick 백엔드와 충돌 방지를 위해 분리)
 - Jupyter: http://localhost:8888
 - MySQL(서빙용, 기존 ValuePick과 별도): localhost:3307
 

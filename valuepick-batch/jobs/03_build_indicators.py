@@ -62,18 +62,25 @@ NM_GROSS_PROFIT = ["매출총이익", "매출총이익(손실)"]
 
 NO_STANDARD_ACCOUNT_ID = "-표준계정코드 미사용-"
 
-# pick 결과 컬럼명 -> (account_id 후보, account_nm 후보)
+# pick 결과 컬럼명 -> (account_id 후보, account_nm 후보, 허용 sj_div 목록)
+#
+# 왜 sj_div 제한이 필요한가: DartItem.java에는 sj_div(재무제표 구분: BS/CIS/IS/CF/SCE) 필드가 아예 없어서
+# Java는 account_id만으로 HashMap에 "처음 만난 값"을 채택한다(API 응답 순서 의존). 이 파이프라인은
+# API 응답을 Spark로 분산 병렬 처리하므로 원본 순서가 보존되지 않아 "첫 값"이 Java와 달라질 수 있다.
+# 예: ifrs-full_Equity는 재무상태표(BS)뿐 아니라 자본변동표(SCE)에도 지분 항목별로 수백 건 중복 등장하는데,
+# 순서 의존 로직으로는 SCE의 엉뚱한 하위 항목을 자본총계로 잘못 채택하는 사례가 실제로 발생했다(검증 중 발견).
+# sj_div로 재무제표 종류를 명시 필터링하면 이 순서 의존성 자체가 사라져 Java보다 오히려 더 안정적이다.
 FIELD_ACCOUNT_CANDIDATES = {
-    "revenue": (ACC_REVENUE, NM_REVENUE),
-    "operating_income": (ACC_OPERATING_INCOME, NM_OPERATING_INCOME),
-    "net_income": (ACC_NET_INCOME, NM_NET_INCOME),
-    "total_assets": (ACC_TOTAL_ASSETS, NM_TOTAL_ASSETS),
-    "total_liabilities": (ACC_TOTAL_LIABILITIES, NM_TOTAL_LIABILITIES),
-    "total_equity": (ACC_TOTAL_EQUITY, NM_TOTAL_EQUITY),
-    "current_assets": (ACC_CURRENT_ASSETS, NM_CURRENT_ASSETS),
-    "current_liabilities": (ACC_CURRENT_LIABILITIES, NM_CURRENT_LIABILITIES),
-    "operating_cash_flow": (ACC_OPERATING_CASH_FLOW, NM_OPERATING_CASH_FLOW),
-    "gross_profit": (ACC_GROSS_PROFIT, NM_GROSS_PROFIT),
+    "revenue": (ACC_REVENUE, NM_REVENUE, ["IS", "CIS"]),
+    "operating_income": (ACC_OPERATING_INCOME, NM_OPERATING_INCOME, ["IS", "CIS"]),
+    "net_income": (ACC_NET_INCOME, NM_NET_INCOME, ["IS", "CIS"]),
+    "total_assets": (ACC_TOTAL_ASSETS, NM_TOTAL_ASSETS, ["BS"]),
+    "total_liabilities": (ACC_TOTAL_LIABILITIES, NM_TOTAL_LIABILITIES, ["BS"]),
+    "total_equity": (ACC_TOTAL_EQUITY, NM_TOTAL_EQUITY, ["BS"]),
+    "current_assets": (ACC_CURRENT_ASSETS, NM_CURRENT_ASSETS, ["BS"]),
+    "current_liabilities": (ACC_CURRENT_LIABILITIES, NM_CURRENT_LIABILITIES, ["BS"]),
+    "operating_cash_flow": (ACC_OPERATING_CASH_FLOW, NM_OPERATING_CASH_FLOW, ["CF"]),
+    "gross_profit": (ACC_GROSS_PROFIT, NM_GROSS_PROFIT, ["IS", "CIS"]),
 }
 
 # ExchangeRateApiService.CURRENCY_UNIT_MAP과 동일 - DART currency 코드 -> 한국수출입은행 cur_unit
@@ -95,7 +102,7 @@ def stack_financial_years(fin: DataFrame) -> DataFrame:
     """당기(thstrm)/전기(frmtrm)/전전기(bfefrmtrm) 3개 컬럼 세트를 stack()으로 행 단위 언피벗.
     DART 응답 한 건에 이미 3개년 수치가 다 있으므로 추가 API 호출 없이 3개년 시계열을 확보한다."""
     return fin.select(
-        "stock_code", "corp_code", "fs_div", "account_id", "account_nm", "currency",
+        "stock_code", "corp_code", "fs_div", "sj_div", "account_id", "account_nm", "currency",
         F.expr("""
             stack(3,
                 CAST(bsns_year AS INT),     thstrm_amount,
@@ -125,11 +132,12 @@ def pivot_financials(stacked: DataFrame) -> DataFrame:
     keys = ["stock_code", "fs_div", "year"]
     result = stacked.select(*keys).distinct()
 
-    for field, (id_candidates, nm_candidates) in FIELD_ACCOUNT_CANDIDATES.items():
-        # account_id 후보 중 첫 매칭값 (동일 그룹 내 여러 건이면 first로 대표값 하나 사용 - Java의 Map.put 1회성과 동일)
-        id_match = by_id.filter(F.col("account_id").isin(id_candidates)) \
+    for field, (id_candidates, nm_candidates, allowed_sj_div) in FIELD_ACCOUNT_CANDIDATES.items():
+        # sj_div로 재무제표 종류를 먼저 좁혀서 동명이인 계정(예: SCE의 Equity 하위 항목) 오매칭을 원천 차단
+        # (Java는 sj_div를 안 받아 API 응답 순서 첫 값에 의존하지만, 우리는 sj_div가 있어 더 정확하게 특정 가능)
+        id_match = by_id.filter(F.col("account_id").isin(id_candidates) & F.col("sj_div").isin(allowed_sj_div)) \
             .groupBy(*keys).agg(F.first("amount_num", ignorenulls=True).alias(f"{field}_by_id"))
-        nm_match = by_nm.filter(F.col("account_nm").isin(nm_candidates)) \
+        nm_match = by_nm.filter(F.col("account_nm").isin(nm_candidates) & F.col("sj_div").isin(allowed_sj_div)) \
             .groupBy(*keys).agg(F.first("amount_num", ignorenulls=True).alias(f"{field}_by_nm"))
 
         result = result.join(id_match, on=keys, how="left").join(nm_match, on=keys, how="left")

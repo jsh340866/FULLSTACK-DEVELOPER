@@ -7,3 +7,6 @@ FROM apache/spark:3.5.0
 USER root
 # requirements.txt와 동일 버전 유지 (04_backtest_grid.py에서 conf/strategies.yaml 파싱 시 PyYAML 필요)
 RUN pip install --no-cache-dir requests==2.32.3 PyYAML==6.0.2
+
+# 05_export_to_mysql.py의 JDBC writer 및 verify_indicators 검증용 ValuePick DB 역주입에 필요
+ADD https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.3.0/mysql-connector-j-8.3.0.jar /opt/spark/jars/mysql-connector-j-8.3.0.jar

@@ -19,7 +19,8 @@ services:
       - EXIM_API_KEY=${EXIM_API_KEY}
     ports:
       - "7077:7077"   # 워커/드라이버가 접속하는 마스터 RPC 포트
-      - "8080:8080"   # Spark 마스터 웹 UI (클러스터 상태, 워커 목록, 등록된 애플리케이션 확인)
+      - "8088:8080"   # Spark 마스터 웹 UI (클러스터 상태, 워커 목록, 등록된 애플리케이션 확인)
+                       # 호스트 포트만 8088로 분리 (8080은 기존 ValuePick(Spring Boot) 백엔드가 사용 중)
       - "4040:4040"   # Spark 애플리케이션(드라이버) UI - 잡 실행 중일 때만 뜸. spark-submit을 spark-master 컨테이너에서 실행하므로 드라이버가 여기서 뜸.
                        # 스테이지/태스크 진행상황, DAG, 셔플량 등 "작업 모니터링"은 이 포트에서 확인
     volumes:
@@ -82,6 +83,8 @@ services:
     working_dir: /opt/spark-apps
     ports:
       - "8888:8888"
+      - "4041:4040"   # Jupyter 노트북에서 SparkSession을 직접 만들면 드라이버가 이 컨테이너 안에서 뜬다.
+                       # spark-master의 4040과 호스트 포트가 겹치므로 4041로 분리 (배치 잡은 4040, 노트북은 4041)
     depends_on:
       - spark-master
     volumes:
