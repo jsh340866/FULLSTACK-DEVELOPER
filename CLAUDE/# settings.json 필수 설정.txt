@@ -1,0 +1,21 @@
+# settings.json 필수 설정
+
+{
+ "model": "sonnet",
+ "MAX_THINKING_TOKENS": 10000,
+ "CLAUDE_CODE_SUBAGENT_MODEL": "haiku"
+
+
+# 플러그인 및 Rule 설치
+
+$ /plugin marketplace add everything-claude-code
+$ /plugin install ecc
+$ git clone [rule-repo]
+$ ./install.sh --profile full
+
+
+# ☆ 추천 코어 Skill
+
+🔍 search-first: 검색 우선 작업
+📝 tdd-workflow: 테스트 주도 개발
+◎ strategic-compact: 전략적 압축

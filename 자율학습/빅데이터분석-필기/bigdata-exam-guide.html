@@ -1,0 +1,865 @@
+<title>빅데이터분석기사 필기 대비 통합 학습자료</title>
+<style>
+  :root{
+    --bg:#F6F7FA;
+    --surface:#FFFFFF;
+    --surface-2:#EEF0F5;
+    --border:#DDE1E9;
+    --text:#1B2130;
+    --text-2:#4B5468;
+    --text-3:#7C8499;
+    --accent:#0F6E7A;
+    --accent-soft:rgba(15,110,122,.10);
+    --accent-contrast:#FFFFFF;
+    --correct:#2F7D4F;
+    --correct-soft:rgba(47,125,79,.10);
+    --priority:#C4432B;
+    --priority-soft:rgba(196,67,43,.10);
+    --s1:#A6631D; --s1-soft:rgba(166,99,29,.10);
+    --s2:#3E7CB1; --s2-soft:rgba(62,124,177,.10);
+    --s3:#7A5CA6; --s3-soft:rgba(122,92,166,.10);
+    --s4:#B0475A; --s4-soft:rgba(176,71,90,.10);
+    --shadow:0 1px 2px rgba(20,24,34,.04), 0 8px 24px -18px rgba(20,24,34,.15);
+    --radius:10px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12151C;
+      --surface:#1A1F29;
+      --surface-2:#222834;
+      --border:#2C3341;
+      --text:#E7E9EE;
+      --text-2:#AEB4C2;
+      --text-3:#7C8499;
+      --accent:#4FC7D4;
+      --accent-soft:rgba(79,199,212,.14);
+      --accent-contrast:#0A1418;
+      --correct:#63BE8B;
+      --correct-soft:rgba(99,190,139,.14);
+      --priority:#E2735A;
+      --priority-soft:rgba(226,115,90,.14);
+      --s1:#D99A3E; --s1-soft:rgba(217,154,62,.16);
+      --s2:#6FA8D8; --s2-soft:rgba(111,168,216,.16);
+      --s3:#B49AE0; --s3-soft:rgba(180,154,224,.16);
+      --s4:#E08A9C; --s4-soft:rgba(224,138,156,.16);
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -18px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12151C;
+    --surface:#1A1F29;
+    --surface-2:#222834;
+    --border:#2C3341;
+    --text:#E7E9EE;
+    --text-2:#AEB4C2;
+    --text-3:#7C8499;
+    --accent:#4FC7D4;
+    --accent-soft:rgba(79,199,212,.14);
+    --accent-contrast:#0A1418;
+    --correct:#63BE8B;
+    --correct-soft:rgba(99,190,139,.14);
+    --priority:#E2735A;
+    --priority-soft:rgba(226,115,90,.14);
+    --s1:#D99A3E; --s1-soft:rgba(217,154,62,.16);
+    --s2:#6FA8D8; --s2-soft:rgba(111,168,216,.16);
+    --s3:#B49AE0; --s3-soft:rgba(180,154,224,.16);
+    --s4:#E08A9C; --s4-soft:rgba(224,138,156,.16);
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -18px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent-soft);}
+  a{color:var(--accent);}
+  h1,h2,h3,h4{text-wrap:balance; line-height:1.3; margin:0;}
+  code, .mono, pre{
+    font-family:ui-monospace,'SF Mono','Cascadia Code','D2Coding',Consolas,monospace;
+    font-variant-numeric:tabular-nums;
+  }
+
+  .layout{
+    display:grid;
+    grid-template-columns:248px minmax(0,1fr);
+    max-width:1180px;
+    margin:0 auto;
+    align-items:start;
+  }
+  .sidebar{
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    padding:28px 18px 28px 24px;
+    border-right:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .sidebar__brand{
+    font-size:13px;
+    letter-spacing:.06em;
+    color:var(--text-3);
+    text-transform:uppercase;
+  }
+  .sidebar__title{
+    font-size:17px;
+    font-weight:700;
+    margin-top:6px;
+  }
+  .sidebar nav{display:flex; flex-direction:column; gap:2px;}
+  .sidebar nav a{
+    display:block;
+    padding:7px 10px;
+    border-radius:7px;
+    color:var(--text-2);
+    text-decoration:none;
+    font-size:13.5px;
+  }
+  .sidebar nav a:hover{background:var(--surface-2); color:var(--text);}
+  .sidebar nav .nav-group-label{
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--text-3);
+    margin:10px 10px 2px;
+  }
+  .sidebar__stats{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    padding:12px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+  }
+  .stat{display:flex; justify-content:space-between; font-size:12.5px; color:var(--text-2);}
+  .stat b{color:var(--text); font-size:13px;}
+
+  main{padding:36px 28px 90px; min-width:0;}
+  .hero{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding-bottom:26px;
+    margin-bottom:26px;
+    border-bottom:1px solid var(--border);
+  }
+  .hero__eyebrow{
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+  }
+  .hero h1{font-size:28px; font-weight:800;}
+  .hero p{margin:0; color:var(--text-2); font-size:14.5px; max-width:62ch;}
+  .hero__badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px;}
+  .stat-chip{
+    font-size:12.5px;
+    padding:5px 10px;
+    border-radius:100px;
+    background:var(--surface-2);
+    color:var(--text-2);
+    border:1px solid var(--border);
+  }
+  .stat-chip b{color:var(--text);}
+
+  section.block{margin-bottom:48px;}
+  .block__title{font-size:21px; font-weight:800; margin-bottom:14px; display:flex; align-items:baseline; gap:10px;}
+  .block__title .sub{font-size:13.5px; font-weight:500; color:var(--text-3);}
+
+  .lead-note{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-left:3px solid var(--accent);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    box-shadow:var(--shadow);
+  }
+  .lead-note h3{font-size:15px; font-weight:700; margin-bottom:8px;}
+  .lead-note p{margin:0 0 6px; color:var(--text-2); font-size:14px;}
+  .insight-quote{
+    font-family:'Noto Serif KR','Nanum Myeongjo',serif;
+    font-size:15.5px;
+    line-height:1.75;
+    color:var(--text);
+    margin:14px 0;
+    padding:14px 18px;
+    background:var(--accent-soft);
+    border-radius:8px;
+  }
+  .priority-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;}
+  @media (max-width:720px){.priority-grid{grid-template-columns:1fr;}}
+  .priority-card{background:var(--surface-2); border-radius:8px; padding:14px 16px;}
+  .priority-card h4{font-size:13px; font-weight:700; margin-bottom:8px; color:var(--text);}
+  .priority-card ol,.priority-card ul{margin:0; padding-left:18px; font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:5px;}
+
+  details.subject-group{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    margin-bottom:14px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  details.subject-group[open]{padding-bottom:6px;}
+  details.subject-group summary{
+    list-style:none;
+    cursor:pointer;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border-top:3px solid transparent;
+  }
+  details.subject-group summary::-webkit-details-marker{display:none;}
+  details.subject-group summary::before{
+    content:"▸";
+    font-size:12px;
+    color:var(--text-3);
+    transition:transform .15s ease;
+    flex:0 0 auto;
+  }
+  details.subject-group[open] summary::before{transform:rotate(90deg);}
+  .subject-1 summary{border-top-color:var(--s1);}
+  .subject-2 summary{border-top-color:var(--s2);}
+  .subject-3 summary{border-top-color:var(--s3);}
+  .subject-4 summary{border-top-color:var(--s4);}
+  .subject-title{font-size:16px; font-weight:700;}
+  .subject-1 .subject-title{color:var(--s1);}
+  .subject-2 .subject-title{color:var(--s2);}
+  .subject-3 .subject-title{color:var(--s3);}
+  .subject-4 .subject-title{color:var(--s4);}
+  .subject-count{margin-left:auto; font-size:12.5px; color:var(--text-3); flex:0 0 auto;}
+
+  .cards{padding:4px 20px 16px; display:flex; flex-direction:column; gap:12px;}
+  .qa-card{
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:14px 16px;
+  }
+  .qa-card__head{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;}
+  .qa-card__num{font-size:12.5px; font-weight:700; color:var(--text-3); font-family:ui-monospace,monospace;}
+  .qa-card__title{font-size:14.5px; font-weight:700;}
+  .badge{
+    font-size:11px;
+    font-weight:600;
+    padding:3px 8px;
+    border-radius:100px;
+    border:1px solid var(--border);
+    color:var(--text-2);
+    white-space:nowrap;
+  }
+  .badge--calc{background:var(--accent-soft); color:var(--accent); border-color:transparent;}
+  .badge--priority{background:var(--priority-soft); color:var(--priority); border-color:transparent; font-weight:700;}
+  .qa-card__concept{font-size:13px; color:var(--text-2); margin:0 0 10px;}
+  .qa-card__concept b{color:var(--text); font-weight:600;}
+  .qa-card__stem{
+    background:var(--surface-2);
+    border-radius:7px;
+    padding:11px 13px;
+    font-size:13.5px;
+  }
+  .qa-card__stem p{margin:0 0 8px; color:var(--text);}
+  .qa-card__options{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px;}
+  .qa-card__options li{
+    font-size:13px;
+    color:var(--text-2);
+    padding:3px 8px;
+    border-radius:5px;
+  }
+  .qa-card__options li.correct{
+    background:var(--correct-soft);
+    color:var(--correct);
+    font-weight:700;
+  }
+  .qa-card__hint{margin:8px 0 0; font-size:12px; color:var(--text-3); font-style:normal;}
+
+  .gap-card{border:1px solid var(--border); border-radius:8px; padding:16px 18px;}
+  .gap-card__head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:6px;}
+  .gap-card__title{font-size:14.5px; font-weight:700;}
+  .gap-card__loc{font-size:12.5px; color:var(--text-3);}
+  .gap-card__issue{font-size:13px; color:var(--text-2); margin:0 0 10px;}
+  .gap-card pre{
+    background:var(--surface-2);
+    border-radius:7px;
+    padding:13px 15px;
+    font-size:12.5px;
+    line-height:1.65;
+    overflow-x:auto;
+    margin:0;
+    color:var(--text);
+    white-space:pre;
+  }
+
+  table{border-collapse:collapse; width:100%; font-size:13px;}
+  .table-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:8px;}
+  th,td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--border); white-space:nowrap;}
+  thead th{background:var(--surface-2); color:var(--text-2); font-weight:700; font-size:12.5px;}
+  tbody tr:last-child td{border-bottom:none;}
+  td b{color:var(--priority);}
+
+  .expand-toggle{
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--text-2);
+    font-size:12.5px;
+    padding:6px 12px;
+    border-radius:100px;
+    cursor:pointer;
+    margin-bottom:14px;
+  }
+  .expand-toggle:hover{background:var(--surface-2);}
+
+  footer{
+    border-top:1px solid var(--border);
+    margin-top:30px;
+    padding-top:20px;
+    font-size:12px;
+    color:var(--text-3);
+  }
+
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr;}
+    .sidebar{
+      position:static;
+      height:auto;
+      flex-direction:row;
+      overflow-x:auto;
+      overflow-y:visible;
+      border-right:none;
+      border-bottom:1px solid var(--border);
+      padding:14px 16px;
+      align-items:center;
+      gap:16px;
+    }
+    .sidebar__brand,.sidebar__title{display:none;}
+    .sidebar nav{flex-direction:row; gap:4px;}
+    .sidebar nav a{padding:6px 10px; font-size:12.5px; white-space:nowrap;}
+    .nav-group-label{display:none;}
+    .sidebar__stats{flex-direction:row; flex:0 0 auto; white-space:nowrap;}
+    main{padding:24px 18px 70px;}
+  }
+</style>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div>
+      <div class="sidebar__brand">빅데이터분석기사 필기</div>
+      <div class="sidebar__title">통합 학습자료</div>
+    </div>
+    <nav>
+      <a href="#summary">팀장 종합 코멘트</a>
+      <div class="nav-group-label">Part A · 문제유형</div>
+      <a href="#a-1">1과목 · 분석 기획</a>
+      <a href="#a-2">2과목 · 데이터 탐색</a>
+      <a href="#a-3">3과목 · 모델링</a>
+      <a href="#a-4">4과목 · 결과해석</a>
+      <div class="nav-group-label">Part B · 보완사항</div>
+      <a href="#b-1">1과목 · 분석 기획</a>
+      <a href="#b-2">2과목 · 데이터 탐색</a>
+      <a href="#b-3">3과목 · 모델링</a>
+      <a href="#b-4">4과목 · 결과해석</a>
+      <a href="#b-priority">우선 반영 순서</a>
+    </nav>
+    <div class="sidebar__stats">
+      <div class="stat"><span>예상 문제 유형</span><b>57개</b></div>
+      <div class="stat"><span>보완사항</span><b>25개</b></div>
+      <div class="stat"><span>과목</span><b>4개</b></div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="hero">
+      <div class="hero__eyebrow">아답터교육 「빅분기필기대비」 기반 · 팀장 검증 완료</div>
+      <h1>빅데이터분석기사 필기 대비 통합 학습자료</h1>
+      <p>팀원1(문제유형 분석)과 팀원2(자료 검토·보완)의 결과물을 팀장이 원문 공식과 대조 검증한 뒤 통합했습니다. 모든 계산 예제는 재검산을 마쳤습니다.</p>
+      <div class="hero__badges">
+        <span class="stat-chip">원본 <b>68페이지</b> · 개정 2026.02.05</span>
+        <span class="stat-chip">예상 문제유형 <b>57개</b></span>
+        <span class="stat-chip">본문 보완사항 <b>25개</b></span>
+        <span class="stat-chip">계산 예제 <b>전량 재검산</b></span>
+      </div>
+    </div>
+
+    <section class="block" id="summary">
+      <div class="block__title">팀장 종합 코멘트 <span class="sub">통합 우선순위</span></div>
+      <div class="lead-note">
+        <p>두 팀원의 결과물은 서로 다른 각도에서 같은 약점을 가리키고 있어 교차 검증이 잘 됐습니다.</p>
+        <div class="priority-grid">
+          <div class="priority-card">
+            <h4>① 계산형 문제 — 최우선 대비 영역</h4>
+            <ul>
+              <li>지니지수 / 엔트로피 (3-6, 3과목 보완 3-3)</li>
+              <li>연관분석 3지표: 지지도·신뢰도·향상도 (3-11)</li>
+              <li>혼동행렬 전체 지표 (4-1 · 원문에 숫자예제 0개 → 보완)</li>
+              <li>확률분포 기댓값·분산 (2-11 · 원문은 이항분포뿐 → 9종 분포표 보완)</li>
+              <li>VIF / 오즈비 (3-3, 3-6)</li>
+            </ul>
+          </div>
+          <div class="priority-card">
+            <h4>② 원문 자체의 공백 — 목차엔 있는데 본문에 없음</h4>
+            <ul>
+              <li>1과목 「분석 작업 계획」 (데이터 확보 계획·분석 절차)</li>
+              <li>1과목 「데이터 변환」</li>
+              <li>1과목 「분석 로드맵 3단계」</li>
+              <li>4과목 「분석모형 융합·최종모형 선정」</li>
+            </ul>
+          </div>
+          <div class="priority-card">
+            <h4>③ 함정 선택지 — 가장 많이 틀리는 지점</h4>
+            <ul>
+              <li>공분산 = 0 ≠ 독립</li>
+              <li>스피어만 계수는 비선형에서도 ±1 가능</li>
+              <li>부스팅만 병렬처리 불가</li>
+              <li>박스플롯은 평균 표시 안 함</li>
+              <li>집락추출(군집 내 이질적) ↔ 층화추출(군집 내 동질적)</li>
+              <li>표본분산은 n-1로 나눔 / p-value의 정확한 의미</li>
+            </ul>
+          </div>
+          <div class="priority-card">
+            <h4>④ 최종 학습 순서 권고</h4>
+            <ol>
+              <li>원문 공백 4곳 보충 학습</li>
+              <li>계산형 최우선 5종 반복 연습</li>
+              <li>함정 선택지 최우선 항목 암기</li>
+              <li>나머지 문제유형·보완사항 전체 학습</li>
+            </ol>
+          </div>
+        </div>
+        <div class="insight-quote">검증 메모 — p.34의 Z검정(모표준편차 기지)과 p.35의 t검정(표본표준편차) 예제는 동일한 검정통계량(−2.0)을 갖지만, 임계값 차이(1.96 vs 2.306)로 결론이 기각↔채택으로 뒤집힙니다. "어느 검정을 써야 하는가"를 묻는 함정 문항의 재료로 매우 적합하니 한 세트로 묶어 학습하길 권합니다.</div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block__title">Part A. 과목별 예상 문제 유형 <span class="sub">총 57개 · 팀원1</span></div>
+      <button class="expand-toggle" data-target="a-group" type="button">전체 펼치기</button>
+
+      <details class="subject-group subject-1 a-group" id="a-1" open>
+        <summary><span class="subject-title">1과목 · 빅데이터 분석 기획</span><span class="subject-count">14개 유형</span></summary>
+        <div class="cards" id="a1-cards"></div>
+      </details>
+
+      <details class="subject-group subject-2 a-group" id="a-2">
+        <summary><span class="subject-title">2과목 · 빅데이터 탐색</span><span class="subject-count">14개 유형</span></summary>
+        <div class="cards" id="a2-cards"></div>
+      </details>
+
+      <details class="subject-group subject-3 a-group" id="a-3">
+        <summary><span class="subject-title">3과목 · 빅데이터 모델링</span><span class="subject-count">15개 유형 + 보조유형</span></summary>
+        <div class="cards" id="a3-cards"></div>
+      </details>
+
+      <details class="subject-group subject-4 a-group" id="a-4">
+        <summary><span class="subject-title">4과목 · 빅데이터 결과해석</span><span class="subject-count">14개 유형 + 보조유형</span></summary>
+        <div class="cards" id="a4-cards"></div>
+      </details>
+    </section>
+
+    <section class="block">
+      <div class="block__title">Part B. 참고자료 보완사항 <span class="sub">총 25개 · 팀원2</span></div>
+      <div class="lead-note" style="margin-bottom:16px;">
+        <p>4개 과목 목차표의 세부항목 중 <b style="color:var(--priority)">본문에 아예 없거나 1~2줄로 끝난 항목이 7개</b> 확인되었습니다 (원문과 대조하여 팀장이 재확인). 암기 키워드 정리는 우수하나 계산형 문제 대응력과 최근 회차 비교·판단형 문항 대비가 약합니다.</p>
+      </div>
+      <button class="expand-toggle" data-target="b-group" type="button">전체 펼치기</button>
+
+      <details class="subject-group subject-1 b-group" id="b-1" open>
+        <summary><span class="subject-title">1과목 · 빅데이터 분석 기획</span><span class="subject-count">6개 보완</span></summary>
+        <div class="cards" id="b1-cards"></div>
+      </details>
+
+      <details class="subject-group subject-2 b-group" id="b-2">
+        <summary><span class="subject-title">2과목 · 빅데이터 탐색</span><span class="subject-count">6개 보완</span></summary>
+        <div class="cards" id="b2-cards"></div>
+      </details>
+
+      <details class="subject-group subject-3 b-group" id="b-3">
+        <summary><span class="subject-title">3과목 · 빅데이터 모델링</span><span class="subject-count">7개 보완</span></summary>
+        <div class="cards" id="b3-cards"></div>
+      </details>
+
+      <details class="subject-group subject-4 b-group" id="b-4">
+        <summary><span class="subject-title">4과목 · 빅데이터 결과해석</span><span class="subject-count">6개 보완</span></summary>
+        <div class="cards" id="b4-cards"></div>
+      </details>
+
+      <div class="block" id="b-priority" style="margin-top:24px;">
+        <div class="block__title" style="font-size:16px;">우선 반영 권고 순서</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>순위</th><th>항목</th><th>사유</th></tr></thead>
+            <tbody id="priority-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      원본 자료: 빅분기필기대비-아답트.pdf (아답터교육, 68페이지, 개정 2026.02.05) · 팀장 1명 + 팀원 2명(문제유형 분석 / 자료 검토·보완) 협업 결과물을 팀장이 원문과 대조 검증하여 통합
+    </footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function el(tag, cls, html){
+    var e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(html !== undefined) e.innerHTML = html;
+    return e;
+  }
+
+  function qaCard(item){
+    var card = el('div','qa-card');
+    var head = el('div','qa-card__head');
+    head.appendChild(el('span','qa-card__num', item.num));
+    head.appendChild(el('span','qa-card__title', item.title));
+    var badgeCls = 'badge' + (item.calc ? ' badge--calc' : '');
+    head.appendChild(el('span', badgeCls, item.mode));
+    card.appendChild(head);
+    card.appendChild(el('p','qa-card__concept', '<b>핵심개념 · </b>' + item.concept));
+
+    var stem = el('div','qa-card__stem');
+    stem.appendChild(el('p', null, item.stem));
+    var ol = el('ul','qa-card__options');
+    item.options.forEach(function(opt){
+      var li = el('li', opt.correct ? 'correct' : null, opt.text + (opt.correct ? '  ✓ 정답' : ''));
+      ol.appendChild(li);
+    });
+    stem.appendChild(ol);
+    card.appendChild(stem);
+    if(item.hint) card.appendChild(el('p','qa-card__hint', item.hint));
+    return card;
+  }
+
+  function gapCard(item){
+    var card = el('div','gap-card');
+    var head = el('div','gap-card__head');
+    var titleHtml = (item.priority ? '<span class="badge badge--priority" style="margin-right:8px;">최우선</span>' : '') + item.title;
+    head.appendChild(el('span','gap-card__title', titleHtml));
+    head.appendChild(el('span','gap-card__loc', item.loc));
+    card.appendChild(head);
+    card.appendChild(el('p','gap-card__issue', item.issue));
+    var pre = el('pre', null);
+    pre.textContent = item.draft;
+    card.appendChild(pre);
+    return card;
+  }
+
+  // ---------- Part A data ----------
+  var A1 = [
+    {num:'1-1', title:'DIKW 피라미드 단계 판별', mode:'단답형 개념문제', concept:'Data/Information/Knowledge/Wisdom, 대리점 핸드폰 가격 예시',
+     stem:'다음 설명에 해당하는 DIKW 단계는? "A대리점의 핸드폰이 저렴하므로, A대리점의 다른 기기들도 B대리점보다 저렴할 것이다."',
+     options:[{text:'① 데이터'},{text:'② 정보'},{text:'③ 지식'},{text:'④ 지혜', correct:true}]},
+    {num:'1-2', title:"암묵지·형식지 상호작용(SECI) — '공표연내'", mode:'사례 매칭형', concept:'공통화 / 표출화 / 연결화 / 내면화',
+     stem:'"선배가 자신의 노하우를 업무 매뉴얼 문서로 정리하였다."에 해당하는 것은?',
+     options:[{text:'① 공통화'},{text:'② 표출화', correct:true},{text:'③ 연결화'},{text:'④ 내면화'}], hint:'오답 함정 강함'},
+    {num:'1-3', title:"DB 4대 특징 및 설계 절차 — '공통저변', '개논물'", mode:'순서나열형', concept:'공용/통합/저장/변화 데이터, 개념적→논리적→물리적 설계',
+     stem:'데이터베이스 설계 절차를 순서대로 나열한 것은?',
+     options:[{text:'① 논리적→개념적→물리적'},{text:'② 개념적→논리적→물리적', correct:true},{text:'③ 물리적→논리적→개념적'},{text:'④ 개념적→물리적→논리적'}]},
+    {num:'1-4', title:'SQL 명령어 분류 (DDL/DML/DCL/TCL)', mode:'비교형(오답 함정)', concept:'CREATE·ALTER·DROP / SELECT·INSERT·DELETE·UPDATE / GRANT·REVOKE / COMMIT·ROLLBACK',
+     stem:'데이터 제어어(DCL)에 해당하는 명령어로 옳은 것은?',
+     options:[{text:'① CREATE'},{text:'② UPDATE'},{text:'③ REVOKE', correct:true},{text:'④ ALTER'}]},
+    {num:'1-5', title:"데이터 단위 크기 순서 — '패지요'", mode:'순서나열형', concept:'KB&lt;MB&lt;GB&lt;TB&lt;PB(2⁵⁰)&lt;EB(2⁶⁰)&lt;ZB(2⁷⁰)&lt;YB(2⁸⁰)',
+     stem:'데이터 단위를 작은 것부터 순서대로 나열한 것은?',
+     options:[{text:'① PB&lt;ZB&lt;EB&lt;YB'},{text:'② PB&lt;EB&lt;ZB&lt;YB', correct:true},{text:'③ EB&lt;PB&lt;YB&lt;ZB'},{text:'④ TB&lt;PB&lt;YB&lt;ZB'}]},
+    {num:'1-6', title:'빅데이터 3V/5V/7V 및 가치 패러다임', mode:'비교형(오답 함정)', concept:'Volume·Variety·Velocity(가트너), Value·Veracity·Validity·Volatility / Digitalization→Connection→Agency',
+     stem:'가트너가 정의한 빅데이터의 3V에 포함되지 않는 것은?',
+     options:[{text:'① Volume'},{text:'② Variety'},{text:'③ Velocity'},{text:'④ Value', correct:true}], hint:'Value를 3V로 착각시키는 함정'},
+    {num:'1-7', title:"빅데이터가 만들어내는 변화 — '전후양상'", mode:'비교형(방향 뒤집기 함정)', concept:'표본조사→전수조사, 사전처리→사후처리, 질→양, 인과관계→상관관계',
+     stem:'빅데이터로 인한 변화로 옳지 않은 것은?',
+     options:[{text:'① 표본조사에서 전수조사로'},{text:'② 사전처리에서 사후처리로'},{text:'③ 상관관계에서 인과관계로', correct:true},{text:'④ 질에서 양으로'}]},
+    {num:'1-8', title:"분석 조직구조 — '집기분'", mode:'비교형(오답 함정)', concept:'집중 구조(전담조직, 중복업무 가능성) / 기능 구조(DSCoE 없음) / 분산 구조(현업 배치)',
+     stem:'분석 전담 조직(DSCoE)이 별도로 존재하지 않고 해당 현업 부서에서 직접 분석을 수행하는 조직 구조는?',
+     options:[{text:'① 집중 구조'},{text:'② 기능 구조', correct:true},{text:'③ 분산 구조'},{text:'④ 매트릭스 구조'}]},
+    {num:'1-9', title:"개인정보·가명정보·익명정보 및 데이터 3법 — '개정신'", mode:'비교형', concept:'가명정보=결합 시 특정 가능, 익명정보=제한 없이 활용 / 개인정보보호법·정보통신망법·신용정보법',
+     stem:'가명정보에 대한 설명으로 옳지 않은 것은?',
+     options:[{text:'① 통계작성·연구·공익적 기록보존 목적이면 동의 없이 활용 가능하다'},{text:'② 가명처리를 통해 추가정보 없이는 특정 개인을 알아볼 수 없다'},{text:'③ 다른 정보와 결합하더라도 개인을 특정할 수 없다', correct:true},{text:'④ 데이터 3법 개정으로 도입된 개념이다'}], hint:'☞ 익명정보는 특정 불가, 가명정보는 결합 시 특정 가능이 핵심 함정'},
+    {num:'1-10', title:'프라이버시 보호 모델과 공격 유형 매칭', mode:'비교형(매칭 함정 최상위)', concept:'k-익명성↔연결공격 / l-다양성↔동질성·배경지식 공격 / t-근접성↔쏠림·유사성 공격',
+     stem:'동질성 공격과 배경지식에 의한 공격으로부터 보호하기 위한 프라이버시 보호 모델은?',
+     options:[{text:'① k-익명성'},{text:'② l-다양성', correct:true},{text:'③ t-근접성'},{text:'④ 차등정보보호'}]},
+    {num:'1-11', title:"분석 방법론 절차(KDD/CRISP-DM/SEMMA) — '업데데이트모델평가전'", mode:'순서나열형', concept:'KDD 5단계, CRISP-DM 6단계, SEMMA 5단계',
+     stem:'CRISP-DM 분석 방법론의 절차로 옳은 것은?',
+     options:[{text:'① 업무 이해→데이터 준비→데이터 이해→모델링→평가→전개'},{text:'② 업무 이해→데이터 이해→데이터 준비→모델링→평가→전개', correct:true},{text:'③ 데이터 선택→전처리→변환→마이닝→평가'},{text:'④ 샘플링→탐색→변형→모델링→평가'}]},
+    {num:'1-12', title:'분석 기획 4유형 매트릭스 (대상×방법)', mode:'매트릭스 판별형', concept:'대상 Known/Unknown × 방법 Known/Unknown → 최적화·통찰·솔루션·발견',
+     stem:'분석 대상은 알고 있으나 분석 방법을 모르는 경우에 해당하는 분석 유형은?',
+     options:[{text:'① 최적화(Optimization)'},{text:'② 통찰(Insight)'},{text:'③ 솔루션(Solution)', correct:true},{text:'④ 발견(Discovery)'}]},
+    {num:'1-13', title:'데이터 유형 분류 및 저장 기술', mode:'비교형(반정형 예시가 최대 함정)', concept:'CSV·RDB=정형 / HTML·XML·JSON·RDF=반정형 / SNS·유튜브=비정형, HDFS 네임노드·데이터노드, DAS·NAS·SAN',
+     stem:'반정형 데이터에 해당하는 것으로만 묶인 것은?',
+     options:[{text:'① CSV, 엑셀'},{text:'② XML, JSON', correct:true},{text:'③ 유튜브 영상, 음원'},{text:'④ 관계형 DB 테이블'}]},
+    {num:'1-14', title:"프로젝트 위험 대응 및 관리 영역 — '회전완수', '이범통이 의자에서 시원한 조리품'", mode:'단답형 개념문제', concept:'회피·전이·완화·수용 / PMBOK 10개 영역',
+     stem:'빅데이터 분석 프로젝트의 위험 대응 계획 4가지(회피·전이·완화·수용)에 해당하지 않는 것은?',
+     options:[{text:'① 회피'},{text:'② 전이'},{text:'③ 완화'},{text:'④ 제거', correct:true}]}
+  ];
+
+  var A2 = [
+    {num:'2-1', title:'척도 4종 구분', mode:'비교형(온도=등간, 무게=비율이 단골 함정)', concept:'명목·순서(질적) / 등간·비율(양적), 등간척도는 절대 0 없음·덧셈뺄셈만',
+     stem:'다음 중 비율척도에 해당하는 것은?', options:[{text:'① 섭씨 온도'},{text:'② 만족도 등급'},{text:'③ 몸무게', correct:true},{text:'④ 혈액형'}]},
+    {num:'2-2', title:'결측값 종류(MCAR/MAR/MNAR) 사례 매칭', mode:'사례 매칭형(오답 함정 강함)', concept:'MCAR=완전 무작위, MAR=다른 변수와 관련·결과와 무관, MNAR=결과 자체와 상관',
+     stem:'"소득이 낮은 응답자일수록 소득 항목에 응답하지 않는 경향이 있다"는 결측 유형은?',
+     options:[{text:'① MCAR'},{text:'② MAR'},{text:'③ MNAR', correct:true},{text:'④ Hot-Deck 결측'}]},
+    {num:'2-3', title:'결측값 처리 기법', mode:'비교형', concept:'완전분석법, 비조건부/조건부 평균대치, Hot-Deck·Cold-Deck·Nearest Neighbor, 다중대치법(대치→분석→결합)',
+     stem:'결측값 처리 방법에 대한 설명으로 옳지 않은 것은?',
+     options:[{text:'① 조건부 평균 대치법은 회귀분석 결과를 이용해 대치한다'},{text:'② Cold-Deck은 유사한 외부 출처의 값으로 대체한다'},{text:'③ 다중대치법은 대치→분석→결합의 단계를 거친다'},{text:'④ 단순 평균 대치법은 분산의 과소추정 문제를 해결한다', correct:true}], hint:'☞ 다중대치법이 분산 과소추정 문제를 해결함'},
+    {num:'2-4', title:'이상값 탐지 기준 및 박스플롯 계산', mode:'계산문제', calc:true, concept:'ESD(±3σ), IQR(Q1−1.5IQR, Q3+1.5IQR), Z-Score, DBSCAN / 박스플롯은 평균 표시 안 함',
+     stem:'Q1=20, Q3=40인 데이터에서 IQR 기준 이상값으로 판단되는 값은? (하한 20−30=−10, 상한 40+30=70)',
+     options:[{text:'① 15'},{text:'② 45'},{text:'③ 75', correct:true},{text:'④ 60'}]},
+    {num:'2-5', title:'변수 선택 방법(필터/래퍼/임베디드)', mode:'비교형(대표 대비쌍)', concept:'필터=상관계수·카이제곱·F검정 / 래퍼=전진·후진·단계적 / 임베디드=Lasso·Ridge',
+     stem:'임베디드(Embedded) 방법에 해당하는 기법은?', options:[{text:'① 전진 선택법'},{text:'② 카이제곱 검정'},{text:'③ Lasso 규제', correct:true},{text:'④ 상호정보량'}]},
+    {num:'2-6', title:'차원축소 기법 비교', mode:'비교형(선형 vs 비선형 함정)', concept:'PCA(분산 최대화) / LDA(클래스 간 분산 최대화) / ICA(독립 성분) / SVD / MDS·t-SNE·UMAP·AutoEncoder(비선형)',
+     stem:'다음 중 비선형 차원 축소 기법이 아닌 것은?', options:[{text:'① t-SNE'},{text:'② UMAP'},{text:'③ MDS'},{text:'④ LDA', correct:true}]},
+    {num:'2-7', title:'변수 변환(표준화/정규화/로그변환)', mode:'계산문제', calc:true, concept:'Z=(X−μ)/σ, Min-Max=(X−min)/(max−min), 로그변환=좌측 치우침, Box-Cox=양수 비대칭',
+     stem:'최솟값 20, 최댓값 120인 변수에서 값 45를 Min-Max 정규화한 결과는?',
+     options:[{text:'① 0.20'},{text:'② 0.25', correct:true},{text:'③ 0.375'},{text:'④ 0.45'}]},
+    {num:'2-8', title:'범주형 인코딩 및 불균형 데이터 처리', mode:'비교형', concept:'레이블 인코딩(서열 부여 문제) / 원-핫(메모리↑, 독립적) / 타깃 인코딩, 과소표집 vs 과대표집(SMOTE·ADASYN·ROS)',
+     stem:'소수 클래스 데이터를 인위적으로 생성하여 불균형을 해소하는 기법은?',
+     options:[{text:'① 랜덤 언더샘플링'},{text:'② 층화 추출법'},{text:'③ SMOTE', correct:true},{text:'④ 가중치 균형 적용'}]},
+    {num:'2-9', title:'피어슨 vs 스피어만 상관분석', mode:'비교형(결정적 함정)', concept:'피어슨=양적·연속형·선형 / 스피어만=서열·순서형·비선형도 가능',
+     stem:'상관분석에 대한 설명으로 옳지 않은 것은?',
+     options:[{text:'① 피어슨 상관계수는 두 연속형 변수의 선형관계 크기를 측정한다'},{text:'② 스피어만 상관계수는 순서형 변수에 적용할 수 있다'},{text:'③ 두 변수가 선형관계가 아니면 스피어만 계수는 ±1이 될 수 없다', correct:true},{text:'④ 상관계수만으로는 통계적 유의성을 판단할 수 없다'}], hint:'☞ 스피어만은 비선형이어도 ±1 가능이 결정적 함정'},
+    {num:'2-10', title:'공분산·상관계수와 독립성', mode:'함정형 개념문제(최상위 빈출)', concept:'공분산은 최소·최대값 없음, 상관계수는 −1~1',
+     stem:'공분산과 상관계수에 대한 설명으로 옳은 것은?',
+     options:[{text:'① 공분산이 0이면 두 변수는 반드시 독립이다'},{text:'② 공분산은 −1에서 1 사이의 값을 가진다'},{text:'③ 두 변수가 독립이면 공분산은 0이다', correct:true},{text:'④ 상관계수가 0이면 두 변수 간 어떠한 관계도 존재하지 않는다'}]},
+    {num:'2-11', title:'기댓값과 분산의 성질 계산', mode:'계산문제', calc:true, concept:'E(aX+bY+c)=aE(X)+bE(Y)+c, V(aX+bY+c)=a²V(X)+b²V(Y), V(상수)=0',
+     stem:'서로 독립인 X~N(10,2²), Y~N(5,3²)일 때 Z=2X−3Y+4의 분산은? (4×4+9×9=16+81=97)',
+     options:[{text:'① 65'},{text:'② 81'},{text:'③ 97', correct:true},{text:'④ 101'}]},
+    {num:'2-12', title:'첨도와 왜도', mode:'비교형(부등호 방향 함정)', concept:"첨도=3(정규), 왜도>0 → 최빈값&lt;중앙값&lt;평균값, '평균은 꼬리를 따라간다'",
+     stem:'왜도가 0보다 큰 분포에서 대푯값의 크기 관계로 옳은 것은?',
+     options:[{text:'① 평균&lt;중앙값&lt;최빈값'},{text:'② 최빈값&lt;중앙값&lt;평균', correct:true},{text:'③ 중앙값&lt;최빈값&lt;평균'},{text:'④ 세 값이 모두 같다'}]},
+    {num:'2-13', title:"확률분포 종류와 사례 매칭 — '누포항하'", mode:'사례 매칭형', concept:'베르누이·이항·기하·음이항·초기하·다항·포아송(이산) / 균일·정규·t·카이제곱·F·지수·감마·베타(연속)',
+     stem:'"한 시간 동안 사무실에 걸려온 전화 건수"의 분포로 가장 적절한 것은?',
+     options:[{text:'① 이항분포'},{text:'② 기하분포'},{text:'③ 포아송분포', correct:true},{text:'④ 초기하분포'}]},
+    {num:'2-14', title:'중심극한정리·표본분포 및 가설검정 통계량 계산', mode:'계산문제', calc:true, concept:"SE=σ/√n, Z=(X̄−μ)/(σ/√n), 1종 오류(α)=참인 H0 기각, Z(0.025)=1.96, 추정량 조건 '불효일충'",
+     stem:'모평균 50, 모표준편차 4인 모집단에서 n=16을 추출해 표본평균 52를 얻었다. 유의수준 5% 양측검정 결과는? (Z(0.025)=1.96)',
+     options:[{text:'① 검정통계량 1.0, 귀무가설 채택'},{text:'② 검정통계량 0.5, 귀무가설 채택'},{text:'③ 검정통계량 2.0, 귀무가설 기각', correct:true},{text:'④ 검정통계량 2.0, 귀무가설 채택'}]}
+  ];
+
+  var A3 = [
+    {num:'3-1', title:'SST·SSR·SSE와 결정계수 계산', mode:'계산문제', calc:true, concept:'SST=SSR+SSE, R²=SSR/SST=1−SSE/SST',
+     stem:'SST=200, SSE=50일 때 결정계수 R²은?', options:[{text:'① 0.25'},{text:'② 0.50'},{text:'③ 0.75', correct:true},{text:'④ 0.80'}]},
+    {num:'3-2', title:"선형회귀분석의 가정 — '선분정독'", mode:'단답형 개념문제', concept:'선형성·등분산성·정규성·독립성',
+     stem:'선형회귀분석의 기본 가정에 해당하지 않는 것은?', options:[{text:'① 선형성'},{text:'② 등분산성'},{text:'③ 정규성'},{text:'④ 다중공선성', correct:true}]},
+    {num:'3-3', title:'다중공선성 진단과 VIF 계산', mode:'계산문제', calc:true, concept:'VIF=1/(1−R²), VIF≥10, 상관계수 절댓값 0.8 이상, 조건수 30 이상',
+     stem:'특정 독립변수의 R²이 0.9일 때 VIF 값과 판단으로 옳은 것은?',
+     options:[{text:'① 1.11, 문제없음'},{text:'② 9, 문제없음'},{text:'③ 10, 다중공선성 존재', correct:true},{text:'④ 0.1, 다중공선성 존재'}]},
+    {num:'3-4', title:'최적 회귀방정식 탐색과 정보기준', mode:'비교형', concept:"전진선택법·후진제거법·단계별선택법, AIC/BIC/Mallow's Cp (모두 작을수록 좋음)",
+     stem:'AIC와 BIC에 대한 설명으로 옳은 것은?',
+     options:[{text:'① 값이 클수록 좋은 모형이다'},{text:'② BIC는 AIC보다 작은 패널티를 가진다'},{text:'③ AIC는 자료가 많을수록 부정확해질 수 있다', correct:true},{text:"④ Mallow's Cp는 SSR을 활용하여 판단한다"}]},
+    {num:'3-5', title:'로지스틱 회귀분석 (오즈·로짓·시그모이드)', mode:'계산+개념 혼합', calc:true, concept:'Odds=P/(1−P), logit=ln(Odds), 계수추정=최대우도법, 모형검정=우도비(카이제곱)검정',
+     stem:'성공 확률이 0.8일 때 오즈(Odds) 값은?', options:[{text:'① 0.2'},{text:'② 0.8'},{text:'③ 1.25'},{text:'④ 4', correct:true}]},
+    {num:'3-6', title:'의사결정나무 분리기준 계산 (지니지수/엔트로피)', mode:'계산문제 · 빈출 1순위', calc:true, concept:'지니=1−ΣP², 엔트로피=−ΣP·log₂P, CART=지니·분산감소량, CHAID=카이제곱, C4.5/C5.0=엔트로피',
+     stem:'A가 6개, B가 4개인 노드의 지니지수는? (1−0.6²−0.4²=1−0.36−0.16)',
+     options:[{text:'① 0.36'},{text:'② 0.42'},{text:'③ 0.48', correct:true},{text:'④ 0.52'}]},
+    {num:'3-7', title:'의사결정나무 알고리즘·과적합 방지', mode:'비교형', concept:'화이트박스 모델, 정지규칙·가지치기, 노드 내 동질성↑·노드 간 이질성↑',
+     stem:'의사결정나무에서 카이제곱 통계량을 분리 기준으로 사용하는 알고리즘은?', options:[{text:'① CART'},{text:'② C4.5'},{text:'③ CHAID', correct:true},{text:'④ C5.0'}]},
+    {num:'3-8', title:'퍼셉트론 출력값 계산 및 활성함수', mode:'계산문제', calc:true, concept:'ΣWᵢXᵢ+b, 시그모이드(0~1)·Tanh(−1~1)·ReLU=max(0,x), 출력층: 시그모이드(이진)·소프트맥스(다중)',
+     stem:'입력 x1=2, x2=1, 가중치 w1=0.4, w2=−0.5, 편향 b=0.3일 때 퍼셉트론의 출력값은?',
+     options:[{text:'① 0.3'},{text:'② 0.5'},{text:'③ 0.6', correct:true},{text:'④ 0.8'}]},
+    {num:'3-9', title:'인공신경망 학습과 과적합 방지', mode:'비교형(오답 함정)', concept:'순전파·역전파·경사하강법, 기울기 소실(시그모이드 원인·ReLU로 극복), 드롭아웃·조기종료·배치정규화',
+     stem:'인공신경망에 대한 설명으로 옳지 않은 것은?',
+     options:[{text:'① 은닉층 수와 노드 수는 사용자가 설정하는 하이퍼파라미터이다'},{text:'② ReLU 함수는 기울기 소실 문제를 완화한다'},{text:'③ 다중 분류 모델의 손실함수로는 크로스 엔트로피를 사용한다'},{text:'④ 은닉층 수가 많아질수록 과소적합 위험이 증가한다', correct:true}]},
+    {num:'3-10', title:'SVM 구성요소', mode:'단답형 개념문제', concept:'초평면·서포트벡터·마진(최대화)·커널함수(저차원→고차원), 하드마진 vs 소프트마진',
+     stem:'SVM에서 하이퍼플레인과 서포트벡터 사이의 거리를 의미하는 것은?', options:[{text:'① 커널'},{text:'② 마진', correct:true},{text:'③ 편향'},{text:'④ 초평면'}]},
+    {num:'3-11', title:"연관분석 지표 계산 — '지신향' · 빈출 1순위", mode:'계산문제', calc:true, concept:'지지도=P(A∩B), 신뢰도=P(A∩B)/P(A), 향상도=P(A∩B)/{P(A)P(B)}',
+     stem:'전체 100건 중 A 구매 50건, B 구매 40건, A와 B 동시 구매 20건일 때 A→B의 신뢰도와 향상도는? (신뢰도 0.2/0.5=0.4, 향상도 0.2/(0.5×0.4)=1.0)',
+     options:[{text:'① 0.2, 1.0'},{text:'② 0.4, 1.0', correct:true},{text:'③ 0.4, 1.25'},{text:'④ 0.5, 0.8'}]},
+    {num:'3-12', title:'거리 측정 방식 계산', mode:'계산문제', calc:true, concept:'유클리디안·맨하튼·체비셰프·민코우스키·마할라노비스, 자카드·코사인 유사도',
+     stem:'A(1,2), B(5,5)일 때 두 점의 맨하튼 거리와 체비셰프 거리는?',
+     options:[{text:'① 5, 4'},{text:'② 7, 4', correct:true},{text:'③ 7, 3'},{text:'④ 5, 3'}]},
+    {num:'3-13', title:'K-means vs DBSCAN vs 계층적 군집', mode:'비교형(대표 대비쌍)', concept:'K-means(거리기반,K사전지정,이상치민감,Elbow) / DBSCAN(밀도기반,K불필요,Eps·MinPts,강건)',
+     stem:'DBSCAN에 대한 설명으로 옳지 않은 것은?',
+     options:[{text:'① 밀도 기반의 비계층적 군집화 방법이다'},{text:'② 노이즈와 이상치에 강하다'},{text:'③ Eps와 MinPts를 사전에 설정해야 한다'},{text:'④ 군집의 개수 K를 사전에 지정해야 한다', correct:true}]},
+    {num:'3-14', title:'시계열 모형 (정상성/AR/MA/ARIMA)', mode:'비교형(ACF/PACF 뒤집기 함정)', concept:"정상성=일정한 평균·분산, PACF→AR(p), ACF→MA(q), ARIMA(p,d,q), d=0이면 ARMA, '추운 계절의 순환이 불규칙하다'",
+     stem:'시계열 모형에 대한 설명으로 옳은 것은?',
+     options:[{text:'① 자기상관함수(ACF)가 p+1 시점부터 급감하면 AR(p) 모형이다'},{text:'② 부분자기상관함수(PACF)가 p+1 시점부터 급감하면 AR(p) 모형이다', correct:true},{text:'③ ARIMA(p,d,q)에서 d는 AR 모형의 차수를 의미한다'},{text:'④ d=0인 경우 IMA 모델이라 한다'}]},
+    {num:'3-15', title:'앙상블 기법 비교 (배깅/부스팅/스태킹)', mode:'비교형(대표 대비쌍)', concept:'배깅=붓스트랩+보팅, 부스팅=오분류 가중치·이상치 민감, 랜덤포레스트=배깅+의사결정나무, OOB≈36.8%',
+     stem:'앙상블 기법에 대한 설명으로 옳지 않은 것은?',
+     options:[{text:'① 배깅은 복원추출로 생성한 붓스트랩 표본을 학습한다'},{text:'② 부스팅은 잘못 분류된 데이터에 큰 가중치를 부여한다'},{text:'③ 부스팅은 병렬처리가 가능하여 학습 속도가 빠르다', correct:true},{text:'④ 스태킹은 개별 모델의 예측 결과를 메타 학습기로 다시 학습한다'}], hint:'☞ 부스팅만 병렬처리 불가'}
+  ];
+  var A3_extra = "보조 유형 — 베이즈 정리 계산(우도표 기반 사후확률), 오즈비·상대위험도 계산, 트랜스포머(BERT=인코더·양방향 / GPT=디코더·일방향), LSTM(3 Gate) vs GRU(2 Gate) 비교도 출제 가능성이 높습니다.";
+
+  var A4 = [
+    {num:'4-1', title:'혼동행렬 평가지표 계산', mode:'계산문제 · 빈출 1순위', calc:true, concept:'Precision=TP/(TP+FP), Recall=TP/(TP+FN), Specificity=TN/(FP+TN), Accuracy=(TP+TN)/전체',
+     stem:'TP=60, FP=20, FN=40, TN=80일 때 정밀도(Precision)는? (60/(60+20)=0.75, 재현율은 60/(60+40)=0.6으로 값이 갈리는 것이 함정)',
+     options:[{text:'① 0.60'},{text:'② 0.70'},{text:'③ 0.75', correct:true},{text:'④ 0.80'}]},
+    {num:'4-2', title:'F1 Score / F-β Score', mode:'계산+함정형', calc:true, concept:'F1=Precision·Recall의 조화평균, β&gt;1이면 Recall 비중↑, β&lt;1이면 Precision 비중↑',
+     stem:'정밀도 0.6, 재현율 0.4일 때 F1 Score는? (2×0.24/1.0)',
+     options:[{text:'① 0.24'},{text:'② 0.44'},{text:'③ 0.48', correct:true},{text:'④ 0.50'}]},
+    {num:'4-3', title:'ROC 커브 / AUC / 이익도표', mode:'비교형(축 뒤집기 함정)', concept:'x축=1−특이도(FPR), y축=민감도(TPR), AUC 0.5~1, 이익도표=반응검출율·반응률·리프트',
+     stem:'ROC 커브에 대한 설명으로 옳지 않은 것은?',
+     options:[{text:'① 가로축은 1−특이도(FPR)이다'},{text:'② 세로축은 민감도(TPR)이다'},{text:'③ AUC가 1에 가까울수록 성능이 좋다'},{text:'④ AUC는 0에서 1 사이의 값을 가지며 0에 가까울수록 우수하다', correct:true}]},
+    {num:'4-4', title:'회귀모델 평가지표 비교', mode:'비교형+계산', concept:'MSE·MAE·RMSE(=√MSE)·MAPE·MPE',
+     stem:'오차의 절댓값 백분율의 평균으로, 단위에 영향을 받지 않는 지표는?', options:[{text:'① MSE'},{text:'② MAE'},{text:'③ RMSE'},{text:'④ MAPE', correct:true}]},
+    {num:'4-5', title:'결정계수와 수정된 결정계수', mode:'개념+해석형', concept:'R²=SSR/SST, 다중회귀에서는 Adjusted R² 사용',
+     stem:'다중 회귀분석에서 독립변수 개수가 증가할 때 일반적으로 사용해야 하는 지표는?',
+     options:[{text:'① R-square'},{text:'② 수정된 R-square', correct:true},{text:'③ SST'},{text:'④ MSE'}]},
+    {num:'4-6', title:'군집분석 평가지표', mode:'비교형(a,b 정의 뒤집기 함정)', concept:'실루엣 계수 S(i)=(b−a)/max(a,b), −1~1 / Dunn Index / WCSS·Elbow Method',
+     stem:'실루엣 계수에 대한 설명으로 옳은 것은?',
+     options:[{text:'① −1에 가까울수록 군집화가 잘 된 것이다'},{text:'② a(i)는 가장 가까운 다른 군집과의 평균 거리이다'},{text:'③ 1에 가까울수록 군집화가 잘 된 것이다', correct:true},{text:'④ 0에서 1 사이의 값만 가진다'}]},
+    {num:'4-7', title:'과대적합·과소적합과 편향-분산', mode:'비교형(뒤집기 함정)', concept:'과대적합=높은 분산·낮은 편향 / 과소적합=낮은 분산·높은 편향',
+     stem:'과대적합(Overfitting)의 특징으로 옳은 것은?',
+     options:[{text:'① 높은 편향, 낮은 분산'},{text:'② 낮은 편향, 높은 분산', correct:true},{text:'③ 높은 편향, 높은 분산'},{text:'④ 낮은 편향, 낮은 분산'}]},
+    {num:'4-8', title:'교차 검증 기법', mode:'비교형', concept:'홀드아웃 / K-fold(k−1개 학습,1개 검증) / LOOCV(연산량↑) / 부트스트래핑',
+     stem:'데이터를 k개 집단으로 나누어 k−1개로 학습하고 나머지 1개로 검증하는 방법은?',
+     options:[{text:'① 홀드아웃'},{text:'② K-fold 교차검증', correct:true},{text:'③ LOOCV'},{text:'④ 부트스트래핑'}]},
+    {num:'4-9', title:'적합도 검정 / 모수 검정 전제조건', mode:'매칭형(오답 함정)', concept:'정규성=Shapiro-Wilk·Q-Q Plot, 등분산성=Levene·F검정, 독립성=더빈-왓슨',
+     stem:'오차의 독립성을 검정할 때 사용하는 방법은?',
+     options:[{text:'① Shapiro-Wilk 검정'},{text:'② Levene 검정'},{text:'③ 더빈-왓슨 검정', correct:true},{text:'④ Q-Q Plot'}]},
+    {num:'4-10', title:'모수 유의성 검정 선택 (Z/t/F/ANOVA)', mode:'상황 판별형', concept:'t=평균 비교(단일·독립·대응), F=분산 동일성, ANOVA=셋 이상 집단 평균',
+     stem:'서로 다른 세 개 학급의 평균 성적 차이를 검정할 때 적절한 방법은?',
+     options:[{text:'① 대응표본 t-검정'},{text:'② 독립표본 t-검정'},{text:'③ F-검정'},{text:'④ ANOVA 검정', correct:true}]},
+    {num:'4-11', title:'R 회귀분석 출력 결과 해석', mode:'결과 해석형 · 고난도 빈출', calc:true, concept:'F통계량 p-value(모형 유의성), Pr(&gt;|t|), Multiple/Adjusted R-squared, 회귀 자유도+잔차 자유도+1=전체 데이터 수',
+     stem:'회귀분석 결과 회귀 자유도가 3, 잔차 자유도가 16일 때 분석에 사용된 전체 데이터 수는?',
+     options:[{text:'① 18개'},{text:'② 19개'},{text:'③ 20개', correct:true},{text:'④ 21개'}]},
+    {num:'4-12', title:'PCA 결과 해석 및 스크리플롯', mode:'결과 해석형', concept:'Cumulative Proportion으로 주성분 수 결정, 70~90% 설명력, 스크리플롯=수평 직전 단계',
+     stem:'PCA 결과 Cumulative Proportion이 PC1=0.6372, PC2=0.8078, PC3=0.8822일 때 해석으로 옳은 것은?',
+     options:[{text:'① PC1 하나만으로 전체의 80%를 설명한다'},{text:'② PC1과 PC2를 사용하면 전체 데이터의 약 80%를 설명한다', correct:true},{text:'③ PC2의 분산이 PC1보다 크다'},{text:'④ 주성분은 반드시 3개를 선택해야 한다'}]},
+    {num:'4-13', title:'하이퍼파라미터 튜닝 / Batch·Epoch·Iteration', mode:'계산+비교형', calc:true, concept:'Grid/Random/Bayesian Search, Momentum·Adagrad·RMSProp·Adam, 학습률 α가 크면 발산',
+     stem:'전체 데이터 1,000개를 배치 크기 50으로 학습할 때 1 Epoch에 필요한 Iteration 수는?',
+     options:[{text:'① 10'},{text:'② 20', correct:true},{text:'③ 50'},{text:'④ 100'}]},
+    {num:'4-14', title:'시각화 유형 분류 및 인포그래픽', mode:'분류 매칭형(오답 함정)', concept:'시간/공간/관계/비교/분포 시각화, 인포그래픽=설득형 메시지·원 데이터 취급 안 함',
+     stem:'데이터 값을 강조하기 위해 면적을 왜곡하여 표현하는 공간 시각화 기법은?',
+     options:[{text:'① 단계구분도'},{text:'② 카토그램', correct:true},{text:'③ 버블 플롯 맵'},{text:'④ 등치선도'}]}
+  ];
+  var A4_extra = "보조 유형 — 박스플롯 해석(☞ 박스플롯으로는 평균을 알 수 없다가 결정적 함정), summary() 출력 해석(Median&lt;Mean → 왜도&gt;0, 클래스 불균형 판단), 히트맵 해석(다중공선성 → PCA 차원축소)도 4과목 후반부 단골 출제 포인트입니다.";
+  var A4_note = "자료상 특이점 — p.34의 가설검정 예제(Z검정, 모표준편차 기지)는 귀무가설 기각, p.35의 동일 데이터 t검정(표본표준편차 기지)은 같은 통계량(−2.0)인데도 임계값 차이(1.96 vs 2.306)로 귀무가설 채택으로 결론이 뒤집힙니다. \"Z검정과 t검정 중 어느 것을 써야 하는가\"를 묻는 함정 문항의 재료로 적합하니 한 세트로 묶어 학습할 것을 권장합니다.";
+
+  [['a1-cards',A1],['a2-cards',A2],['a3-cards',A3],['a4-cards',A4]].forEach(function(pair){
+    var wrap = document.getElementById(pair[0]);
+    pair[1].forEach(function(item){ wrap.appendChild(qaCard(item)); });
+  });
+  document.getElementById('a3-cards').appendChild(el('p','qa-card__hint', A3_extra));
+  document.getElementById('a4-cards').appendChild(el('p','qa-card__hint', A4_extra));
+  document.getElementById('a4-cards').appendChild(el('div','insight-quote', A4_note));
+
+  // ---------- Part B data ----------
+  var B1 = [
+    {title:"[최우선] '분석 작업 계획' 섹션 전체 누락", loc:'데이터분석 계획 · 분석방안수립 (p.11~14)', priority:true,
+     issue:"목차의 「데이터 확보 계획 / 분석 절차 및 작업 계획」이 본문엔 WBS 한 줄뿐. 데이터 확보 계획 4단계와 분석 절차 6단계는 순서나열형 출제 이력 있음.",
+     draft:"● 데이터 확보 계획 수립 절차\n 목표 정의 → 요구사항 도출 → 예산안 수립 → 인력/일정 계획 수립  ('목요예계')\n\n● 데이터 분석 절차 (6단계)\n 문제 인식 → 연구조사 → 모형화 → 자료 수집 → 자료 분석 → 분석 결과 공유  ('문연모자자공')\n\n● 분석 작업 WBS 4단계\n 과제 정의 / 데이터 준비·탐색 / 모델링·검증 / 산출물 정리\n ☞ WBS는 산출물(Deliverable) 중심으로 분할, 최하위 단위는 Work Package"},
+    {title:"'데이터 변환' 항목 본문 부재 + 실시간 수집 기술 누락", loc:'데이터 수집 및 저장 계획 (p.15)',
+     issue:"'데이터 변환' 소제목 자체가 본문에 없음. 수집 기술도 6개뿐이라 CEP/ESP 등 실시간 수집 기술이 빠짐. 유형별 대표 수집기술 짝짓기 문제가 반복 출제됨.",
+     draft:"● 데이터 유형별 수집 기술\n 정형(ETL,FTP,API,Sqoop) / 반정형(Flume,Scribe,Chukwa) / 비정형(크롤링,RSS,Kafka)\n\n● 실시간 데이터 수집 기술\n CEP(복합이벤트 실시간 결합·분석), ESP(스트림 즉시 처리)\n\n● 데이터 변환 기술\n 평활화·집계·일반화·정규화·속성생성  ('평집일정속')\n ☞ 2과목 '데이터 정제'와 동일 개념이 1과목 관점으로 재출제되므로 교차 확인 필요"},
+    {title:"'분석 로드맵' 3단계 자체가 없음", loc:'분석방안수립 · 분석 로드맵 설정 (p.9)',
+     issue:'소제목은 "분석 로드맵 설정"인데 본문은 Known/Unknown 매트릭스와 우선순위뿐, 로드맵 자체의 3단계가 없음.',
+     draft:"● 분석 로드맵 수립 3단계\n (1) 데이터 분석 체계 도입 — 분석 기회 발굴, 과제 정의, 로드맵 수립\n (2) 데이터 분석 유효성 검증 — 알고리즘 설계, 파일럿(POC) 수행\n (3) 데이터 분석 확산 및 고도화 — 시스템 고도화, 운영 프로세스 내재화\n ☞ '도입 → 검증 → 확산', 파일럿(POC)은 2단계에서 수행"},
+    {title:'우선순위 매트릭스 판단 논리 설명 부족', loc:'분석 로드맵 설정 (p.10, 4분면 그림)',
+     issue:'"시급성 중요시: 3→4→2 / 난이도 중요시: 3→1→2" 결론만 있고 이유가 없어, 사분면 번호가 바뀐 변형문제에 취약.',
+     draft:"※ 판단 원리 — 시작은 항상 '쉽고+현재'(3번), 끝은 항상 '어렵고+미래'(2번)\n - 시급성 우선: 현재→미래로 이동 (3→4→2, 1은 난이도 때문에 제외)\n - 난이도 우선: 쉬움→어려움으로 이동 (3→1→2, 4는 시급하지 않아 제외)"},
+    {title:'빅데이터 조직 구조 3유형 - 장단점 비교표 부재', loc:'빅데이터 조직 및 인력 (p.6)',
+     issue:'정의만 있어 "○○ 구조의 단점은?" 문항 대응 부족.',
+     draft:"● 집중구조: 장점=우선순위 조정 가능 / 단점=업무 중복 가능성\n● 기능구조: 장점=별도조직 없이 즉시 분석 / 단점=전사 핵심분석 어려움\n● 분산구조: 장점=신속한 실무적용 / 단점=인력확보·역할조정 부담\n ☞ DSCoE는 집중·분산 구조에만 존재. 가장 이상적 형태로 자주 언급되는 것은 '분산 구조'"},
+    {title:'가명정보 결합·마이데이터 등 최신 제도 미반영', loc:'개인정보 법제도 / 개인정보 활용 (p.7~8)',
+     issue:'가명정보 결합절차(결합전문기관), 마이데이터(전송요구권)가 빠짐. "가명정보를 결합할 수 있는 주체는?" 유형 최근 출제.',
+     draft:"● 가명정보 결합은 반드시 '결합전문기관'(개인정보보호위원회/관계 중앙행정기관장 지정)을 통해서만 가능, 당사자 간 직접 결합 불가\n● 개인정보 수집·이용의 법적 근거(동의 외) — 법령상 의무, 계약 이행, 정보주체 생명·신체·재산 이익, 처리자의 정당한 이익\n● 마이데이터 — '개인정보 전송요구권'에 기반, 금융분야(신용정보법)에서 본인신용정보관리업으로 우선 도입"}
+  ];
+
+  var B2 = [
+    {title:'[최우선] 확률분포별 평균·분산 총정리표 부재', loc:'통계기법 이해 · 확률분포 (p.31)', priority:true,
+     issue:'모수(평균·분산) 공식이 이항분포 하나뿐. "포아송분포 λ=3일 때 분산은?" 같은 계산문항 매 회차 1~2개 출제.',
+     draft:"분포별 E(X), V(X):\n 베르누이(p, p(1-p)) / 이항(np, np(1-p)) / 기하(1/p, (1-p)/p²) / 음이항(r/p, r(1-p)/p²)\n 포아송(λ, λ ← 평균=분산) / 균일이산((n+1)/2, (n²-1)/12) / 균일연속((a+b)/2, (b-a)²/12)\n 정규(μ, σ²) / 지수(1/λ, 1/λ²) / t분포(0, k/(k-2)) / 카이제곱(k, 2k)\n\n예) 불량률 2% 제품 100개: 이항분포 B(100,0.02) → E=2, V=1.96\n예) 시간당 평균 4건 콜센터: 포아송(4) → E=V=4\n☞ 최다 함정: 포아송분포는 평균=분산=λ (지수분포와 혼동 주의)"},
+    {title:'피어슨 상관계수 공식·계산 부재', loc:'데이터 탐색 기초 · 상관관계 분석 (p.26~27)',
+     issue:'"표준화한 것"이라고만 서술, 실제 변환 공식이 없어 계산문항 대응 불가.',
+     draft:"r = Cov(X,Y) / (σx·σy)\n예) 공분산 12, σx=3, σy=8 → r = 12/(3×8) = 0.5\n\n● 상관분석 유의성 검정 — H0: ρ=0, t = r√(n-2)/√(1-r²) ~ t(n-2)\n☞ 독립⇒r=0은 참이지만, r=0⇒독립은 거짓 (선형관계만 측정하므로 곡선관계는 존재 가능)"},
+    {title:'표본분산의 n-1 및 자유도 개념 함정 설명 부재', loc:'추론통계 · 점추정 (p.33) / 기초통계량 (p.27)',
+     issue:'n-1로 나누는 이유, 표준편차 vs 표준오차 구분 등 계산문제 최다 실수 지점 미설명.',
+     draft:"● 모분산(n으로 나눔) vs 표본분산(n-1로 나눔, 불편추정량 위해)\n● 표준편차(σ, 개별 데이터 흩어짐) vs 표준오차(σ/√n, 표본평균의 흩어짐)\n ☞ 신뢰구간·가설검정 공식엔 항상 표준오차 사용\n예) 표본 2,4,6,8 → 평균5, 편차제곱합20, s²=20/3=6.67 (20/4=5로 계산하면 오답)"},
+    {title:'1종/2종 오류·검정력·p-value 판단 규칙 설명 부족', loc:'추론통계 · 가설검정 (p.33~34)',
+     issue:'검정력(1-β) 개념 부재, p-value 정의·판단규칙이 한 줄뿐.',
+     draft:"● 1종 오류(α, 참인 H0 기각) / 2종 오류(β, 거짓 H0 채택) / 검정력=1-β\n ☞ α↓이면 β↑ (Trade-Off), 둘 다 줄이려면 표본 크기 n을 늘려야 함\n● p-value ≤ α → 기각 / p-value &gt; α → 채택\n ☞ 자주 나오는 오답: \"p-value는 귀무가설이 참일 확률이다\"(틀림), \"p-value가 작으면 효과 크기가 크다\"(틀림)"},
+    {title:'표본추출법 - 집락 vs 층화 비교표 부재 (최다 혼동 지점)', loc:'기술통계 · 표본추출 (p.30)',
+     issue:'"군집 내 이질적/동질적" 서술이 떨어져 있어 시험장에서 뒤집힘.',
+     draft:"● 집락(군집) 추출 — 집락 전체를 통째로 뽑음, 집락 내 이질적/집락 간 동질적 (예: 3개 학급 통째로)\n● 층화 추출 — 모든 층에서 나눠 뽑음, 층 내 동질적/층 간 이질적 (예: 전학년에서 10명씩)\n ☞ 암기: '집락'은 통째로 뽑으니 안이 다양해야 대표성 있음. '층화'는 나눠 뽑으니 각 층 안이 비슷해야 의미가 있음\n● 비확률 표본추출(편의·판단·할당·눈덩이)은 통계적 추론에 부적합"},
+    {title:'시각적 데이터 탐색 - 차트별 용도 설명 0줄', loc:'데이터 탐색 기초 · 시각적 데이터 탐색 (p.28)',
+     issue:'그림만 있고 설명 없음. 히스토그램 vs 막대그래프 차이는 매 회차 단골.',
+     draft:"● 히스토그램: 연속형 변수 분포, 막대 간격 없음, 축 순서 변경 불가\n● 막대그래프: 범주형 변수 비교, 막대 간격 있음, 축 순서 변경 가능\n● 박스플롯: 사분위수·이상치, 평균은 표현 안 됨\n ☞ 산점도행렬은 다변량 데이터의 변수쌍 관계를 한번에 파악할 때 사용"}
+  ];
+
+  var B3 = [
+    {title:'[최우선] 비모수 검정 - 이름 나열만, 대응 관계 부재', loc:'고급 분석기법 · 비모수 통계 (p.53)', priority:true,
+     issue:'검정 이름 6개 나열이 전부. "세 집단 이상 중앙값 비교하는 비모수 검정은?" 유형은 모수검정 대응관계를 모르면 못 풂.',
+     draft:"모수 ↔ 비모수 대응:\n 단일표본t↔부호검정/윌콕슨부호순위 / 독립표본t↔만-휘트니U·윌콕슨순위합\n 일원ANOVA↔크러스칼-왈리스 / 반복측정ANOVA↔프리드만 / 피어슨상관↔스피어만·켄달타우\n☞ 귀무가설이 '평균이 같다'가 아니라 '중앙값(분포)이 같다'인 점 주의\n☞ 만-휘트니U검정 = 윌콕슨 순위합검정 (동일 검정), 카이제곱검정도 비모수 검정에 속함"},
+    {title:'정준상관분석 1줄 + 요인분석 요인회전 명칭만 나열', loc:'고급 분석기법 · 다변량 분석 (p.48~49)',
+     issue:'정준상관분석 정의 1줄, 요인회전은 이름만 나열되어 있어 직각/사각회전 차이 대응 불가. PCA vs FA 비교도 부재.',
+     draft:"● 정준상관분석 — 두 변수 '집단' 간 상관관계 분석 (일반상관은 변수 1↔1)\n● 요인회전 — 직각회전(VARIMAX 등, 요인 간 독립 가정) vs 사각회전(OBLIMIN 등, 요인 간 상관 허용)\n ☞ 회전해도 총 설명분산 합은 불변, 배분만 달라짐\n● PCA vs FA — PCA는 전체분산 사용·변수→합성(서열 있음), FA는 공통분산만 사용·요인→변수 설명(서열 없음)"},
+    {title:"의사결정나무 - 불순도 지수는 있으나 '정보이득' 계산이 없음", loc:'분석기법 · 의사결정나무 (p.42)',
+     issue:'지니·엔트로피 공식은 있으나 분리 기준 선택 방식(정보이득)이 없음. 분할 전후 지니지수 감소량 계산 문항 최근 출제.',
+     draft:"정보이득 = 부모 불순도 − Σ(자식 비율×자식 불순도)\n예) 부모 10개(A5,B5) 지니=0.5, 분할 후 왼쪽6개(A5,B1)지니=0.278, 오른쪽4개(A0,B4)지니=0\n → 가중평균=0.167, 정보이득=0.5-0.167=0.333\n☞ 정지규칙(사전)은 성장을 미리 멈춤 vs 가지치기(사후)는 끝까지 키운 뒤 잘라냄"},
+    {title:'군집 알고리즘 3종 비교표 부재', loc:'분석기법 · 군집분석 (p.46~47)',
+     issue:'계층적/K-means/DBSCAN이 각각 서술만 되어 있어 판단이 느려짐. 연결법 5종 특징(사슬효과 등)도 없음.',
+     draft:"● 비교: 계층적(유사도,K불필요,이상치민감) / K-means(거리,K필요,매우민감) / DBSCAN(밀도,K불필요,강건) / SOM(신경망,격자)\n● 최단연결법: 계산 간단하나 '사슬효과' 발생 / 와드연결법: SSE 증가 최소화, 가장 널리 사용\n☞ DBSCAN — 핵심점/경계점/잡음점 용어, K-means는 WCSS 최소화·지역최적해 위험"},
+    {title:'앙상블 - 배깅 vs 부스팅 비교표 부재', loc:'고급 분석기법 · 앙상블 분석 (p.52~53)',
+     issue:'편향-분산 관점 대비가 없어 4과목 과대/과소적합과 연결이 안 됨.',
+     draft:"● 배깅: 병렬, 복원추출, 동일가중치, 분산 감소 목적, 이상치 영향 적음 (랜덤포레스트)\n● 부스팅: 순차, 가중치 조정, 오분류에 큰 가중치, 편향 감소 목적, 이상치 민감 (AdaBoost·GBM·XGBoost)\n☞ 랜덤포레스트=배깅+변수 무작위 선택(개별 나무 간 상관↓), OOB≈36.8%로 별도 검증셋 없이 평가 가능"},
+    {title:'회귀 t검정 vs F검정 비교 + 로지스틱 오즈비 해석 계산 부재', loc:'분석기법 · 회귀/로지스틱회귀 (p.41~42)',
+     issue:'"회귀계수는 t검정, 모형은 F검정" 두 줄뿐. 오즈비 해석(exp(β)) 계산도 없음.',
+     draft:"● 회귀계수 t검정(H0:βi=0) vs 모형 F검정(H0:β1=…=βk=0) — 단순회귀에선 F=t²로 동일\n ☞ 함정: 모형 F검정이 유의해도 개별 변수는 유의하지 않을 수 있음(다중공선성 존재 시)\n● 오즈비 = exp(β) — β=0.693이면 오즈비≈2.0 (오즈 2배 ≠ 확률 2배)\n ☞ 로지스틱 회귀는 최대우도법으로 추정, 적합도는 이탈도·우도비검정으로 평가"},
+    {title:'R vs Python 비교 및 데이터마이닝 모델유형 vs 머신러닝 학습유형 정리', loc:'분석 환경 구축 · 분석 도구/모형 선정 (p.38)',
+     issue:'나열만 되어 있어 대응 관계가 안 보임.',
+     draft:"● 분류·예측=지도학습 / 군집·연관규칙·차원축소=비지도학습\n● R(통계특화,시각화 강력,느림) vs Python(범용,딥러닝 강함,빠름)\n● SVM 커널 4종 — 선형/다항/RBF(가장 범용)/시그모이드, 커널트릭으로 연산량 절감"}
+  ];
+
+  var B4 = [
+    {title:"[최우선] '분석모형 융합'·'최종모형 선정' 본문 완전 부재", loc:'분석모형 평가 및 개선 · 분석모형 개선 (p.61 뒤)', priority:true,
+     issue:'목차 4개 항목 중 2개가 본문에 아예 없음.',
+     draft:"● 분석모형 융합 — 취합(다수결·배깅·랜덤포레스트) / 부스팅(AdaBoost·GBM·XGBoost) / 스태킹(메타모형)\n ☞ 결합 모형들이 서로 '다양성'을 가져야 효과가 큼\n● 최종모형 선정 절차 — 평가기준 선정→모형별 평가 수행→이해관계자 협의→최종모형 확정\n ☞ 성능 최고 모형이 항상 최종모형은 아님(해석가능성·운영비용도 고려), 성능 차이 근소하면 단순모형 선택"},
+    {title:'혼동행렬 - 공식만 있고 숫자 계산 예시 없음', loc:'분석모형 평가 · 평가 지표 (p.56)',
+     issue:'계산식은 있으나 숫자 예제가 0개. 매 회차 2~3문제 계산형 최다 출제 구간. 행/열 방향(예측 vs 실제) 혼동 주의도 필요.',
+     draft:"예) TP=40,FP=10,FN=20,TN=30(총100) → 정확도0.70, 정밀도0.80, 재현율0.667, 특이도0.75, F1=0.727\n☞ F1은 조화평균이지 산술평균(0.733)이 아님 — 계산 실수 최다 지점\n☞ 상황별 지표: 암진단·사기탐지→재현율 우선 / 스팸분류→정밀도 우선 / 불균형 심함→F1·AUC 사용\n☞ AUC 기준: 0.9~1.0 Excellent / 0.8~0.9 Good / 0.7~0.8 Fair / 0.5 무작위 추측"},
+    {title:'회귀 평가지표 계산 예시 및 지표 간 차이 설명 부재', loc:'분석모형 평가 · 회귀모델 평가지표 (p.57)',
+     issue:'어떤 상황에 어떤 지표를 쓰는지, MAPE 한계(실제값 0일 때 계산 불가) 등 미설명. 결정계수 함정(변수 추가 시 R² 항상 증가)도 강조 필요.',
+     draft:"예) (10,12)(20,18)(30,33) → MAE=2.33, MSE=5.67, RMSE=2.38, MAPE=13.3%\n☞ 항상 MAE ≤ RMSE\n☞ R²는 변수를 추가하면 무의미한 변수라도 절대 감소하지 않음 → 다중회귀는 Adjusted R² 사용\n☞ 단순회귀에서 R² = (피어슨 상관계수 r)²"},
+    {title:'편향-분산 관계와 학습곡선 판독 기준 부족', loc:'분석모형 진단 (p.58) / 과대적합 방지 (p.60)',
+     issue:'"왜 그런지", "학습곡선에서 어떻게 판별하는지"가 없음.',
+     draft:"총 오차 = 편향² + 분산 + 줄일 수 없는 오차\n● 과소적합: 훈련·검증오차 둘 다 높음(격차 작음) / 과대적합: 훈련오차↓ 검증오차↑(격차 큼, 변곡점=조기종료 지점)\n☞ 모델 복잡도↑ → 편향↓ 분산↑ (Trade-Off), 규제는 분산을 줄이는 대신 편향을 약간 키움"},
+    {title:'시각화 유형 총정리표 부재 (차트가 4개 섹션에 산재)', loc:'분석결과 시각화 전체 (p.65~67)',
+     issue:'"○○차트는 어느 시각화 유형인가" 분류 문항(매 회차 1~2개) 대응할 통합표 없음.',
+     draft:"시간(막대·선·경사·영역차트) / 공간(단계구분도·카토그램·등치선도·버블맵) / 관계(산점도·버블차트·히트맵·덴드로그램) /\n비교(체르노프페이스·스타차트·평행좌표·버터플라이) / 분포(파이·트리맵·모자이크·히스토그램·박스플롯)\n☞ 히트맵·히스토그램은 여러 유형에 중복 등장 — 문제의 '목적'으로 판단\n☞ 인포그래픽은 '설득형 메시지'가 목적이며 원 데이터를 그대로 다루지 않음"},
+    {title:"'분석결과 활용' 4개 항목이 각 1줄 (목차 대비 최소 서술)", loc:'분석결과 해석 및 활용 (p.68)',
+     issue:'전개/시나리오개발/모니터링/리모델링 4개 항목이 각 한 줄. "리모델링 주기는?" 등 최근 출제.',
+     draft:"● 모니터링 — 성능지표·입력데이터 분포·자원사용량 관찰. 성능저하 원인: 데이터 드리프트 / 컨셉 드리프트\n● 리모델링 — 일반적으로 연 1회, 성능저하·업무변경·신규데이터 확보 시 수시 수행\n ☞ 리모델링(모형 재구축) vs 모형 개선(하이퍼파라미터 조정)은 구분되는 개념"}
+  ];
+
+  [['b1-cards',B1],['b2-cards',B2],['b3-cards',B3],['b4-cards',B4]].forEach(function(pair){
+    var wrap = document.getElementById(pair[0]);
+    pair[1].forEach(function(item){ wrap.appendChild(gapCard(item)); });
+  });
+
+  var priorityRows = [
+    ['1','2-1 확률분포 평균·분산표','계산문제 직결, 현재 공백이 가장 큼'],
+    ['2','4-2 혼동행렬 계산 예제','최다 출제 구간인데 예제 0개'],
+    ['3','1-1 분석 작업 계획','목차 항목 자체가 본문에 없음'],
+    ['4','4-1 분석모형 융합·최종모형 선정','목차 항목 자체가 본문에 없음'],
+    ['5','3-1 비모수 검정 대응표','4과목 모수검정과 짝 맞춤 필요'],
+    ['6','2-5 표본추출법 비교표 / 2-3 n-1 함정','오답률 높은 혼동 지점'],
+    ['7','나머지 비교표류','시험장 정리용']
+  ];
+  var tbody = document.getElementById('priority-table');
+  priorityRows.forEach(function(row){
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td><b>'+row[0]+'</b></td><td>'+row[1]+'</td><td>'+row[2]+'</td>';
+    tbody.appendChild(tr);
+  });
+
+  // ---------- expand/collapse toggles ----------
+  document.querySelectorAll('.expand-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var cls = btn.getAttribute('data-target');
+      var groups = document.querySelectorAll('.' + cls);
+      var anyClosed = Array.prototype.some.call(groups, function(g){ return !g.open; });
+      groups.forEach(function(g){ g.open = anyClosed; });
+      btn.textContent = anyClosed ? '전체 접기' : '전체 펼치기';
+    });
+  });
+})();
+</script>

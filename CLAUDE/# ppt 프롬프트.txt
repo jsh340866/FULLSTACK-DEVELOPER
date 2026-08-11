@@ -1,0 +1,30 @@
+순수 HTML, CSS, JavaScript만으로 웹 기반 슬라이드 프레젠테이션을 구현하는 최적의 방법을 리서치하세요.
+외부 라이브러리(Reveal.js 등)는 참고만 하고, 최종 구현은 순수 바닐라로 가능해야 합니다.
+
+다음 4개의 주제를 서브에이전트로 병렬 리서치하세요:
+
+
+## Agent 1: 슬라이드 레이아웃 & DOM 구조
+- 슬라이드를 full-viewport로 표시하는 CSS 레이아웃 방법 (Flexbox, Grid, absolute positioning 비교)
+- 슬라이드 컨테이너와 개별 슬라이드의 HTML 구조 설계
+- 반응형 슬라이드 구현 방법 (vw/vh 단위 활용, aspect-ratio 유지)
+- 16:9 비율 고정 방법 및 브라우저 호환성
+
+## Agent 2: 키보드 & 마우스 네비게이션
+- 키보드 이벤트(←→, Space, PageUp/Down) 처리 방법
+- 슬라이드 전환 시 URL hash 동기화 (#slide-1 방식)
+- 터치/스와이프 제스처 지원 구현 (touchstart, touchend)
+- 진행 표시바(progress bar) 및 슬라이드 번호 표시 방법
+
+## Agent 3: 슬라이드 전환 애니메이션
+- CSS transition vs CSS animation vs Web Animations API 비교
+- 대표적인 전환 효과 구현: fade, slide, zoom
+- 전환 중 이전/다음 슬라이드를 동시에 보여주는 방법
+- GPU 가속 활용법 (transform, will-change 속성)
+- 애니메이션 도중 추가 입력을 막는 방법 (이벤트 잠금)
+
+## Agent 4: 슬라이드 내 콘텐츠 애니메이션 (빌드 효과)
+- 슬라이드 진입 시 요소를 순서대로 등장시키는 방법 (data-step 속성 등)
+- CSS class 토글 방식의 appear/reveal 구현
+- 코드 블록 하이라이트 표시 방법 (특정 줄 강조)
+- 화자 노트(speaker notes) 숨김/표시 처리

@@ -6,6 +6,8 @@ Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-s
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
+**Language:** Respond in Korean by default. Code, class names, and technical terms stay in English.
+
 ## 1. State Assumptions, Then Proceed
 
 **Say what you assumed. Keep going. Default the rest.**
@@ -69,6 +71,12 @@ When the work is done:
 - Skip it when the change is trivial, or when the user is the one who taught you the thing.
 
 Why: an agent that only ships code leaves the user unable to maintain it. They should finish each task slightly more able to do it without you.
+
+## 6. Commits: No Co-Authored-By Trailer
+
+**Never add a `Co-Authored-By: Claude ...` trailer to commit messages.**
+
+Why: on this user's personal/portfolio repos, the trailer causes GitHub to list "claude" on the Contributors sidebar, which misrepresents solo work in a job-hunting context. Omit it by default, even if not explicitly told each time. Only include it if the user explicitly asks for it in the moment.
 
 ---
 
